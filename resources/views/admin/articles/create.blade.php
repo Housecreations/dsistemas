@@ -28,30 +28,17 @@
 
 <div class="form-group">
     
-   {{-- {!! Form::label('category', 'Categoria') !!}
-    {!! Form::select('category', $categories, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una categoria']) !!}
-    --}}
-     <label for="category">Categoria</label>
+ 
+ <label for="category">Categoria</label>
     <select class="form-control" required="required" id="category_id" name="category_id"><option selected="selected" value="">Seleccione una categoria</option>
-    <option value="">--Masculino--</option>
+  
        @foreach($categories as $category)  
-         @if($category->gender == 'male') 
+   
              <option value="{{$category->id}}">{{$category->name}}</option> 
-                @endif    
+                
                 @endforeach 
-            <option value="">--Femenino--</option>     
-    @foreach($categories as $category)
-          @if($category->gender == 'female')
-            <option value="{{$category->id}}">{{$category->name}}</option>
-                @endif
-                @endforeach 
-                 <option value="">--Accesorios--</option>  
-                @foreach($categories as $category)
-          @if($category->gender == 'acc')
-            <option value="{{$category->id}}">{{$category->name}}</option>
-                @endif
-                @endforeach </select>
-    
+           </select>
+  
 </div>
 
 

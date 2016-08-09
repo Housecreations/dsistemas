@@ -34,7 +34,7 @@
        
      @foreach($articles as $article)
     
-    <div class="col-md-4 item-content col-xs-6">
+    <div class="col-md-6 item-content">
     
         
         
@@ -45,10 +45,7 @@
         
         
     
-    <a class="" href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}">
-
-   
-        
+  
         
    
 			    	<div class="grid mask">
@@ -56,13 +53,13 @@
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
 								<h5>{{$article->name}} ! {{$article->price}} </h5>
-								<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Ver mas</a>
+								<a data-toggle="modal" href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}" class="btn btn-primary btn-lg">Ver mas</a>
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->
 			    	</div><!-- /grid-mask -->
 		
         
-        </a>
+        
         
    
     

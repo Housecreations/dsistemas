@@ -2009,8 +2009,8 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
 .panel-heading { padding: 10px 15px; border-bottom: 1px solid transparent; border-top-right-radius: 3px; border-top-left-radius: 3px; }
 .panel-heading > .dropdown .dropdown-toggle { color: inherit; }
 
-.panel-title { margin-top: 0; margin-bottom: 0; font-size: 16px; }
-.panel-title > a { color: inherit; }
+.panel-title { margin-top: 0; margin-bottom: 0; font-size: 18px; }
+.panel-title > a { color: white; }
 
 .panel-footer { padding: 10px 15px; background-color: whitesmoke; border-top: 1px solid #dddddd; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; }
 
@@ -2021,8 +2021,8 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
 .panel-group .panel-footer { border-top: 0; }
 .panel-group .panel-footer + .panel-collapse .panel-body { border-bottom: 1px solid #dddddd; }
 
-.panel-default { border-color: #dddddd; }
-.panel-default > .panel-heading { color: #333333; background-color: whitesmoke; border-color: #dddddd; }
+.panel-default {     border-color: #1f2124; }
+.panel-default > .panel-heading { color: #333333;     background-color: #1f2124; border-color: #dddddd; }
 .panel-default > .panel-heading + .panel-collapse .panel-body { border-top-color: #dddddd; }
 .panel-default > .panel-heading > .dropdown .caret { border-color: #333333 transparent; }
 .panel-default > .panel-footer + .panel-collapse .panel-body { border-bottom-color: #dddddd; }

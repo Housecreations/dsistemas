@@ -58,7 +58,7 @@ class ArticlesController extends Controller
         if($request->file('image')){
             
                     $file = $request->file('image');
-        $name = 'ElenaSuarezStore_' .time(). "." . $file->getClientOriginalExtension();
+        $name = 'Dsistemas_' .time(). "." . $file->getClientOriginalExtension();
         $path = 'images/articles/';
         $file->move($path, $name);
         }

@@ -37,6 +37,7 @@
 	<script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
 		<script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script> 
     <script src="{{ asset('js/bootstrap.js') }}"></script> 
+    <script src="{{ asset('js/modernizr.custom.js') }}"></script> 
    
 	
 
