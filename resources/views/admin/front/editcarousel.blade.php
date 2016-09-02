@@ -41,7 +41,14 @@
 <div class="form-group">
     
    {!! Form::label('imagen', 'URL de la imagen') !!}
-   {!! Form::text('imagen', $image->image_url, ['class' => 'form-control', 'placeholder' => 'URL imagen', 'required']) !!}
+   {!! Form::text('imagen', $image->image_url, ['class' => 'form-control', 'placeholder' => 'URL imagen']) !!}
+    
+</div>
+
+<div class="form-group">
+    
+   {!! Form::label('url_to', 'URL a redirigir') !!}
+   {!! Form::text('url_to', $image->url_to, ['class' => 'form-control', 'placeholder' => 'www.ejemplo.com/ruta-a-mostrar']) !!}
     
 </div>
 

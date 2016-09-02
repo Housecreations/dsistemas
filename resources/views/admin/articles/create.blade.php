@@ -20,11 +20,7 @@
 {!! Form::textarea('description', null, ['class' => 'form-control', 'size' => '20x5', 'required', 'placeholder' => 'Descripción del artículo']) !!}
 </div>
 
-{{--<div class="form-group">
-    {!! Form::label('gender', 'Género') !!}
-    {!! Form::select('gender', ['male' => 'Masculino', 'female' => 'Femenino'], null, ['class'=> 'form-control', 'placeholder' => 'Seleccione un genero', 'required'] ) !!}
-    
-</div>--}}
+
 
 <div class="form-group">
     

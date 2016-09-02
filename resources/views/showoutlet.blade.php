@@ -1,4 +1,4 @@
-@extends('admin.templates.main')
+@extends('admin.templates.productos')
  @if(sizeof($articles)==0)
  @section('title', 'No se encontraron articulos') 
  @else

@@ -93,10 +93,11 @@ Route::get('/QuienesSomos', function () {
 });
 
 
+Route::get('/download', 'FilesController@download');
 
 
 
-Route::get('/articulos/outlet', function () {
+Route::get('/descuentos', function () {
      $categories = App\Category::all();
     
     
@@ -171,6 +172,35 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/outlet/sus/{id}', [
     'uses' => 'FrontController@sus',
     'as' => 'admin.outlet.sus'
+]);
+    
+     Route::get('/clients', [
+    'uses' => 'ClientsController@index',
+    'as' => 'admin.clients.index'
+]);
+    
+      Route::get('/clients/create', [
+    'uses' => 'ClientsController@create',
+    'as' => 'admin.clients.create'
+]);
+    
+       Route::get('/clients/{id}', [
+    'uses' => 'ClientsController@edit',
+    'as' => 'admin.clients.edit'
+]);
+    
+   
+    Route::post('/clients/create', [
+    'uses' => 'ClientsController@store',
+    'as' => 'admin.clients.store'
+]);
+     Route::get('/clients/{id}/destroy', [
+    'uses' => 'ClientsController@destroy',
+    'as' => 'admin.clients.destroy'
+]);
+     Route::put('/clients/{id}/update', [
+    'uses' => 'ClientsController@update',
+    'as' => 'admin.clients.update'
 ]);
     
     

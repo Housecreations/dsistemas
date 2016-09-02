@@ -13,6 +13,7 @@ use Laracasts\Flash\Flash;
 use App\CarouselImage;
 
 use App\Article;
+use App\Http\Requests\ImageRequest;
 
 class FrontController extends Controller
 {
@@ -144,7 +145,7 @@ class FrontController extends Controller
         
     }
     
-     public function update(Request $request, $id)
+     public function update(ImageRequest $request, $id)
     {
          
        
@@ -159,6 +160,7 @@ class FrontController extends Controller
                   $image = CarouselImage::find($id);
    
     $image->image_url = $name;
+                 $image->url_to = $request->url_to;
     $image->save();
         
              
@@ -181,8 +183,10 @@ class FrontController extends Controller
              }else{
                  
                $image = CarouselImage::find($id);
-  
-    $image->image_url = $request->$imagen;
+ 
+               
+    $image->image_url = $request->imagen;
+                 $image->url_to = $request->url_to;
     $image->save();  
                  
                  
@@ -196,6 +200,9 @@ class FrontController extends Controller
             
             $unread = '+99';
         }
+                 
+                 
+        
         
                  
          $categories = Category::all();  

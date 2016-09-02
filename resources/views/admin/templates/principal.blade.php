@@ -104,7 +104,9 @@
     
      <script src="js/jquery.nivo.slider.pack.js"></script>
    
- 
+    <script>
+$('div.alert').not('.alert-important').delay(2000).slideUp(350);
+</script>
  
   <script type="text/javascript">
     $(window).load(function() {

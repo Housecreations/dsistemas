@@ -77,16 +77,18 @@
 							<ul class="sf-menu">
 								<li><a href="/">Inicio</a></li>
 					            <li><a href="/QuienesSomos">Quiénes somos</a>
+                                    <li><a href="#">Clientes</a>
                                     <li><a href="#">Productos</a>
 					            	<ul>
                                         @foreach($categories as $category)
 					            		<li><a href="/articulos/{{$category->name}}">{{$category->name}}</a></li>
 					            		
                                         @endforeach
+                                        <li><a href="/descuentos">Descuentos</a></li>
 					            	</ul>
 					            </li>
 					            
-					            <li><a href="#">Descargas</a>
+					            <li><a href="/download">Descargas</a>
 					            <li><a href="{{ route('contact')}}">Contacto</a></li>
                                 
                                 

@@ -25,6 +25,7 @@
 </div>
 
 
+
 <div class="form-group">
     {!! Form::label('image', 'Cargar imagen') !!}
     {!! Form::file('image') !!}

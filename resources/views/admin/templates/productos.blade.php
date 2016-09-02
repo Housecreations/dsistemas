@@ -26,17 +26,25 @@
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
-<!-- <link rel="stylesheet" href="{{ asset('css/misc.css')}}">-->
+<link rel="stylesheet" href="{{ asset('css/flexslider.css')}}">
 <link rel="stylesheet" href="{{ asset('css/blue-scheme.css')}}">
 <link rel="stylesheet" href="{{ asset('css/animate.min.css')}}">
 <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/nivo-slider.css')}}">
-	
+
 	
 	<!-- JavaScripts -->
+	
+ <script src="{{ asset('js/jquery.min.js') }}"></script> 
+
+	
+	
+<!--
 	<script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
-		<script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script> 
-    <script src="{{ asset('js/bootstrap.js') }}"></script> 
+		
+	<script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>-->
+			
+    
     <script src="{{ asset('js/modernizr.custom.js') }}"></script> 
    
 	
@@ -111,16 +119,19 @@
 	</footer>
 
 
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script src="{{ asset('js/min/bootstrap.js') }}"></script> 
+
 <script src="{{ asset('js/min/plugins.min.js') }}"></script>
 <script src="{{ asset('js/medigo-custom.js') }}"></script>
 <script src="{{ asset('js/wow.min.js') }}"></script>
- 
+ <script src="{{ asset('js/jquery.flexslider.min.js') }}"></script>
     
     
    
- 
- 
-
 
 
 </body>

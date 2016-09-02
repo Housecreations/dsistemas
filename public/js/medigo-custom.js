@@ -199,5 +199,38 @@ jQuery(document).ready(function($){
 	/* wow
 	-------------------------------*/
 	new WOW().init();    
+    
+  
+
+
+    
 
 });
+
+  
+
+  $(window).load(function() { // makes sure the whole site is loaded
+        // The slider being synced must be initialized first
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 170,
+            itemMargin: 5,
+            asNavFor: '#slider'
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel",
+            start: function(slider){
+                $('#status').fadeOut(); // will first fade out the loading animation
+                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+                $('#main-wrapper').delay(350).css({'overflow':'visible'});
+            }
+        });
+    });

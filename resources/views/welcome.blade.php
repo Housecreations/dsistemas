@@ -19,7 +19,7 @@
             >
             
             @foreach($carousel as $image)
-            <a href=""><img alt="" src="/images/slider/{{$image->image_url}}" >
+            <a href="{{$image->url_to}}"><img alt="" src="/images/slider/{{$image->image_url}}" >
             </a>
            @endforeach
            

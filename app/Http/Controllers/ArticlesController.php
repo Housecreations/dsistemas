@@ -38,8 +38,7 @@ class ArticlesController extends Controller
     {
        
  /*   $categories = Category::orderBy('gender', 'ASC')->lists('name', 'id', 'gender');*/
-        $categories = Category::orderBy('gender', 'ASC')->get();
-        
+        $categories = Category::all();
        
      return view('admin.articles.create')->with('categories', $categories);
         
@@ -134,7 +133,7 @@ class ArticlesController extends Controller
           $article = Article::find($id);
         $article->delete();
         
-        Flash::error('El articulo ' . $article->name. ' ha sido eliminada');
+        Flash::error('El articulo ' . $article->name. ' ha sido eliminado');
         $articles = Article::all();  
         return redirect()->route('admin.articles.index')->with('articles', $articles);
          

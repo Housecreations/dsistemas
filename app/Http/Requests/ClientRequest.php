@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ArticleRequest extends Request
+class ClientRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class ArticleRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'max:120|required|unique:articles',
-            'description' => 'required',
-            'category_id' => 'required',
-            'image' => 'required|image'
+            'name' => 'max:120|required|unique:clients',
+            'message' => 'required',
+            'image' => 'required|image',
+            
         ];
     }
 }
