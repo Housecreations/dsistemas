@@ -8,6 +8,10 @@
 <div class="container-fluid">    
 <div class="col-md-4"></div>
 <div class="users col-md-4">
+
+<a href="{{ route('admin.articles.index')}}" class="button">Atrás</a>
+    <hr>
+
 {!! Form::open(['route' => ['admin.users.update', $user->id], 'method' => 'PUT']) !!}
 
 <div class="form-group">
@@ -25,12 +29,6 @@
 </div>
 
 
-
-<div class="form-group">
-    {!! Form::label('type', 'Tipo') !!}
-    {!! Form::select('type', ['member' => 'Miembro', 'admin' => 'Administrador'], $user->type, ['class'=> 'form-control'] ) !!}
-    
-</div>
 
 <div class="form-group">
     

@@ -77,7 +77,7 @@
 							<ul class="sf-menu">
 								<li><a href="/">Inicio</a></li>
 					            <li><a href="/QuienesSomos">Quiénes somos</a>
-                                    <li><a href="#">Clientes</a>
+                                    <li><a href="{{route('clients.show')}}">Clientes</a>
                                     <li><a href="#">Productos</a>
 					            	<ul>
                                         @foreach($categories as $category)

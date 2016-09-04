@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
 
 
 	/************** Portfolio Carousel *********************/
-		function initOwlCarousel(){
+		/*function initOwlCarousel(){
 
 			$("#portfolio-carousel").owlCarousel({
 				items : 4,
@@ -42,10 +42,10 @@ jQuery(document).ready(function($){
 
 		initOwlCarousel();
 
-
+*/
 
 	/************** bxSlider (Testimonials) *********************/
-		function initbxSlider(){
+		/*function initbxSlider(){
 
 			$('.bxslider').bxSlider({
 				adaptiveHeight : true,
@@ -61,7 +61,7 @@ jQuery(document).ready(function($){
 
 
 	/************** FlexSlider *********************/
-		function initFlexSlider(){
+		/*function initFlexSlider(){
 
 			$('.flexslider').flexslider({
 				controlNav: false,
@@ -77,7 +77,7 @@ jQuery(document).ready(function($){
 
 
 	/************** FancyBox *********************/
-		function initFancyBox(){
+	/*	function initFancyBox(){
 
 			$(".fancybox").fancybox({
 				padding: 5,
@@ -91,7 +91,7 @@ jQuery(document).ready(function($){
 
 
 	/************** MixitUp *********************/
-		$('#Grid').mixitup({
+	/*	$('#Grid').mixitup({
 	        effects: ['fade','grayscale'],
 	        easing: 'snap',
 	        transitionSpeed: 400
@@ -101,7 +101,7 @@ jQuery(document).ready(function($){
 
 
 	/************** Flickr Feed *********************/
-		function initFlickrFeed(){
+		/*function initFlickrFeed(){
 
 			$('#flickr-feed').jflickrfeed({
 				limit: 8,
@@ -122,7 +122,7 @@ jQuery(document).ready(function($){
 
 
 	/************** Parallax Scrolling Backgrounds *********************/
-		$('#homeIntro').parallax("50%", 0.3);
+	/*	$('#homeIntro').parallax("50%", 0.3);
 		$('#blogPosts').parallax("80%", 0.3);
 		$('.pageTitle').parallax("50%", 0.3);
 		
@@ -136,7 +136,7 @@ jQuery(document).ready(function($){
 
 
 	/************** Contact Form *********************/
-	    $(".contact-form #submit").click(function() { 
+	   /* $(".contact-form #submit").click(function() { 
 	        //collect input field values
 	        var user_name       = $('input[name=name]').val(); 
 	        var user_email      = $('input[name=email]').val();

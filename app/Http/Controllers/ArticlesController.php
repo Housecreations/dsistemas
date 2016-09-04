@@ -14,6 +14,72 @@ use App\Image;
 
 class ArticlesController extends Controller
 {
+    
+    
+     public function deleteimage($id, $image_id)
+    {
+         $article = Article::find($id);
+              $categories = Category::all();
+             
+              $image = Image::find($image_id);
+             
+             unlink(public_path()."\images\articles\\".$image->image_url);
+                
+           
+
+                $image->delete();
+                
+             
+         
+         Flash::success("Imagen eliminada");
+          
+             
+        
+      
+        return view('admin.articles.images')->with('article', $article)->with('categories', $categories);
+    }
+    
+    
+      public function newimage(Request $request, $id)
+    {
+            $article = Article::find($id);
+          
+           if($request->file('image')){
+            
+                    $file = $request->file('image');
+        $name = 'Dsistemas_' .time(). "." . $file->getClientOriginalExtension();
+        $path = 'images/articles/';
+        $file->move($path, $name);
+               
+                 $image = new Image();
+                $image->article()->associate($article);
+                $image->image_URL = $name;
+                $image->save();
+    
+                 Flash::success("Nueva imagen agregada");
+        }
+        else{
+             Flash::warning("Debe subir una imagen");
+        }
+       
+          
+          
+       
+          $categories = Category::all();
+      
+        return view('admin.articles.images')->with('article', $article)->with('categories', $categories);
+    }
+    
+     public function images($id)
+    {
+         $article = Article::find($id);
+          $categories = Category::all();
+      
+        return view('admin.articles.images')->with('article', $article)->with('categories', $categories);
+    }
+    
+    
+    
    public function index(Request $request)
     {
          $articles = Article::search($request->name)->orderBy('id', 'DESC')->simplePaginate(5);
@@ -36,8 +102,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-       
- /*   $categories = Category::orderBy('gender', 'ASC')->lists('name', 'id', 'gender');*/
+
         $categories = Category::all();
        
      return view('admin.articles.create')->with('categories', $categories);
@@ -59,6 +124,7 @@ class ArticlesController extends Controller
                     $file = $request->file('image');
         $name = 'Dsistemas_' .time(). "." . $file->getClientOriginalExtension();
         $path = 'images/articles/';
+            
         $file->move($path, $name);
         }
  $article = new Article($request->all());
@@ -107,6 +173,11 @@ class ArticlesController extends Controller
     public function edit($id)
     {
      
+        $article = Article::find($id);
+        $categories = Category::all();
+        
+        return view('admin.articles.edit')->with('article', $article)->with('categories', $categories);
+        
     }
  
     /**
@@ -118,7 +189,16 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        $article = Article::find($id);
+        $article->fill($request->all());
+      
+        
+        $article->save();
+        
+        Flash::success('El artículo se editó con éxito');
+        
+         $categories = Category::all();
+            return redirect()->route('admin.articles.index')->with('categories',$categories);
       
     }
  

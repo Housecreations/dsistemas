@@ -10,6 +10,9 @@
 <div class="col-md-4"></div>
 <div class="col-md-4">
 
+<a href="{{ route('admin.users.index')}}" class="button">Atrás</a>
+    <hr>
+
 {!! Form::open(['route' => 'admin.users.store', 'method' => 'POST']) !!}
 
 <div class="form-group">

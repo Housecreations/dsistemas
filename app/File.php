@@ -18,7 +18,7 @@ class File extends Model implements SluggableInterface
         
     ];
     
-      protected $table = "file";
+      protected $table = "files";
     
     protected $fillable = ['name', 'description', 'category_id', 'file_url', 'size', 'version', 'os'];
     
@@ -27,5 +27,11 @@ class File extends Model implements SluggableInterface
         
         return $this->belongsTo('App\Category');
     }
+    
+    public function scopeSearch($query, $name){
+    
+    return $query->where('name', 'LIKE', "%$name%");
+    
+}
     
 }

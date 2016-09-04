@@ -9,6 +9,9 @@
 <div class="col-md-4"></div>
 <div class="col-md-4 users">
 
+<a href="{{ route('admin.users.index')}}" class="button">Atrás</a>
+    <hr>
+
 {!! Form::open(['route' => 'admin.articles.store', 'method' => 'POST', 'files' => true]) !!}
 <div class="form-group">
 {!! Form::label('name', 'Nombre artículo') !!}

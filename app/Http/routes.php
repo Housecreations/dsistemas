@@ -17,7 +17,10 @@ Route::get('articulos/show/all', [
     'as' => 'articles.show.all'
 ]);
 
-
+ Route::get('/clients/show', [
+    'uses' => 'ClientsController@show',
+    'as' => 'clients.show'
+]);
 
 Route::get('/', 'WelcomeController@index');
 Route::get('/load', 'WelcomeController@listing');
@@ -26,6 +29,15 @@ Route::get('/load', 'WelcomeController@listing');
  Route::post('/contact', [
     'uses' => 'MessagesController@store',
     'as' => 'messages.store'
+]);
+
+ Route::get('/download', [
+    'uses' => 'FilesController@files',
+    'as' => 'files.downloads'
+]);
+Route::get('/download/{route}', [
+    'uses' => 'FilesController@download',
+    'as' => 'files.downloads.get'
 ]);
 
 
@@ -93,7 +105,7 @@ Route::get('/QuienesSomos', function () {
 });
 
 
-Route::get('/download', 'FilesController@download');
+
 
 
 
@@ -117,6 +129,35 @@ Route::get('/descuentos', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     
     
+    
+      Route::get('downloads/create', [
+    'uses' => 'FilesController@create',
+    'as' => 'admin.files.create'
+]);
+    
+      Route::post('downloads/create', [
+    'uses' => 'FilesController@store',
+    'as' => 'admin.files.store'
+]);
+    
+    
+       Route::get('downloads/index', [
+    'uses' => 'FilesController@index',
+    'as' => 'admin.files.index'
+]);
+      Route::get('downloads/edit/{id}', [
+    'uses' => 'FilesController@edit',
+    'as' => 'admin.files.edit'
+]);
+    Route::put('downloads/edit/{id}', [
+    'uses' => 'FilesController@update',
+    'as' => 'admin.files.update'
+]);
+     Route::get('downloads/destroy/{id}', [
+    'uses' => 'FilesController@destroy',
+    'as' => 'admin.files.destroy'
+]);
+     
     
     
      Route::get('/front/edit', [
@@ -247,10 +288,21 @@ Route::get('users/{id}/destroy', [
     'uses' => 'ArticlesController@destroy',
     'as' => 'admin.articles.destroy'
 ]);
-   /*  Route::get('articles/{id}/newItem', [
-    'uses' => 'ArticlesController@newItem',
-    'as' => 'admin.articles.newItem'
-]);*/
+    Route::get('articles/{id}/images', [
+    'uses' => 'ArticlesController@images',
+    'as' => 'admin.articles.images'
+]);
+    Route::delete('articles/{id}/images/{image_id}', [
+    'uses' => 'ArticlesController@deleteimage',
+    'as' => 'admin.articles.images.delete'
+]);
+Route::post('articles/{id}/images', [
+    'uses' => 'ArticlesController@newimage',
+    'as' => 'admin.articles.images.new'
+]);
+    
+    
+   
 
     
     /*  inicio rutas sites  */ 

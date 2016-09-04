@@ -8,7 +8,9 @@
  <div class="container-fluid users">    
 <div class="col-md-4"></div>
 <div class="col-md-4">
-         
+        
+         <a href="{{ route('admin.categories.index')}}" class="button">Atrás</a>
+        <hr> 
 {!! Form::open(['route' => ['admin.categories.update', $category->id], 'method' => 'PUT']) !!}
 
 <div class="form-group">

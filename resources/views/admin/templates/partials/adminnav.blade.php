@@ -20,7 +20,7 @@
 </div>
     </a>
     
-<a href=" {{ route('admin.clients.index')}}">
+<a href=" {{ route('admin.files.index')}}">
 <div class="col-md-2 col-xs-3">
 <h2>Archivos</h2>
 </div>

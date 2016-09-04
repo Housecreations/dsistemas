@@ -54,6 +54,16 @@ class ClientsController extends Controller
          
     }
     
+     public function show()
+    {
+         
+    
+        $clients = Client::all();
+         $categories = Category::all();
+        return view('admin.clients.show')->with('clients', $clients)->with('categories', $categories);
+         
+    }
+    
     
     
     

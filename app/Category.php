@@ -16,6 +16,11 @@ class Category extends Model
         return $this->hasMany('App\Article');
     }
     
+     public function files(){
+        
+        return $this->hasMany('App\File');
+    }
+    
     public function scopeSearch($query, $name){
     
     return $query->where('name', 'LIKE', "%$name%");

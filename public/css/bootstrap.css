@@ -1891,12 +1891,12 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { color: #4
 
 a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active { border-color: #428bca; }
 
-.alert {  top: 150px;
+.alert {  top: 100px;
     position: relative;
     width: 50%;
     left: 320px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border: 1px solid transparent;
     border-radius: 4px;
    }
