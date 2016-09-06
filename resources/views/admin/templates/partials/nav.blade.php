@@ -1,24 +1,4 @@
-<!--<div class='barra'> 
-<div class="partnerWrap">
-        <div class="slideshow" 
-            data-cycle-fx=carousel
-            data-cycle-timeout=3000
-            data-cycle-carousel-visible=4
-            data-cycle-next="#next"
-            data-cycle-prev="#prev"
-            data-cycle-carousel-fluid=true
-            >
-            <img alt="partner 1" src="{{ asset('images/partners/partner1.jpg') }}" >
-            <img alt="partner 2" src="{{ asset('images/partners/partner2.jpg') }}" >
-            <img alt="partner 3" src="{{ asset('images/partners/partner3.jpg') }}" >
-            <img alt="partner 4" src="{{ asset('images/partners/partner4.jpg') }}" >
-            <img alt="partner 5" src="{{ asset('images/partners/partner5.jpg') }}" >
-            <img alt="partner 6" src="{{ asset('images/partners/partner6.jpg') }}" >
-          
-        </div>
-       
-      </div> -->
-       
+
 
        
        
@@ -26,16 +6,18 @@
         <ul class="main_menu">
             <li><a href="/">Inicio</a></li>
 					            <li><a href="/QuienesSomos">Quiénes somos</a>
+                                      <li><a href="{{route('clients.show')}}">Clientes</a>
                                     <li><a href="#">Productos</a>
 					            	<ul>
                                         @foreach($categories as $category)
 					            		<li><a href="/articulos/{{$category->name}}">{{$category->name}}</a></li>
 					            		
                                         @endforeach
+                                         <li><a href="/descuentos">Descuentos</a></li>
 					            	</ul>
 					            </li>
 					            
-					            <li><a href="#">Descargas</a>
+					               <li><a href="/download">Descargas</a>
 					            <li><a href="{{ route('contact')}}">Contacto</a></li>
                                 
                                 
@@ -59,7 +41,7 @@
     </div> <!-- /.responsive_menu -->
 
 	<header class="site-header clearfix">
-		<div class="container">
+		<div class="">
 
 			<div class="row">
 
@@ -132,26 +114,6 @@
 
 
 
-   <!-- <div class="col-md-6 left-nav">
-<form class="templatemo-search-form" role="search">
-          <div class="input-group">
-              <button type="submit" class="fa fa-search"></button>
-              <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">           
-          </div>
-        </form>
-     
-        <nav class="templatemo-left-nav">          
-          <ul>
-            <li><a href="#" >Redes</a></li>
-            <li><a href="data-visualization.html">Páginas webs</a></li>
-            <li><a href="data-visualization.html">Máquinas fiscales</a></li>
-            <li><a href="maps.html">Social Media</a></li>
-            <li><a href="manage-users.html">Software administrativo</a></li>
-            
-          </ul>  
-        </nav>
-</div>
 
--->
 
             

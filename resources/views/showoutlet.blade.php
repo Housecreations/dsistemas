@@ -33,28 +33,40 @@
        
      @foreach($articles as $article)
     
-    <div class="col-md-4 item-content">
-    @if($article->category->gender == 'male')
-    <a class="" href="{{ route('hombres.mostrarArticulo', ['caballeros', $article->category->name, $article->slug])}}">
-    @endif
-     @if($article->category->gender == 'female')
-    <a class="" href="{{ route('hombres.mostrarArticulo', ['damas', $article->category->name, $article->slug])}}">
-    @endif
-    @if($article->category->gender == 'acc')
-    <a class="" href="{{ route('hombres.mostrarArticulo', ['accesorios', $article->category->name, $article->slug])}}">
-    @endif
-    <div class="templatemo-gallery-item">
-							<img src="/images/articles/{{$article->articlesDetails[0]->images[0]->image_URL}}" alt="Gallery Item" class="img-responsive">
-							<div class="templatemo-gallery-image-overlay"></div>
-							<div class="templatemo-gallery-image-description text-right">
-								<blockquote class="blockquote-reverse">
-									<h4 class="templatemo-white-text">{{$article->name}}</h4>
-									<h4 class="templatemo-gold-text">{{$article->articlesDetails[0]->price}} bs</h4>
-								</blockquote>
-							</div>
-						</div>	
+  <div class="col-md-6 item-content">
     
-        </a>
+        
+        
+        
+        
+        
+        
+        
+        
+    
+  
+        
+   
+			    	<div class="grid mask">
+						<figure>
+							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
+							<figcaption>
+								<h5>{{$article->name}} ! {{$article->price}} </h5>
+								<a data-toggle="modal" href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}" class="btn btn-primary btn-lg">Ver mas</a>
+							</figcaption><!-- /figcaption -->
+						</figure><!-- /figure -->
+			    	</div><!-- /grid-mask -->
+		
+        
+        
+        
+   
+    
+        
+        
+        
+        
+        
     
     
     

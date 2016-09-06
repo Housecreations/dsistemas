@@ -38,7 +38,7 @@
        @foreach($articles as $article)
            
              
-            <div class="col-md-4">  
+            <div class="col-md-4 item-content">  
             <h5>{{$article->name}}</h5>
             <img src="/images/articles/{{$article->images[0]->image_url}}" alt="">  
                <span>{{$article->price}}</span>

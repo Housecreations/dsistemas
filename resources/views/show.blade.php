@@ -7,7 +7,7 @@
 
 
 @section('content') 
-   <div class="col-md-1"></div>
+   
     <div class="items col-md-10"> 
    
       

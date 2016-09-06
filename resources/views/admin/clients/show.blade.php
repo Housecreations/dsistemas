@@ -4,11 +4,11 @@
 
 @section('content') 
 
-<div class="centrar-con-barra">
+<div class="items col-md-10">
     
     @foreach($clients as $client)
     
-        <div class="col-md-4">
+        <div class="col-md-4 item-content">
         
             <h5>{{$client->name}}</h5>
             <img src="/images/clients/{{$client->logo_url}}" alt="">

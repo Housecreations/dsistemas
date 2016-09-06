@@ -40,11 +40,12 @@
    
 	
 
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-
 </head>
 
-<body>
+<body style="">
+<div id="preloader">
+    <div id="loader"></div>
+</div>
 <!--==============================
               header
 =================================-->
@@ -86,7 +87,7 @@
 						<li><a href="#" class="fa fa-instagram"></a></li>
 					</ul>
 					<p class="wow bounceIn">Copyright 2016 &copy; <span>D'Sistemas Y PC, CA.</span> 
-                    | Desarrollado por: <a rel="nofollow" href="http://www.housecreations.com.ve" target="_blank"><span>House Creations</span></a></p>
+                    | Desarrollado por: <a rel="nofollow" href="http://www.housecreations.com.ve" target="_blank"><span class="hc">House Creations</span></a></p>
 				</div>
 			</div>
 		</div>

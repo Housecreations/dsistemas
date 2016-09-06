@@ -82,7 +82,7 @@ class ArticlesController extends Controller
     
    public function index(Request $request)
     {
-         $articles = Article::search($request->name)->orderBy('id', 'DESC')->simplePaginate(5);
+         $articles = Article::search($request->name)->orderBy('id', 'DESC')->simplePaginate(6);
         $categories = Category::all();
         return view('admin.articles.index')->with('articles', $articles)->with('categories', $categories);
     }

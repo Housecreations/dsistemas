@@ -53,11 +53,14 @@
    
 	
 
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
 
 </head>
 
 <body>
+<div id="preloader">
+    <div id="loader"></div>
+</div>
 <!--==============================
               header
 =================================-->
@@ -66,12 +69,12 @@
     @include('admin.templates.partials.nav') 
     
        <div class="col-md-6 left-nav">
-<form class="templatemo-search-form" role="search">
+<!--<form class="templatemo-search-form" role="search">
           <div class="input-group">
               <button type="submit" class="fa fa-search"></button>
               <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">           
           </div>
-        </form>
+        </form>-->
      
         <nav class="templatemo-left-nav">          
           <ul>
@@ -116,7 +119,7 @@
 						<li><a href="#" class="fa fa-instagram"></a></li>
 					</ul>
 					<p class="wow bounceIn">Copyright 2016 &copy; <span>D'Sistemas Y PC, CA.</span> 
-                    | Desarrollado por: <a rel="nofollow" href="http://www.housecreations.com.ve" target="_blank"><span>House Creations</span></a></p>
+                    | Desarrollado por: <a rel="nofollow" href="http://www.housecreations.com.ve" target="_blank"><span class="hc">House Creations</span></a></p>
 				</div>
 			</div>
 		</div>
