@@ -1,4 +1,4 @@
-@extends('admin.templates.principal')
+@extends('admin.templates.productos')
 
 
 @section('title', 'Contáctanos')
@@ -6,12 +6,11 @@
 
 @section('content')
 
-<div class="container-fluid contacto">    
+<div class="items col-md-10">    
 <div class="text-center contact">
 <span class="title">Contáctenos</span>
 </div>
 
-<div class="col-md-2"></div>
 <div class="col-md-6">
 
 

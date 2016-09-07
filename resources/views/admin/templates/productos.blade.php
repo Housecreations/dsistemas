@@ -109,11 +109,11 @@
               footer
 =================================-->
 <!-- Socialize -->
-	<footer>
+	<footer class="footer-productos">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<ul class="social-icon wow fadeIn" data-wow-delay="0.3s">
+					<ul class="social-icon productos wow fadeIn" data-wow-delay="0.3s">
 						<li><a href="#" class="fa fa-facebook"></a></li>
 						<li><a href="#" class="fa fa-twitter"></a></li>
 						<li><a href="#" class="fa fa-instagram"></a></li>

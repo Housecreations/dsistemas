@@ -8,7 +8,7 @@
   
 {{--{{$article->articlesDetails}}
    --}}
-   <div class="container centrar-con-barra">
+   <div class="items col-md-10">
     <ol class="breadcrumb bc text-center">
   <li><a href="/">Inicio</a></li>
 
