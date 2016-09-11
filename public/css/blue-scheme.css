@@ -203,7 +203,7 @@ body {
        
 }
 .contact{
-    
+        padding-top: 15px;
         padding-bottom: 15px;
 
 }
@@ -211,6 +211,19 @@ span.title{
     font-size: 30px;
     
 }
+
+.address{
+
+     margin-bottom: 20px;
+    font-style: normal;
+     line-height: 1.72857; 
+    
+}
+.address h4{
+    margin-top: 0;
+    line-height: 1;
+}
+
 .contacto {
     
 padding-top: 120px;

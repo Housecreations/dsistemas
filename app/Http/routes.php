@@ -10,6 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/pruebamp', 'PaymentsController@index');
+
+
+Route::get('/payments/fail', 'PaymentsController@fail');
+
+Route::get('/payments/success', 'PaymentsController@fail');
 
 
 Route::get('articulos/show/all', [

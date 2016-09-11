@@ -9,6 +9,7 @@
 <div class="items col-md-10">    
 <div class="text-center contact">
 <span class="title">Contáctenos</span>
+<hr>
 </div>
 
 <div class="col-md-6">
@@ -52,19 +53,19 @@
 {!! Form::close() !!}
 
     </div>
-    <div class="col-md-4">
-        <address>
-       <div class="justificado">
+    <div class="col-md-4 address">
+        
+    
       
-       <ul>
+      
            <h4>D'Sistemas y PC, CA.</h4>
-           <li class="fa fa-phone"> 0424-765-43-21</li>
-           <li class="fa fa-envelope"> Contacto@Dsistemasypc.com</li>
-           <li class="fa fa-map-marker"> Calle 1 cruce con calle 3 local 4 
-           </li>
-       </ul>
-        </div>
-    </address>
+           <span class="fa fa-phone"> 0424-765-43-21</span>
+           <span class="fa fa-envelope"> Contacto@Dsistemasypc.com</span>
+           <span class="fa fa-map-marker"> Calle 1 cruce con calle 3 local 4 
+           </span>
+       
+       
+   
     
     </div>
 </div>

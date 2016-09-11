@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1f83e6f4aacedf2794c2ec4a4df8e87b",
-    "content-hash": "2a6806e152c8481d44063582f77a3ea7",
+    "hash": "87bea5d8eabd61a5310005b57111d755",
+    "content-hash": "0f909d316755b44f4e7e47253ac84bdd",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -420,27 +420,26 @@
             "time": "2015-12-05 17:17:57"
         },
         {
-            "name": "jorgelsaud/mercado-pago",
-            "version": "V0.1",
+            "name": "jpblancodb/mercadopago",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/giorgiosaud/mercadopagoLaravel.git",
-                "reference": "ffdf356b12e8ca132cc5afaa0c4f85cd3d832220"
+                "url": "https://github.com/JPBlancoDB/MercadoPago.git",
+                "reference": "70a17bcc029e6fd3421c298a9692905a7a9d53d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giorgiosaud/mercadopagoLaravel/zipball/ffdf356b12e8ca132cc5afaa0c4f85cd3d832220",
-                "reference": "ffdf356b12e8ca132cc5afaa0c4f85cd3d832220",
+                "url": "https://api.github.com/repos/JPBlancoDB/MercadoPago/zipball/70a17bcc029e6fd3421c298a9692905a7a9d53d5",
+                "reference": "70a17bcc029e6fd3421c298a9692905a7a9d53d5",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
+                "mercadopago/sdk": "0.5.2"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "jorgelsaud\\Mercadopago\\": "src"
+                    "JPBlancoDB\\MercadoPago\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -449,12 +448,12 @@
             ],
             "authors": [
                 {
-                    "name": "Jorge Saud",
-                    "email": "jorgelsaud@gmail.com"
+                    "name": "JP Blanco",
+                    "email": "jpblancodb@gmail.com"
                 }
             ],
-            "description": "Metodo de Pago Mercadopago Para Laravel",
-            "time": "2015-12-31 14:09:53"
+            "description": "MercadoPago SDK for Laravel",
+            "time": "2016-06-15 15:02:06"
         },
         {
             "name": "laracasts/flash",
@@ -765,6 +764,43 @@
                 "storage"
             ],
             "time": "2016-08-10 08:55:11"
+        },
+        {
+            "name": "mercadopago/sdk",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mercadopago/sdk-php.git",
+                "reference": "88fd10a084f750c3e48b417a53c26260c11c2bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/88fd10a084f750c3e48b417a53c26260c11c2bb9",
+                "reference": "88fd10a084f750c3e48b417a53c26260c11c2bb9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/mercadopago.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Horacio Casatti",
+                    "email": "horacio.casatti@mercadolibre.com"
+                }
+            ],
+            "description": "MercadoPago SDK module for Payments integration.",
+            "keywords": [
+                "mercadopago",
+                "sdk"
+            ],
+            "time": "2015-10-14 13:49:16"
         },
         {
             "name": "monolog/monolog",
