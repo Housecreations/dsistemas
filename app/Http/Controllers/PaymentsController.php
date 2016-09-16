@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use JPBlancoDB\MercadoPago\MercadoPago;
+use App\ShoppingCart;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
 {
     public function index(){
       
-   
+    $shopping_cart = ShoppingCart::find(Auth::user()->shopping_cart_id);
 
         $baseURL = url('/');
         

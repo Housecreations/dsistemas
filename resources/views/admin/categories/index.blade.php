@@ -40,7 +40,7 @@
         <th>Acción</th>
     </thead>
     <tbody>
-       @foreach($categories as $category)
+       @foreach($categoriesrender as $category)
            <tr>
                <td>{{$category->id}}</td>
                <td>{{$category->name}}</td>
@@ -62,7 +62,7 @@
     
 </table>
 <div class="text-center">
-  {!! $categories->render() !!} 
+  {!! $categoriesrender->render() !!} 
 </div>
 
      </div>

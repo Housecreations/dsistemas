@@ -10,6 +10,61 @@ http://www.templatemo.com/preview/templatemo_460_medigo
 	BASIC STYLES 
 --------------------------------------------------------*/
 
+.alert-success {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 3px;
+}
+
+
+/*.alert {
+    top: 100px;
+    position: relative;
+    width: 50%;
+    padding: 1px;
+    padding: 20px;
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.5s;
+    transition-delay: 2s;
+}*/
+
+.items-no-nav {
+      background: white;
+    margin-top: 120px;
+    padding-top: 50px;
+    padding-left: 2%;
+    padding-bottom: 150px;
+    padding-right: 2%;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.big-padding{
+    
+    padding-top: 150px;
+}
+
+.agregar-carrito {
+    /* margin: 0 auto; */
+    position: absolute;
+    /* margin-bottom: 1em; */
+    bottom: 1em;
+    right: 1em;
+    z-index: 100;
+}
+
+a.carrito {
+    position: fixed;
+    top: 0;
+    right: 1em;
+    z-index: 100;
+}
+
 ol.breadcrumb.bc.text-center li a {
     color: lightgray;
 }

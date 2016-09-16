@@ -10,6 +10,28 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+  Route::get('/home', [
+    'uses' => 'MembersController@index',
+    'as' => 'member.index',
+    'middleware' => 'members.auth'
+]);
+
+
+Route::get('/carrito', 'ShoppingCartsController@index');
+
+
+
+
+Route::resource('in_shopping_carts', 'InShoppingCartsController',[
+    
+    'only' => ['store', 'destroy']
+    
+]);
+
+
+
+
 Route::get('/pruebamp', 'PaymentsController@index');
 
 
@@ -337,7 +359,16 @@ Route::get('admin/auth/logout',[
  'uses' => 'Auth\AuthController@logout',
  'as' => 'admin.auth.logout'
 ]);
- 
+
+Route::get('/register',[
+ 'uses' => 'Auth\RegisterController@getRegister',
+ 'as' => 'admin.auth.register'
+]);
+
+Route::post('/register',[
+ 'uses' => 'Auth\RegisterController@register',
+ 'as' => 'admin.auth.register'
+]);
 
 
 

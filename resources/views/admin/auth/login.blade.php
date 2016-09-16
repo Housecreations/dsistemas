@@ -7,7 +7,7 @@
 
 
 
- <div class="container-fluid login page-alternate">    
+ <div class="items-no-nav col-md-10">    
 <div class="col-md-4"></div>
 <div class="col-md-4">
 {!! Form::open(['route' => 'admin.auth.login', 'method' => 'POST']) !!}
@@ -27,6 +27,8 @@
 </div>
 
 {!! Form::close() !!}
+    <hr>
+    <a href="{{route('admin.auth.register')}}">Registrarse</a>
      </div>
 </div>
 @endsection

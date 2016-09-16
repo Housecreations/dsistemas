@@ -14,10 +14,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->string('lastname');
             $table->string('email')->unique();
             $table->string('password', 60);
-        
+            $table->enum('type',['member','admin'])->default('member');
+            $table->integer('shopping_cart_id')->unsigned();
+            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

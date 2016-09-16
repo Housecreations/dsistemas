@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'lastname', 'email', 'password','shopping_cart_id', 'type',
     ];
 
     /**
@@ -25,7 +25,10 @@ class User extends Authenticatable
     ];
 
 
-   
+  public function shoppingCart(){
+        
+        return $this->belongsTo('App\ShoppingCart');
+    } 
 
 public function scopeSearch($query, $name){
     

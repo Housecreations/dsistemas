@@ -25,9 +25,14 @@
                                 
                                 
                                  @if(Auth::user())
+                    
                                  <li><a href="#">{{Auth::user()->name}}</a>
 					            	<ul>
+					            	@if(Auth::user()->type == 'admin')
 					            		<li><a href="{{ route('admin.index')}}">Panel de control</a></li>
+					            		@else
+					            		<li><a href="{{ route('member.index')}}">Mi cuenta</a></li>
+					            		@endif
 					            		<li><a href="{{ route('admin.auth.logout')}}">Salir</a></li>
 					            		
 					            	</ul>
@@ -42,7 +47,14 @@
 
 	<header class="site-header clearfix">
 		<div class="">
-
+       @if(Auth::user())
+       
+        @if(Auth::user()->type == 'member')
+         <a href="{{url('/carrito')}}" class="carrito">Carrito: {{$productsCount}} Items</a>
+        @endif
+        @else
+        <a href="{{url('/carrito')}}" class="carrito">Carrito: {{$productsCount}} Items</a>
+        @endif
 			<div class="row">
 
 				<div class="col-md-12">
@@ -80,14 +92,20 @@
                                  @if(Auth::user())
                                  <li><a href="#">{{Auth::user()->name}}</a>
 					            	<ul>
+					            		@if(Auth::user()->type == 'admin')
 					            		<li><a href="{{ route('admin.index')}}">Panel de control</a></li>
+					            		@else
+					            		<li><a href="{{ route('member.index')}}">Mi cuenta</a></li>
+					            		@endif
 					            		<li><a href="{{ route('admin.auth.logout')}}">Salir</a></li>
 					            		
 					            	</ul>
 					            </li>
                                 
                                 @else
-                                 <li><a href="{{route('admin.auth.login')}}">Iniciar sesión</a></li>
+                                 <li><a href="{{route('admin.auth.login')}}">Iniciar sesión</a>
+                                 </li>
+                                 
                                 @endif
                                 
                                 

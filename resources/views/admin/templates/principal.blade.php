@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <title>@yield('title', 'Default')</title>
 
@@ -9,9 +9,10 @@
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	
-    <meta name="keywords" content="">
-	<meta name="description" content="">
-    <meta name="author" content="templatemo">
+    <meta name="keywords" content="a2 softway, maquina fiscal">
+	<meta name="description" content="Aquí encontrarás el mejor software administrativo y las mejores máquinas fiscales para tu empresa">
+    <meta name="author" content="housecreations">
+    <meta name="owner" content="D'sistemas y PC, C.A.">
     <!-- 
 	Medigo Template
 	http://www.templatemo.com/preview/templatemo_460_medigo

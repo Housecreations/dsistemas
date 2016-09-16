@@ -24,6 +24,14 @@ class Authenticate
                 return redirect()->guest('/admin/auth/login');
             }
         }
+        
+      if(Auth::guard($guard)->user()->type == 'member'){
+            
+            
+                
+            return redirect('/home');
+        }
+        
 
         return $next($request);
     }

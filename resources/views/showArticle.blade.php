@@ -105,7 +105,11 @@
     </div>
     
     
+    
+    
   </div>
+  
+   
   
 
   </div>
@@ -134,6 +138,21 @@
        
    </div>
    </div>
+   
+   
+   <div class="agregar-carrito">
+                   
+                  
+                    <a class="btn btn-success" href="{{ url('/in_shopping_carts') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('shopping_cart_form').submit();">
+                                        Agregar al carrito
+                                    </a>
+                            
+                   @include('in_shopping_carts.form', ['article' => $article])
+                   
+                </div>
+   
    
    </div>
    

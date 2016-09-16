@@ -9,7 +9,7 @@
 <div class="col-md-4"></div>
 <div class="col-md-4 users">
 
-<a href="{{ route('admin.users.index')}}" class="button">Atrás</a>
+<a href="{{ route('admin.articles.index')}}" class="button">Atrás</a>
     <hr>
 
 {!! Form::open(['route' => 'admin.articles.store', 'method' => 'POST', 'files' => true]) !!}

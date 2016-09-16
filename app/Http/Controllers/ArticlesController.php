@@ -18,25 +18,12 @@ class ArticlesController extends Controller
     
      public function deleteimage($id, $image_id)
     {
-         $article = Article::find($id);
-              $categories = Category::all();
-             
-              $image = Image::find($image_id);
-             
-             unlink(public_path()."\images\articles\\".$image->image_url);
-                
-           
-
-                $image->delete();
-                
-             
+       
+            
+            Image::deleteImage($image_id);
          
-         Flash::success("Imagen eliminada");
-          
-             
-        
-      
-        return view('admin.articles.images')->with('article', $article)->with('categories', $categories);
+            return back();
+     
     }
     
     
@@ -44,38 +31,18 @@ class ArticlesController extends Controller
     {
             $article = Article::find($id);
           
-           if($request->file('image')){
+            Image::uploadImage($article, $request);
             
-                    $file = $request->file('image');
-        $name = 'Dsistemas_' .time(). "." . $file->getClientOriginalExtension();
-        $path = 'images/articles/';
-        $file->move($path, $name);
-               
-                 $image = new Image();
-                $image->article()->associate($article);
-                $image->image_URL = $name;
-                $image->save();
-    
-                 Flash::success("Nueva imagen agregada");
-        }
-        else{
-             Flash::warning("Debe subir una imagen");
-        }
-       
-          
-          
-       
-          $categories = Category::all();
+            return back();
       
-        return view('admin.articles.images')->with('article', $article)->with('categories', $categories);
     }
     
      public function images($id)
     {
          $article = Article::find($id);
-          $categories = Category::all();
+         
       
-        return view('admin.articles.images')->with('article', $article)->with('categories', $categories);
+        return view('admin.articles.images')->with('article', $article);
     }
     
     
@@ -83,17 +50,17 @@ class ArticlesController extends Controller
    public function index(Request $request)
     {
          $articles = Article::search($request->name)->orderBy('id', 'DESC')->simplePaginate(6);
-        $categories = Category::all();
-        return view('admin.articles.index')->with('articles', $articles)->with('categories', $categories);
+       
+        return view('admin.articles.index')->with('articles', $articles);
     }
     
     
-    public function all(Request $request)
+  /*  public function all(Request $request)
     {
          $articles = Article::search($request->name)->orderBy('id', 'DESC')->simplePaginate(6);
-        $categories = Category::all();
-        return view('admin.articles.all')->with('articles', $articles)->with('categories', $categories);
-    }
+       
+        return view('admin.articles.all')->with('articles', $articles);
+    }*/
  
     /**
      * Show the form for creating a new resource.
@@ -102,10 +69,8 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-
-        $categories = Category::all();
        
-     return view('admin.articles.create')->with('categories', $categories);
+     return view('admin.articles.create');
         
     }
  
@@ -118,37 +83,9 @@ class ArticlesController extends Controller
     public function store(ArticleRequest $request)
     {
         
+        Article::saveArticle($request);
         
-        if($request->file('image')){
-            
-                    $file = $request->file('image');
-        $name = 'Dsistemas_' .time(). "." . $file->getClientOriginalExtension();
-        $path = 'images/articles/';
-            
-        $file->move($path, $name);
-        }
- $article = new Article($request->all());
-     
-        $article->price = $article->price - ( $article->price * ($article->discount / 100) ); 
-       
-        
-     $article->save();
-      
-    $image = new Image();
-    $image->article()->associate($article);
-    $image->image_URL = $name;
-    $image->save();
-    
-        
-
-        
-        
-    
-        
-    
-         Flash::success("Articulo registrado");
-        $categories = Category::all();
-         return redirect()->route('admin.articles.index')->with('categories', $categories);
+        return redirect()->route('admin.articles.index');
         
     }
  
@@ -158,11 +95,7 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
-        
-        
-    }
+    
  
     /**
      * Show the form for editing the specified resource.
@@ -174,9 +107,8 @@ class ArticlesController extends Controller
     {
      
         $article = Article::find($id);
-        $categories = Category::all();
-        
-        return view('admin.articles.edit')->with('article', $article)->with('categories', $categories);
+      
+        return view('admin.articles.edit')->with('article', $article);
         
     }
  
@@ -197,8 +129,8 @@ class ArticlesController extends Controller
         
         Flash::success('El artículo se editó con éxito');
         
-         $categories = Category::all();
-            return redirect()->route('admin.articles.index')->with('categories',$categories);
+        
+            return redirect()->route('admin.articles.index');
       
     }
  
