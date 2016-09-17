@@ -9,7 +9,23 @@ class ShoppingCart extends Model
     protected $fillable = ['status'];
     
     
+    public function approve(){
+        
+        $this->updateCustomIDAndStatus();
+        
+    }
    
+    public function generateCustomID(){
+        
+        return md5("$this->id $this->updated_at");
+    }
+    
+    public function updateCustomIDAndStatus(){
+        $this->status = 'aprobado';
+        $this->customid = $this->generateCustomID();
+        $this->save();
+    }
+    
     public function user(){
         
         return $this->hasOne('App\User');

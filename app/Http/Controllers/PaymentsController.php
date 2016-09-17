@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use JPBlancoDB\MercadoPago\MercadoPago;
 use App\ShoppingCart;
+use App\Order;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
@@ -14,34 +15,65 @@ class PaymentsController extends Controller
     public function index(){
       
         
-   /* $filters = array (
+   /*$filters = array (
         "id" => null,
         "site_id" => null,
         "external_reference" => 4
-    );
+    );*/
+        /*$searchResult = MercadoPago::search_payment($filters);
+        dd($searchResult);*/
+        
+       
+/*$paymentInfo = MercadoPago::get_payment("2344613035");
+ 
 
-$searchResult = MercadoPago::search_payment($filters);
-        dd($searchResult);
-       */
+       $a = MercadoPago::get_payment($paymentInfo['response']['collection']['id']);
+        dd($a);
+        */
         
     $shoppingCart = Auth::user()->shoppingCart;
-
+        
+        $items = [];
+        
+        foreach ($shoppingCart->articles as $article){
+        $item = array_add([
+            "title" => $article->name,
+             "currency_id" => "VEF",
+             "category_id" => $article->category->name,
+             "quantity" => 1,
+            
+        ], 'unit_price', $article->price);
+        
+        array_push($items, $item);
+      }
+   
+        
+        
         $baseURL = url('/');
         
-         $preference_data = array(
-        "items" => array(
-            
-            
-            array(
-                "title" => "arroz",
-                "currency_id" => "VEF",
-                "category_id" => "article->category",
-                "quantity" => 1,
-                "unit_price" => 10.2
-            )
-            
+        $order = Order::create([
            
-        ),
+            'shopping_cart_id' => $shopping_cart->id,
+            'total' => $shopping_cart->total()
+            
+        ]);
+        
+       foreach ($shopping_cart->articles() as $article)
+        
+        OrderDetails::create([
+           
+            'order_id' => $order->id,
+            'name' => $article->name,
+            'price' => $article->price
+            
+        ]);
+        
+        $order->approve();
+        
+        $external_reference = $order->customid;
+        
+        $preference_data = array(
+        "items" => $items,
         "back_urls" => array (
            
                 "success" => "$baseURL/payments/success",
@@ -50,13 +82,13 @@ $searchResult = MercadoPago::search_payment($filters);
 	
         ),
              "notification_url" => "$baseURL/payments/notifications",
-             "external_reference" => 4
+             "external_reference" => $external_reference
 
 
     );
 
- /*  dd($preference);*/
-      
+ 
+    
         
         try {
             $preference = MercadoPago::create_preference($preference_data);

@@ -13,16 +13,21 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function(Blueprint $table){
-          $table->increments('id');
-           $table->integer('shopping_cart_id')->unsigned();
-           $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
-           $table->string('shipment_info');
+            $table->increments('id');
+            $table->string('customid')->unique->nullable(true);
+            $table->integer('shopping_cart_id')->unsigned();
+            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
+            $table->string('shipment_agency');
+            $table->string('shipment_agency_id');
+            $table->string('recipient_name');
+            $table->string('recipient_id');
+            $table->string('recipient_email');
+            $table->string('payment_id');
             $table->enum('edited',['yes','no'])->default('no');
-           $table->string('status')->default('En proceso');
-           $table->string('guide_number')->nullable(true);
-           $table->integer('total');
-           
-           $table->timestamps();
+            $table->string('status')->default('En proceso');
+            $table->string('guide_number')->nullable(true);
+            $table->integer('total');
+            $table->timestamps();
            
        });
     }
