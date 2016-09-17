@@ -11,7 +11,7 @@
 |
 */
 
-  Route::get('/home', [
+Route::get('/home', [
     'uses' => 'MembersController@index',
     'as' => 'member.index',
     'middleware' => 'members.auth'
@@ -23,7 +23,7 @@ Route::get('/carrito', 'ShoppingCartsController@index');
 
 
 
-Route::resource('in_shopping_carts', 'InShoppingCartsController',[
+Route::resource('in_shopping_carts', 'InShoppingCartsController', [
     
     'only' => ['store', 'destroy']
     
@@ -32,7 +32,7 @@ Route::resource('in_shopping_carts', 'InShoppingCartsController',[
 
 
 
-Route::get('/pruebamp', 'PaymentsController@index');
+Route::get('/payments/pay', 'PaymentsController@index');
 
 
 Route::get('/payments/fail', 'PaymentsController@fail');
@@ -45,7 +45,7 @@ Route::get('articulos/show/all', [
     'as' => 'articles.show.all'
 ]);
 
- Route::get('/clients/show', [
+Route::get('/clients/show', [
     'uses' => 'ClientsController@show',
     'as' => 'clients.show'
 ]);
@@ -54,12 +54,12 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/load', 'WelcomeController@listing');
 
 
- Route::post('/contact', [
+Route::post('/contact', [
     'uses' => 'MessagesController@store',
     'as' => 'messages.store'
 ]);
 
- Route::get('/download', [
+Route::get('/download', [
     'uses' => 'FilesController@files',
     'as' => 'files.downloads'
 ]);
@@ -95,16 +95,16 @@ Route::get('articulos/{category}/{slug}', [ 'as' => 'hombres.mostrarArticulo', f
 Route::get('/articulos/{category}', function ($cat) {
      $categories = App\Category::all();
     
-    foreach($categories as $category){
+    foreach ($categories as $category) {
         
-        if($category->name == $cat){
+        if ($category->name == $cat) {
             
-           $category_id = $category->id;
+            $category_id = $category->id;
         }
-    }    
+    }
     
   
-    $articles = App\Article::where('category_id','=', $category_id)->orderBy('id','DESC')->get();
+    $articles = App\Article::where('category_id', '=', $category_id)->orderBy('id', 'DESC')->get();
   
    /*  $categories = App\Category::all();*/
     return view('show')->with('categories', $categories)->with('articles', $articles);
@@ -143,7 +143,7 @@ Route::get('/descuentos', function () {
     
     
   
-    $articles = App\Article::where('ondiscount','=', 'yes')->orderBy('id','DESC')->get();
+    $articles = App\Article::where('ondiscount', '=', 'yes')->orderBy('id', 'DESC')->get();
   
    /*  $categories = App\Category::all();*/
     return view('showoutlet')->with('categories', $categories)->with('articles', $articles);
@@ -154,132 +154,132 @@ Route::get('/descuentos', function () {
 
 
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
     
     
-      Route::get('downloads/create', [
+    Route::get('downloads/create', [
     'uses' => 'FilesController@create',
     'as' => 'admin.files.create'
-]);
+    ]);
     
-      Route::post('downloads/create', [
+    Route::post('downloads/create', [
     'uses' => 'FilesController@store',
     'as' => 'admin.files.store'
-]);
+    ]);
     
     
-       Route::get('downloads/index', [
+    Route::get('downloads/index', [
     'uses' => 'FilesController@index',
     'as' => 'admin.files.index'
-]);
-      Route::get('downloads/edit/{id}', [
+    ]);
+    Route::get('downloads/edit/{id}', [
     'uses' => 'FilesController@edit',
     'as' => 'admin.files.edit'
-]);
+    ]);
     Route::put('downloads/edit/{id}', [
     'uses' => 'FilesController@update',
     'as' => 'admin.files.update'
-]);
-     Route::get('downloads/destroy/{id}', [
+    ]);
+    Route::get('downloads/destroy/{id}', [
     'uses' => 'FilesController@destroy',
     'as' => 'admin.files.destroy'
-]);
-     
+    ]);
+      
     
     
-     Route::get('/front/edit', [
+    Route::get('/front/edit', [
     'uses' => 'FrontController@edit',
     'as' => 'admin.front.edit'
-]);
-     Route::put('/front/edit/{id}', [
+    ]);
+    Route::put('/front/edit/{id}', [
     'uses' => 'FrontController@update',
     'as' => 'admin.front.update'
-]);
+     ]);
     
 
-      Route::get('/front/edit/mas', [
+    Route::get('/front/edit/mas', [
     'uses' => 'FrontController@mas',
     'as' => 'admin.front.mas'
-]);
-     Route::get('/front/edit/menos', [
+    ]);
+    Route::get('/front/edit/menos', [
     'uses' => 'FrontController@menos',
     'as' => 'admin.front.menos'
-]);
+    ]);
     
     
     
     Route::get('/messages', [
     'uses' => 'MessagesController@index',
     'as' => 'admin.messages.index'
-]);
+    ]);
     Route::get('/messages/show/{id}', [
     'uses' => 'MessagesController@show',
     'as' => 'admin.messages.show'
-]);
+    ]);
     Route::get('/messages/destroy/{id}', [
     'uses' => 'MessagesController@destroy',
     'as' => 'admin.messages.destroy'
-]);
+    ]);
     
     
     Route::get('/outlet', [
     'uses' => 'FrontController@outletindex',
     'as' => 'admin.outlet.index'
-]);
+    ]);
     Route::get('/outlet/add/{id}', [
     'uses' => 'FrontController@add',
     'as' => 'admin.outlet.add'
-]);
+    ]);
     
     
     Route::get('/outlet/show', [
     'uses' => 'FrontController@outletshow',
     'as' => 'admin.outlet.show'
-]);
+    ]);
     
     Route::get('/outlet/sus/{id}', [
     'uses' => 'FrontController@sus',
     'as' => 'admin.outlet.sus'
-]);
+    ]);
     
-     Route::get('/clients', [
+    Route::get('/clients', [
     'uses' => 'ClientsController@index',
     'as' => 'admin.clients.index'
-]);
+    ]);
     
-      Route::get('/clients/create', [
+    Route::get('/clients/create', [
     'uses' => 'ClientsController@create',
     'as' => 'admin.clients.create'
-]);
+    ]);
     
-       Route::get('/clients/{id}', [
+    Route::get('/clients/{id}', [
     'uses' => 'ClientsController@edit',
     'as' => 'admin.clients.edit'
-]);
+    ]);
     
    
     Route::post('/clients/create', [
     'uses' => 'ClientsController@store',
     'as' => 'admin.clients.store'
-]);
-     Route::get('/clients/{id}/destroy', [
+    ]);
+    Route::get('/clients/{id}/destroy', [
     'uses' => 'ClientsController@destroy',
     'as' => 'admin.clients.destroy'
-]);
-     Route::put('/clients/{id}/update', [
+    ]);
+    Route::put('/clients/{id}/update', [
     'uses' => 'ClientsController@update',
     'as' => 'admin.clients.update'
-]);
+    ]);
     
     
     
     Route::get('/', ['as' => 'admin.index', function () {
-        $categories = App\Category::all();
-        $unread = App\Message::where('read','=', 'no')->get();
+       
+        $unread = App\Message::where('read', '=', 'no')->get();
         $unread = sizeof($unread);
         
-        if($unread > 99){
+        if ($unread > 99) {
             
             $unread = '+99';
         }
@@ -287,20 +287,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
       
         $carousel = App\CarouselImage::find(1);
         
-        return view('admin.index')->with('categories', $categories)->with('unread', $unread)->with('carousel', $carousel);
-}]);
+        return view('admin.index')->with('unread', $unread)->with('carousel', $carousel);
+    }]);
     
-   Route::resource('users','UsersController');
-Route::get('users/{id}/destroy', [
+    Route::resource('users', 'UsersController');
+    Route::get('users/{id}/destroy', [
     'uses' => 'UsersController@destroy',
     'as' => 'admin.users.destroy'
-]);
+    ]);
     
     Route::resource('categories', 'CategoriesController');
     Route::get('categories/{id}/destroy', [
     'uses' => 'CategoriesController@destroy',
     'as' => 'admin.categories.destroy'
-]);
+    ]);
     
 
     
@@ -315,29 +315,24 @@ Route::get('users/{id}/destroy', [
     Route::get('articles/{id}/destroy', [
     'uses' => 'ArticlesController@destroy',
     'as' => 'admin.articles.destroy'
-]);
+    ]);
     Route::get('articles/{id}/images', [
     'uses' => 'ArticlesController@images',
     'as' => 'admin.articles.images'
-]);
+    ]);
     Route::delete('articles/{id}/images/{image_id}', [
     'uses' => 'ArticlesController@deleteimage',
     'as' => 'admin.articles.images.delete'
-]);
-Route::post('articles/{id}/images', [
+    ]);
+    Route::post('articles/{id}/images', [
     'uses' => 'ArticlesController@newimage',
     'as' => 'admin.articles.images.new'
-]);
-    
-    
-   
-
-    
-    /*  inicio rutas sites  */ 
+    ]);
+    /*  inicio rutas sites  */
     
   
     
-   /*  fin rutas states  */ 
+   /*  fin rutas states  */
     
  
     
@@ -347,25 +342,25 @@ Route::post('articles/{id}/images', [
 
 
     
-Route::get('admin/auth/login',[
+Route::get('admin/auth/login', [
  'uses' => 'Auth\AuthController@getLogin',
  'as' => 'admin.auth.login'
 ]);
-Route::post('admin/auth/login',[
+Route::post('admin/auth/login', [
  'uses' => 'Auth\AuthController@postLogin',
  'as' => 'admin.auth.login'
 ]);
-Route::get('admin/auth/logout',[
+Route::get('admin/auth/logout', [
  'uses' => 'Auth\AuthController@logout',
  'as' => 'admin.auth.logout'
 ]);
 
-Route::get('/register',[
+Route::get('/register', [
  'uses' => 'Auth\RegisterController@getRegister',
  'as' => 'admin.auth.register'
 ]);
 
-Route::post('/register',[
+Route::post('/register', [
  'uses' => 'Auth\RegisterController@register',
  'as' => 'admin.auth.register'
 ]);

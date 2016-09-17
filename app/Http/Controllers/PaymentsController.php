@@ -13,19 +13,33 @@ class PaymentsController extends Controller
 {
     public function index(){
       
-    $shopping_cart = ShoppingCart::find(Auth::user()->shopping_cart_id);
+        
+   /* $filters = array (
+        "id" => null,
+        "site_id" => null,
+        "external_reference" => 4
+    );
+
+$searchResult = MercadoPago::search_payment($filters);
+        dd($searchResult);
+       */
+        
+    $shoppingCart = Auth::user()->shoppingCart;
 
         $baseURL = url('/');
         
          $preference_data = array(
         "items" => array(
+            
+            
             array(
-                "title" => "Arroz",
+                "title" => "arroz",
                 "currency_id" => "VEF",
-                "category_id" => "Category",
+                "category_id" => "article->category",
                 "quantity" => 1,
                 "unit_price" => 10.2
             )
+            
            
         ),
         "back_urls" => array (
@@ -36,12 +50,12 @@ class PaymentsController extends Controller
 	
         ),
              "notification_url" => "$baseURL/payments/notifications",
-             "external_reference" => "4"
+             "external_reference" => 4
 
 
     );
 
-   
+ /*  dd($preference);*/
       
         
         try {

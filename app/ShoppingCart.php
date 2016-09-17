@@ -52,12 +52,14 @@ class ShoppingCart extends Model
     }
     
     public static function findBySession($shopping_cart_id){
-        
+       
         return ShoppingCart::find($shopping_cart_id);
         
     }
     
     public static function createWithoutSession(){
+        
+       
         
         return ShoppingCart::create([
            

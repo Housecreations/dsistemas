@@ -16,8 +16,11 @@
         
         <a href="{{ route('admin.front.edit')}}"><div class="templatemo-gallery-item collection col-md-12 front">
         
+        @if($carousel)
         <img src="images/slider/{{$carousel->image_url}}" alt="">
-         
+        @else
+        <img src="images/slider/" alt="">
+        @endif
         <div class="templatemo-gallery-image-overlay"></div>
         
        

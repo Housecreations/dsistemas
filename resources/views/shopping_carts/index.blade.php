@@ -19,6 +19,7 @@
           <tr>
               <td>Producto</td>
               <td>Precio</td>
+              <td>Acciones</td>
           </tr>  
         </thead>
         
@@ -28,6 +29,17 @@
             <tr>
                 <td>{{$article->name}}</td>
                 <td>{{$article->price}}</td>
+                <td> <a href="{{ url('/in_shopping_carts/'.$article->id) }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('in_shopping_cart_form_{{$article->id}}').submit();">
+                                        Eliminar 
+                                    </a>
+                                   
+                                   {!! Form::open(['url'=> '/in_shopping_carts/'.$article->id, 'method' => 'DELETE', 'style' => 'display:none;', 'id' => 'in_shopping_cart_form_'.$article->id]) !!}
+                                  
+                                   <input type="submit">
+      
+                                    {!! Form::close() !!}</td>
             </tr>
             
             @endforeach
@@ -45,7 +57,7 @@
 @if(Auth::user())
     
     @if(Auth::user()->type == 'member')
-    <a href="" class="btn btn-success">Pagar carrito</a>
+    <a href="{{url('payments/pay')}}" class="btn btn-success">Pagar carrito</a>
     @endif
     
 @else
