@@ -19,7 +19,7 @@ class ShoppingCartsController extends Controller
  
             $shopping_cart = Auth::user()->shoppingCart;
             $articles = $shopping_cart->articles()->get();
-                        
+                     
             $total = $shopping_cart->total();
             return view('shopping_carts.index', ['articles' => $articles, 'total' => $total]);
             

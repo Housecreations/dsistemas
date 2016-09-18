@@ -8,7 +8,9 @@ use App\Http\Requests;
 use JPBlancoDB\MercadoPago\MercadoPago;
 use App\ShoppingCart;
 use App\Order;
+use App\OrderDetails;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 
 class PaymentsController extends Controller
 {
@@ -53,20 +55,23 @@ class PaymentsController extends Controller
         
         $order = Order::create([
            
-            'shopping_cart_id' => $shopping_cart->id,
-            'total' => $shopping_cart->total()
+            'shopping_cart_id' => $shoppingCart->id,
+            'total' => $shoppingCart->total()
             
         ]);
+
+       foreach ($shoppingCart->articles as $article){
         
-       foreach ($shopping_cart->articles() as $article)
-        
-        OrderDetails::create([
+       $orderDetails = OrderDetails::create([
            
             'order_id' => $order->id,
             'name' => $article->name,
             'price' => $article->price
             
         ]);
+           }
+        
+       
         
         $order->approve();
         
@@ -103,15 +108,31 @@ class PaymentsController extends Controller
     public function fail(Request $request){
         
         dd($request);
+        Order::where('customid', $request->external_reference)->delete();
+      
+        
+         Flash::success('No se pudo procesar el pago, por favor intente nuevamente');
+        
+        return redirect('/carrito');
         
         
         
     }
      public function success(Request $request){
         
-        dd($request);
-        
-        
+       
+        $order = Order::where('customid', $request->external_reference)->first();
+       
+         if($order){
+                $shopping_cart = Auth::user()->shoppingCart;
+                $shopping_cart->articles()->detach();
+                $order->payment_id = $request->collection_id;
+                $order->save();
+             return redirect('/home');
+             
+         }else{
+             dd('Error, la orden no corresponde a ninguna registrada en nuestra base de datos');
+         }
         
     }
     

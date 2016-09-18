@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function(Blueprint $table){
             $table->increments('id');
-            $table->string('customid')->unique->nullable(true);
+            $table->string('customid')->unique()->nullable();
             $table->integer('shopping_cart_id')->unsigned();
             $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
             $table->string('shipment_agency');
@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_id');
             $table->enum('edited',['yes','no'])->default('no');
             $table->string('status')->default('En proceso');
-            $table->string('guide_number')->nullable(true);
+            $table->string('guide_number')->nullable();
             $table->integer('total');
             $table->timestamps();
            

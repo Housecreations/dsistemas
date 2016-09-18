@@ -70,8 +70,14 @@ class InShoppingCartsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-       dd($request);
+    
+          
+        $shopping_cart = Auth::user()->shoppingCart;
+     
+        $shopping_cart->articles()->where('article_id', $request->article_id)->wherePivot('id', $id)->detach($request->article_id);
+        return back();
+       
     }
 }

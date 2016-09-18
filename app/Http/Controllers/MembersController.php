@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Order;
 use Illuminate\Support\Facades\Auth;
 
 class MembersController extends Controller
@@ -14,9 +14,11 @@ class MembersController extends Controller
        
        if(Auth::user()->type == 'member'){
            
+           $Orders = Auth::user()->shoppingCart->orders()->get();
            
+          
            
-           return view('admin.users.home');
+           return view('admin.users.home', ['Orders' => $Orders]);
            
        }else{
            

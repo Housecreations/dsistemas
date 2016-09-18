@@ -37,7 +37,7 @@ Route::get('/payments/pay', 'PaymentsController@index');
 
 Route::get('/payments/fail', 'PaymentsController@fail');
 
-Route::get('/payments/success', 'PaymentsController@fail');
+Route::get('/payments/success', 'PaymentsController@success');
 
 
 Route::get('articulos/show/all', [

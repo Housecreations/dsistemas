@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-   protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'edited', 'status', 'guide_number', 'total'];
+   protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'edited', 'status', 'guide_number', 'total'];
     
+    public function shoppingCart(){
+        
+        return $this->hasOne('App\ShoppingCart');
+        
+    }
     
     public function approve(){
         

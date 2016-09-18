@@ -9,6 +9,12 @@ class ShoppingCart extends Model
     protected $fillable = ['status'];
     
     
+    public function orders(){
+        
+        return $this->hasMany('App\Order');
+        
+    }
+    
     public function approve(){
         
         $this->updateCustomIDAndStatus();
@@ -39,7 +45,7 @@ class ShoppingCart extends Model
     
     public function articles(){
         
-        return $this->belongsToMany('App\Article','in_shopping_carts');
+        return $this->belongsToMany('App\Article','in_shopping_carts')->withPivot('id');
         
     }
     

@@ -29,15 +29,15 @@
             <tr>
                 <td>{{$article->name}}</td>
                 <td>{{$article->price}}</td>
-                <td> <a href="{{ url('/in_shopping_carts/'.$article->id) }}"
+                <td> <a href="{{ url('/in_shopping_carts/'.$article->pivot->id) }}"
                                         onclick="event.preventDefault();
-                                                 document.getElementById('in_shopping_cart_form_{{$article->id}}').submit();">
-                                        Eliminar 
+                                                 document.getElementById('in_shopping_cart_form_{{$article->pivot->id}}').submit();">
+                                        Eliminar
                                     </a>
                                    
-                                   {!! Form::open(['url'=> '/in_shopping_carts/'.$article->id, 'method' => 'DELETE', 'style' => 'display:none;', 'id' => 'in_shopping_cart_form_'.$article->id]) !!}
-                                  
-                                   <input type="submit">
+                                   {!! Form::open(['url'=> '/in_shopping_carts/'.$article->pivot->id, 'method' => 'DELETE', 'style' => 'display:none;', 'id' => 'in_shopping_cart_form_'.$article->pivot->id]) !!}
+                                       <input type="hidden" name="article_id" value="{{$article->id}}">
+                                       <input type="submit">
       
                                     {!! Form::close() !!}</td>
             </tr>
