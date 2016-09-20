@@ -1,52 +1,66 @@
 
-<div class="col-md-12 col-xs-12">
-<div class="container-fluid text-center">
+<div class="col-md-12 col-xs-12 nav-admin text-center">
 
+
+
+<div class="col-md-1 col-xs-3 admin-nav">
 <a href=" {{ route('admin.users.index')}}">
-<div class="col-md-1 col-xs-3 admin-nav">
 <h2>Usuarios</h2>
-</div>
 </a>
+</div>
 
+
+
+<div class="col-md-1 col-xs-3 admin-nav">
 <a href="{{ route('admin.articles.index')}}">
-<div class="col-md-1 col-xs-3 admin-nav">
 <h2>Artículos</h2>
-</div>
 </a>
+</div>
 
-<a href=" {{ route('admin.clients.index')}}">
 <div class="col-md-1 col-xs-3 admin-nav">
-<h2>Clientes</h2>
-</div>
-    </a>
-    
-<a href=" {{ route('admin.files.index')}}">
-<div class="col-md-1 col-xs-3 admin-nav">
-<h2>Archivos</h2>
-</div>
-    </a>
-    
-<a href=" {{ route('admin.outlet.index')}}">
-<div class="col-md-1 col-xs-3 admin-nav">
-<h2>Descuentos</h2>
-</div>
-    </a>
-
 <a href=" {{ route('admin.categories.index')}}">
-<div class="col-md-1 col-xs-3 admin-nav">
 <h2>Áreas</h2>
+</a>
 </div>
-    </a>
+
+<div class="col-md-1 col-xs-3 admin-nav">
+<a href=" {{ route('admin.clients.index')}}">
+<h2>Clientes</h2>
+   </a>
+</div>
+ 
     
-    <a href="{{ route('admin.messages.index')}}">
-<div class="col-md-2 col-xs-3 admin-nav">
-<h2>Mensajes <span class="badge">{{$unread}}</span></h2>
+
+<div class="col-md-1 col-xs-3 admin-nav">
+<a href=" {{ route('admin.files.index')}}">
+<h2>Archivos</h2>
+</a>
 </div>
-    </a>
+    
+    
+
+<div class="col-md-1 col-xs-3 admin-nav">
+<a href=" {{ route('admin.outlet.index')}}">
+<h2>Descuentos</h2>
+</a>
+</div>
+    
+
+
+
+    
+    
+
+<div class="col-md-1 col-xs-3 admin-nav">
+    <a href="{{ route('admin.messages.index')}}">
+<h2>Mensajes <span class="badge">{{$unread}}</span></h2>
+ </a>
+</div>
+   
     
   
 
  
 
-</div>
+
 </div>

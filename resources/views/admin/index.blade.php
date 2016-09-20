@@ -12,10 +12,36 @@
 <div class="col-md-2 col-xs-1"></div>
 <div class="col-md-8 col-xs-10">
     
-    <div class="container-fluid text-center">
-        
-        <a href="{{ route('admin.front.edit')}}"><div class="templatemo-gallery-item collection col-md-12 front">
-        
+   
+    
+    
+    <div class="admin-slider">
+       
+        <div class="row">
+        <h4 class="text-center">Ventas</h4>
+           <hr>
+         <div class="col-md-12">
+          
+           
+           <div class="col-md-6 sale-data">
+               <span>{{$totalMonth}} Bs</span>
+               Ingresos del mes
+           </div>
+           <div class="col-md-6 sale-data">
+               <span>{{$totalMonthCount}}</span>
+               Cantidad de ventas
+           </div>
+           <a href="{{url('/admin/orders')}}"><h5>Órdenes del mes</h5> <span class="badge">0</span></a>
+           </div>
+         
+       </div>
+       
+       
+        <div class="row">
+        <h4 class="text-center top-space">Slider</h4>
+           <hr>
+        <div class="templatemo-gallery-item collection col-md-12 front">
+        <a href="{{ route('admin.front.edit')}}">
         @if($carousel)
         <img src="images/slider/{{$carousel->image_url}}" alt="">
         @else
@@ -24,7 +50,10 @@
         <div class="templatemo-gallery-image-overlay"></div>
         
        
-        </div></a>
+       </a> </div>
+       </div>
+       
+       
         
         
     </div>

@@ -26,7 +26,7 @@ class CreateOrdersTable extends Migration
             $table->enum('edited',['yes','no'])->default('no');
             $table->string('status')->default('En proceso');
             $table->string('guide_number')->nullable();
-            $table->integer('total');
+            $table->integer('total'); /*cambiar por decimal*/
             $table->timestamps();
            
        });

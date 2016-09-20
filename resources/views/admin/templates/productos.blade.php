@@ -83,6 +83,7 @@
 					            		<li><a href="/articulos/{{$category->name}}">{{$category->name}}</a></li>
 					            		
                                         @endforeach
+                                         <li><a href="/descuentos">Descuentos</a></li>
             
           </ul>  
         </nav>
@@ -132,7 +133,9 @@
 
 -->
 
-
+ <script>
+$('div.alert').not('.alert-important').delay(2000).slideUp(350);
+</script>
 
 <script src="{{ asset('js/min/plugins.min.js') }}"></script>
 

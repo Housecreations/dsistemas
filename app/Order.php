@@ -8,9 +8,36 @@ class Order extends Model
 {
    protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'edited', 'status', 'guide_number', 'total'];
     
+    
+    public static function totalMonth(){
+        return Order::monthly()->sum('total');
+    }
+    
+    public static function totalMonthCount(){
+        return Order::monthly()->count();
+    }
+    
+    public function scopeLatest($query){
+        
+        return $query->orderID()->monthly();
+            
+    }
+    
+    public function scopeOrderID($query){
+        
+      
+        return $query->orderBy('id', 'desc');
+    }
+    
+    public function scopeMonthly($query){
+         
+        return $query->whereMonth('created_at', '=', date('m'));
+    }
+    
+    
     public function shoppingCart(){
         
-        return $this->hasOne('App\ShoppingCart');
+        return $this->belongsTo('App\ShoppingCart');
         
     }
     

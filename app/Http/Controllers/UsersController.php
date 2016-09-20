@@ -23,8 +23,8 @@ class UsersController extends Controller
     {
         
        $users = User::search($request->name)->orderBy('id', 'ASC')->paginate(5);
-        $categories = Category::all();
-        return view('admin.users.index')->with('users', $users)->with('categories',$categories);
+      
+        return view('admin.users.index')->with('users', $users);
     }
  
     /**
@@ -34,8 +34,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-       $categories = Category::all();
-        return view('admin.users.create')->with('categories',$categories);
+       
+        return view('admin.users.create');
         
     }
  
@@ -60,9 +60,9 @@ class UsersController extends Controller
         
         Flash::success("Se ha registrado de forma existosa");
         
-        $categories = Category::all();
+      
         
-        return redirect()->route('admin.users.index')->with('categories',$categories);
+        return redirect()->route('admin.users.index');
         
     }
  
@@ -88,8 +88,8 @@ class UsersController extends Controller
     {
       $user = User::find($id);
         
-       $categories = Category::all();
-        return view('admin.users.edit')->with('user', $user)->with('categories',$categories);
+       
+        return view('admin.users.edit')->with('user', $user);
     }
  
     /**
@@ -110,8 +110,8 @@ class UsersController extends Controller
         
         Flash::success('El usuario se editó con éxito');
         
-         $categories = Category::all();
-            return redirect()->route('admin.users.index')->with('categories',$categories);
+       
+            return redirect()->route('admin.users.index');
     }
  
     /**
@@ -126,7 +126,7 @@ class UsersController extends Controller
         $user->delete();
         
         Flash::error('El usuario ' . $user->name. ' ha sido eliminado');
-          $categories = Category::all();
-        return redirect()->route('admin.users.index')->with('categories',$categories);
+      
+        return redirect()->route('admin.users.index');
     }
 }

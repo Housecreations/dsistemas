@@ -1,4 +1,6 @@
- $(window).load(function() { // makes sure the whole site is loaded
+
+
+$(window).load(function() { // makes sure the whole site is loaded
         // The slider being synced must be initialized first
       
       $('#preloader').fadeOut('slow');
@@ -26,14 +28,38 @@
                 $('#main-wrapper').delay(350).css({'overflow':'visible'});
             }
         });
+   
+
+$.fn.editable.defaults.mode = 'inline';
+$.fn.editable.defaults.ajaxOptions = {type: 'PUT'};
+    $.fn.editable.defaults.showbuttons = false;
+$(document).ready(function(){
+    
+    $(".set-guide-number").editable();
+    $(".select-status").editable({
+        source: [
+            {value:"En proceso", text: "En proceso"},
+            {value:"Por enviar", text: "Por enviar"},
+            {value:"Enviado", text: "Enviado"}
+        ]
     });
+    
+});
+
+
+
+
+});
 
 
 jQuery(document).ready(function($){
 
+    
+    
+    
 
 	$(window).resize(function(){
-		if ($(window).width() >= 768){	
+		if ($(window).width() >= 1000){ //768	
 			$(".responsive_menu").hide();
 		}	
 	});

@@ -13,21 +13,18 @@
 	<meta name="description" content="Aquí encontrarás el mejor software administrativo y las mejores máquinas fiscales para tu empresa">
     <meta name="author" content="housecreations">
     <meta name="owner" content="D'sistemas y PC, C.A.">
-    <!-- 
-	Medigo Template
-	http://www.templatemo.com/preview/templatemo_460_medigo
-    -->
+    
     
 	<!-- Google Fonts -->
 	<link href="http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700itali" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Raleway:400,900,800,700,500,200,100,600" rel="stylesheet">
 
 
-
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
-<!-- <link rel="stylesheet" href="{{ asset('css/misc.css')}}">-->
+
 <link rel="stylesheet" href="{{ asset('css/blue-scheme.css')}}">
 <link rel="stylesheet" href="{{ asset('css/animate.min.css')}}">
 <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
@@ -103,6 +100,8 @@
      <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
      
     
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    
     
      <script src="js/jquery.nivo.slider.pack.js"></script>
    
@@ -119,7 +118,7 @@ $('div.alert').not('.alert-important').delay(2000).slideUp(350);
           controlNav: false,
         });
     });
-
+    </script>
 
 </body>
 </html>

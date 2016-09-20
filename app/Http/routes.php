@@ -29,6 +29,11 @@ Route::resource('in_shopping_carts', 'InShoppingCartsController', [
     
 ]);
 
+Route::resource('orders', 'OrdersController', [
+    
+    'only' => ['show', 'update']
+    
+]);
 
 
 
@@ -156,6 +161,15 @@ Route::get('/descuentos', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
+    Route::put('/orders/{id}', 'OrdersController@adminUpdate');
+    
+    Route::resource('orders', 'OrdersController', [
+    
+    'only' => ['index']
+    
+]);
+    
+  
     
     
     Route::get('downloads/create', [
@@ -279,6 +293,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         $unread = App\Message::where('read', '=', 'no')->get();
         $unread = sizeof($unread);
         
+        $totalMonth = App\Order::totalMonth();
+        $totalMonthCount = App\Order::totalMonthCount();
+        
         if ($unread > 99) {
             
             $unread = '+99';
@@ -287,7 +304,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
       
         $carousel = App\CarouselImage::find(1);
         
-        return view('admin.index')->with('unread', $unread)->with('carousel', $carousel);
+        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount]);
     }]);
     
     Route::resource('users', 'UsersController');

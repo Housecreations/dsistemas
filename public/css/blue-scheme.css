@@ -10,6 +10,61 @@ http://www.templatemo.com/preview/templatemo_460_medigo
 	BASIC STYLES 
 --------------------------------------------------------*/
 
+.sale-data{
+    padding: 1em;
+    text-align: center;
+    border-right: solid 2px #eee;
+    
+    
+}
+.sale-data span{
+    display: block;
+    font-size: 2.2em;
+    color: #3f51b5;
+}
+
+.admin-slider h5{
+    display: inline-block;
+    font-size: 18px;
+    vertical-align: middle;
+
+}
+
+.card{
+    
+     background-color: white;
+    padding: 15px 15px 15px 15px;
+   
+    display: block;
+   
+    border-radius: 10px 10px 10px 10px;
+}
+
+.top-space{
+    
+    padding-top: 15px;
+}
+
+.admin-slider{
+    background-color: white;
+    padding: 15px 15px 15px 15px;
+    width: 100%;
+    display: block;
+    /* height: 500px; */
+    border-radius: 10px 10px 10px 10px;
+}
+
+.nav-admin {
+  display: inline-block;
+    background-color: white;
+    width: 80%;
+    margin-left: 130px;
+    border-radius: 0px 0px 10px 10px;
+    /* box-shadow: black 5px 5px 5px 5px; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 3px;
+    margin-bottom: 10px;
+}
+
 .alert-success {
     background-color: #ffffff;
     border-color: #ffffff;
@@ -78,8 +133,12 @@ footer.footer-productos{
 }
 
 .col-md-1.col-xs-3.admin-nav {
-    padding-left: 50px;
-    margin-left: 50px;
+  
+    /* background-color: blanchedalmond; */
+    /* width: 14%; */
+    padding: 0px;
+    display: table-cell;
+    float: none;
 }
 .col-md-1.col-xs-3.admin-nav h2, .col-md-2.col-xs-3.admin-nav h2 {
     font-size: 25px;
@@ -387,7 +446,7 @@ nav li {
 
 
 .container-fluid.login.page-alternate, .admin-index{
-        padding-top: 155px;
+         padding-top: 105px;
    
  
     padding-bottom: 500px;
@@ -1917,6 +1976,9 @@ blockquote {
 }
 @media (max-width: 767px) {
     
+    .templatemo-left-nav{
+     display: none;
+    }
     
      .items {
       margin-top: 0;

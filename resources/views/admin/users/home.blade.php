@@ -12,7 +12,7 @@
    <h4>Mis compras</h4>
    
    
-   @if(!$Orders)
+   @if(count($Orders) == 0)
    <hr>
    <h5 class="text-center">No ha realizado compras</h5>
     </div>
@@ -61,7 +61,12 @@
            <h5>Correo Electrónico: {{$order->recipient_email}}</h5>
        </div>
        <div class="col-md-12">
-           <a href="" class="button">Actualizar información</a>
+         
+          @if($order->edited == 'no')
+           <hr>
+           <a href="{{url('/orders/'.$order->customid)}}" class="button">Actualizar información</a>
+          
+           @endif
        </div>
    </div>
    

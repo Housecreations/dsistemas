@@ -42,7 +42,7 @@ class MessagesController extends Controller
          $message->save();
          Flash::success("Mensaje enviado");
          $categories = Category::all();
-         return redirect()->route('contact')->with('categories', $categories);
+         return redirect()->route('contact');
   
     }
  
@@ -60,7 +60,7 @@ class MessagesController extends Controller
         $message->save();
         $categories = Category::all();
         
-        return view('admin.messages.show')->with('message', $message)->with('categories', $categories);
+        return view('admin.messages.show')->with('message', $message);
     }
  
     /**
@@ -94,7 +94,7 @@ class MessagesController extends Controller
         
         
         $categories = Category::all();  
-        return redirect()->route('admin.messages.index')->with('categories', $categories);
+        return redirect()->route('admin.messages.index');
     }
     
     
