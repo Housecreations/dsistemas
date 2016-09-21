@@ -382,7 +382,18 @@ Route::post('/register', [
  'as' => 'admin.auth.register'
 ]);
 
+Route::post('/password/email', [
+ 'uses' => 'Auth\PasswordController@sendResetLinkEmail',
 
+]);
+Route::post('/password/reset', [
+ 'uses' => 'Auth\PasswordController@reset',
+
+]);
+Route::get('/password/reset/{token?}', [
+ 'uses' => 'Auth\PasswordController@showResetForm',
+
+]);
 
 
 /*
