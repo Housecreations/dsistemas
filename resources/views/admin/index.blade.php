@@ -13,7 +13,7 @@
 <div class="col-md-8 col-xs-10">
     
    
-    
+
     
     <div class="admin-slider">
        

@@ -25,10 +25,10 @@ return [
     | Here you may provide the host address of the SMTP server used by your
     | applications. A default option is provided that is compatible with
     | the Mailgun mail service which will provide reliable deliveries.
-    |
+    |mailgun.org
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,10 +51,10 @@ return [
     | You may wish for all e-mails sent by your application to be sent from
     | the same address. Here, you may specify a name and address that is
     | used globally for all e-mails that are sent by your application.
-    |
+    | null
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'jesus@gmail.com', 'name' => 'jesus'],
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     | If your SMTP server requires a username for authentication, you should
     | set it here. This will get used to authenticate with your server on
     | connection. You may also set the "password" value below this one.
-    |
+    |MAIL_USERNAME
     */
 
     'username' => env('MAIL_USERNAME'),
@@ -90,7 +90,7 @@ return [
     | Here you may set the password required by your SMTP server to send out
     | messages from your application. This will be given to the server on
     | connection so that the application will be able to send messages.
-    |
+    |MAIL_PASSWORD
     */
 
     'password' => env('MAIL_PASSWORD'),

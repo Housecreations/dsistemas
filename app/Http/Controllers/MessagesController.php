@@ -9,17 +9,19 @@ use App\Http\Controllers\Controller;
 use App\Message;
 use App\Category;
 use Laracasts\Flash\Flash;
+use Mail;
+
 class MessagesController extends Controller
 {
    
     
      public function index(Request $request)
     {
-     $categories = Category::all();
+   
         
-         $messages = Message::all();
+         $messages = Message::orderBy('id', 'DESC')->get();
          
-        return view('admin.messages.index')->with('categories', $categories)->with('messages', $messages);
+        return view('admin.messages.index')->with('messages', $messages);
     }
  
     /**
@@ -38,10 +40,31 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
           $message = new Message($request->all());
-       
+        $message->message = $request->body;
          $message->save();
+        
+         $data = $request->all();
+        
+    
+        
+ 
+       //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
+       Mail::send('emails.message', $data, function($messagee) use ($request)
+       {
+           //remitente
+           $messagee->from($request->email, $request->name);
+ 
+           //asunto
+           $messagee->subject($request->subject);
+ 
+           //receptor
+           $messagee->to(env('CONTACT_MAIL'), env('CONTACT_NAME'));
+ 
+       });
+        
+        
          Flash::success("Mensaje enviado");
-         $categories = Category::all();
+        
          return redirect()->route('contact');
   
     }

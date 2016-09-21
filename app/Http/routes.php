@@ -75,9 +75,9 @@ Route::get('/download/{route}', [
 
 
 Route::get('/contact', ['as' => 'contact', function () {
-     $categories = App\Category::all();
+ 
    
-    return view('contact')->with('categories', $categories);
+    return view('contact');
 }]);
 
 
