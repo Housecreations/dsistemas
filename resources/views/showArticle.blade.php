@@ -20,10 +20,10 @@
   
    
     <li class="active"> {{$article->name}}</li>
-  
+  <hr>
 </ol>
    
-   <div class="col-md-1"></div>
+  
    
    
      
@@ -31,7 +31,7 @@
    
   
   
-  <div class="col-md-5 img-container">
+  <div class="col-md-6 img-container">
   
   
    <div id="slider" class="flexslider">
@@ -49,7 +49,19 @@
                           </ul>
                       </div>
                      
-                      
+                <div id="carousel" class="flexslider">
+                          <ul class="slides">
+                         
+                             
+                 @foreach($article->images as $image)                 
+                           <li>
+                              <img src="/images/articles/{{$image->image_url}}" alt="Thumbnail {{$image->id}}"/>
+                          </li>
+                          
+                          @endforeach
+                         
+                      </ul>
+                  </div>       
                     
    </div>
   
@@ -73,7 +85,7 @@
       
       
       
-      <div class="col-md-12">
+      <div class="">
           
           
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -113,47 +125,28 @@
   
 
   </div>
-          
-          
-      </div>
-      
-      
-      <div class="col-md-12">
-      
-        <div id="carousel" class="flexslider">
-                          <ul class="slides">
-                         
-                             
-                 @foreach($article->images as $image)                 
-                           <li>
-                              <img src="/images/articles/{{$image->image_url}}" alt="Thumbnail {{$image->id}}"/>
-                          </li>
-                          
-                          @endforeach
-                         
-                      </ul>
-                  </div>
-      
-       
-       
-   </div>
-   </div>
-   
-   
-   <div class="agregar-carrito">
+          @if($article->stock > 0)
+        <div class="agregar-carrito">
                    
                   
-                    <a class="btn btn-success" href="{{ url('/in_shopping_carts') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('shopping_cart_form').submit();">
-                                        Agregar al carrito
-                                    </a>
+                   
                             
                    @include('in_shopping_carts.form', ['article' => $article])
                    
-                </div>
-   
+                </div> 
+                @endif
+      </div>
+      
+      
+     
+   </div>
    
    </div>
+   
+   
+   
+   
+   
+   
    
 @endsection

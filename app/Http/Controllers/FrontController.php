@@ -19,6 +19,8 @@ class FrontController extends Controller
 {
     
     
+   
+    
     public function outletshow()    
     {
          $categories = Category::all();

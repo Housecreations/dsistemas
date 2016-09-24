@@ -25,7 +25,7 @@
 
 <div class="form-group col-md-12">
 
-{!! Form::text('email', null, ['class' => 'form-control', 'required', 'placeholder' => 'Correo electrónico']) !!}
+{!! Form::email('email', null, ['class' => 'form-control', 'required', 'placeholder' => 'Correo electrónico']) !!}
 </div>
 
 
@@ -43,10 +43,12 @@
 
 
 
-<div class="col-md-4">
+<div class="col-md-6">
 <div class="form-group text-center">
+   
+   <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
     
-    {!! Form::submit('Enviar mensaje', ['class' => 'button'])!!}
+    {!! Form::submit('Enviar mensaje', ['class' => 'cart-button top-margin'])!!}
     
 </div>
 </div>

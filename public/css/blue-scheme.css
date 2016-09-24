@@ -10,6 +10,10 @@ http://www.templatemo.com/preview/templatemo_460_medigo
 	BASIC STYLES 
 --------------------------------------------------------*/
 
+.top-margin{
+    margin-top: 15px;
+}
+
 .sale-data{
     padding: 1em;
     text-align: center;
@@ -105,12 +109,7 @@ http://www.templatemo.com/preview/templatemo_460_medigo
 }
 
 .agregar-carrito {
-    /* margin: 0 auto; */
-    position: absolute;
-    /* margin-bottom: 1em; */
-    bottom: 1em;
-    right: 1em;
-    z-index: 100;
+   
 }
 
 a.carrito {
@@ -175,9 +174,11 @@ body {
 
 
 .main-navigation.pull-right {
-    position: absolute;
+       position: absolute;
     top: 30%;
-    left: 30%;
+  
+    left: 26%;
+    width: 100%;
 }
 
 .item-content{
@@ -305,7 +306,39 @@ body {
     border-radius: 10px;
     
 }
+.panel-default {
+     border: none; 
+}
+h4.panel-title.big {
+    color: white;
+    text-align: center;
+}
 
+
+.cart-button{
+    
+       color: white;
+    background-color: #1f2124;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    /* border: 1px solid transparent; */
+    padding: 15px 20px;
+    /* font-size: 14px; */
+    /* line-height: 1.42857; */
+    border-radius: 4px;
+    width: 100%;
+        font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    transition: all 0.5s;
+}
+.cart-button:hover{
+    color: #00a8d6;
+}
 .button {
  
    
@@ -1039,12 +1072,12 @@ input, textarea {
   border-radius: 3px;
 }
 
-input:focus,
+/*input:focus,
 textarea:focus {
   background-color: white;
   border-color: #dce4e6;
 }
-
+*/
 .mainBtn {
   background-color: #00a8d6;
   padding: 7px 17px;

@@ -10,6 +10,7 @@ use App\Message;
 use App\Category;
 use Laracasts\Flash\Flash;
 use Mail;
+use GuzzleHttp\Client;
 
 class MessagesController extends Controller
 {
@@ -38,8 +39,33 @@ class MessagesController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {
-          $message = new Message($request->all());
+    {   
+         
+         
+        
+        
+        
+        $token = $request->input("g-recaptcha-response");
+        
+        if($token){
+            
+            $client = new Client();
+           
+          
+            
+            $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
+                'form_params' => [
+                'secret' => '6LdOQAcUAAAAADFQ350NWoZrJ7ihuDnX9LGHv9gQ',
+                'response' => $token
+                ]
+            ]);
+           
+            
+            $result = json_decode($response->getBody()->getContents());
+             
+            if($result->success){
+                
+                 $message = new Message($request->all());
         $message->message = $request->body;
          $message->save();
         
@@ -65,7 +91,22 @@ class MessagesController extends Controller
         
          Flash::success("Mensaje enviado");
         
-         return redirect()->route('contact');
+         return back();
+                
+                
+            }else{
+               Flash::success("No se pudo verificar el captcha");
+            return back(); 
+            }
+            
+        }else
+        {
+            Flash::success("No se pudo verificar el captcha");
+            return back();
+        }
+        
+        
+       
   
     }
  

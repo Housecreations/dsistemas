@@ -92,6 +92,7 @@
 	</footer>
 
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="{{ asset('js/min/plugins.min.js') }}"></script>
 <script src="{{ asset('js/medigo-custom.js') }}"></script>
 <script src="{{ asset('js/wow.min.js') }}"></script>
@@ -100,13 +101,12 @@
      <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
      
     
-    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     
     
      <script src="js/jquery.nivo.slider.pack.js"></script>
    
     <script>
-$('div.alert').not('.alert-important').delay(2000).slideUp(350);
+$('div.alert').not('.alert-important').delay(3000).slideUp(350);
 </script>
  
   <script type="text/javascript">

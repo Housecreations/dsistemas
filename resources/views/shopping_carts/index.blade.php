@@ -8,7 +8,8 @@
 
 <div class="col-md-10 items">
 <div class="text-center blue-grey white-text">
-    <h1>Tu carrito de compras</h1>
+    <h1>Carrito de compras</h1>
+    <hr>
 </div>
 
 
@@ -57,13 +58,14 @@
 @if(Auth::user())
     
     @if(Auth::user()->type == 'member')
-    <a href="{{url('payments/pay')}}" class="btn btn-success">Pagar carrito</a>
+    
+    <a href="{{url('payments/pay')}}" class="cart-button">Pagar carrito</a>
     @endif
     
 @else
 
 
-<a href="{{route('admin.auth.login')}}" class="btn btn-success">Inicia sesión para pagar</a>
+<a href="{{route('admin.auth.login')}}" class="cart-button">Inicia sesión para pagar</a>
 
 @endif
 

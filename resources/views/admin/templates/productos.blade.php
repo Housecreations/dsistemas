@@ -53,7 +53,7 @@
     <script src="{{ asset('js/modernizr.custom.js') }}"></script> 
    
 	
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 </head>
@@ -132,9 +132,9 @@
 
 
 -->
-
+  <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
  <script>
-$('div.alert').not('.alert-important').delay(2000).slideUp(350);
+$('div.alert').not('.alert-important').delay(3000).slideUp(350);
 </script>
 
 <script src="{{ asset('js/min/plugins.min.js') }}"></script>

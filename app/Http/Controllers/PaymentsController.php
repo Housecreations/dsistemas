@@ -8,9 +8,13 @@ use App\Http\Requests;
 use JPBlancoDB\MercadoPago\MercadoPago;
 use App\ShoppingCart;
 use App\Order;
+use App\Message;
 use App\OrderDetails;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
+use Mail;
+	
+use Illuminate\Support\Collection as Collection;
 
 class PaymentsController extends Controller
 {
@@ -33,23 +37,37 @@ class PaymentsController extends Controller
         dd($a);
         */
         
-    $shoppingCart = Auth::user()->shoppingCart;
+        
+        
+        $shoppingCart = Auth::user()->shoppingCart;
+        
+        $articlesNoRepeat = $shoppingCart->articles->distinct();
+        dd($articlesNoRepeat);
         
         $items = [];
         
         foreach ($shoppingCart->articles as $article){
-        $item = array_add([
-            "title" => $article->name,
-             "currency_id" => "VEF",
-             "category_id" => $article->category->name,
-             "quantity" => 1,
             
-        ], 'unit_price', $article->price);
-        
-        array_push($items, $item);
-      }
+            if($article->stock > 0){
+                
+                $item = array_add([
+                        "title" => $article->name,
+                        "currency_id" => "VEF",
+                        "category_id" => $article->category->name,
+                        "quantity" => 1],
+                    'unit_price', $article->price);
+
+                array_push($items, $item);
+            
+            }else{
+                Order::cleanOrders();
+                Flash::success('El artículo '. $article->name . ' está agotado');
+                return back();
+                
+            }
+        }
    
-        
+        Order::cleanOrders();
         
         $baseURL = url('/');
         
@@ -57,6 +75,7 @@ class PaymentsController extends Controller
            
             'shopping_cart_id' => $shoppingCart->id,
             'total' => $shoppingCart->total()
+            
             
         ]);
 
@@ -107,7 +126,7 @@ class PaymentsController extends Controller
     
     public function fail(Request $request){
         
-        dd($request);
+       
         Order::where('customid', $request->external_reference)->delete();
       
         
@@ -127,7 +146,45 @@ class PaymentsController extends Controller
                 $shopping_cart = Auth::user()->shoppingCart;
                 $shopping_cart->articles()->detach();
                 $order->payment_id = $request->collection_id;
+                $order->status = 'Por procesar';
                 $order->save();
+             
+             
+                $array = [
+                    "name" => "House Creations",
+                    "email" => "info@housecreations.com",
+                    "subject" => "Orden en proceso",
+                    "body" => "Hemos recibido su pago #$order->payment_id, recuerde actualizar la información del envío"
+                    ];
+             
+                	
+                $requests = new Request();
+               
+                $requests->name = "House Creations";
+                $requests->email = "info@housecreations.com";
+                $requests->subject = "Orden en proceso";
+                $requests->body = "Hemos recibido su pago #$order->payment_id, recuerde actualizar la información del envío";
+                
+                $data = $array;
+              
+                //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
+                Mail::send('emails.message', $data, function($messagee) use ($requests)
+                {
+                    
+                    //remitente
+                    $messagee->from($requests->email, $requests->name);
+
+                    //asunto
+                    $messagee->subject($requests->subject);
+ 
+                    //receptor
+                    $messagee->to(Auth::user()->email, Auth::user()->name);
+ 
+            });
+             
+             
+             
+             
              return redirect('/home');
              
          }else{

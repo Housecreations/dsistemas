@@ -8,6 +8,10 @@ class Order extends Model
 {
    protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'edited', 'status', 'guide_number', 'total'];
     
+    public static function cleanOrders(){
+        
+        Order::where('status', '=', 'En proceso')->delete();
+    }
     
     public static function totalMonth(){
         return Order::monthly()->sum('total');

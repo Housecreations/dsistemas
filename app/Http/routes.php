@@ -11,6 +11,9 @@
 |
 */
 
+
+
+
 Route::get('/home', [
     'uses' => 'MembersController@index',
     'as' => 'member.index',

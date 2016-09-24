@@ -22,14 +22,15 @@
 </div>
 
 <div class="form-group text-center">
- {!! Form::submit('Ingresar', ['class' => 'button']) !!}
+ {!! Form::submit('Ingresar', ['class' => 'cart-button']) !!}
  
 </div>
 
 {!! Form::close() !!}
     <hr>
     <a href="{{route('admin.auth.register')}}">Registrarse</a>
-    <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+    -
+    <a href="{{ url('/password/reset') }}">¿Olvidaste tu contraseña?</a>
      </div>
 </div>
 @endsection

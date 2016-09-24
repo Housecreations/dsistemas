@@ -14,7 +14,7 @@
     @if(sizeof($articles)==0)
     <ol class="breadcrumb bc text-center">
   <li><a href="/">Inicio</a></li>
-
+<hr>
   
 </ol>
 
@@ -29,7 +29,7 @@
 
     
     <li class="active"> {{$articles[0]->category->name}}</li>
-  
+  <hr>
 </ol>
        
      @foreach($articles as $article)
