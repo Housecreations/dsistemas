@@ -14,9 +14,10 @@ class MembersController extends Controller
        
        if(Auth::user()->type == 'member'){
            
-           $Orders = Auth::user()->shoppingCart->orders()->get();
-           
-          
+            //limpiar ordenes incompletas en caso de haberlas
+            Order::cleanOrders(Auth::user()->shoppingCart);
+            
+            $Orders = Auth::user()->shoppingCart->orders()->get();
            
            return view('admin.users.home', ['Orders' => $Orders]);
            

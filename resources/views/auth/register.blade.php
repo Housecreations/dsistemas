@@ -1,23 +1,25 @@
 @extends('admin.templates.principal')
 
 
-@section('title', 'Login')
+@section('title', 'Registro de usuario')
 
 @section('content')
   
     <div class="row big-padding">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading"><h4 class="panel-title big">Registro de usuario</h4></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.auth.register') }}">
                         {{ csrf_field() }}
-
+                        
+                        <div class="col-md-3"></div>
+                         <div class="col-md-6">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                           
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                           
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Nombre">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -25,29 +27,29 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        
                         
                         
                         <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Apellido</label>
+                           
 
-                            <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
+                            
+                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus placeholder="Apellido">
 
                                 @if ($errors->has('lastname'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('lastname') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                           
                         </div>
                         
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                           
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                          
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Correo electrónico">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -55,13 +57,13 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                       
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                          
+                                <input id="password" type="password" class="form-control" name="password" required placeholder="Contraseña">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -69,13 +71,13 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                       
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                           
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                          
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirme la contraseña">
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
@@ -83,12 +85,12 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
+                            
+                                <button type="submit" class="cart-button">
+                                    Registrar
                                 </button>
                             </div>
                         </div>

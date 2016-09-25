@@ -10,9 +10,11 @@ use App\ShoppingCart;
 use App\Order;
 use App\Message;
 use App\OrderDetails;
+use App\InShoppingCart;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
 use Mail;
+use App\Mailer;
 	
 use Illuminate\Support\Collection as Collection;
 
@@ -41,14 +43,18 @@ class PaymentsController extends Controller
         
         $shoppingCart = Auth::user()->shoppingCart;
         
-        $articlesNoRepeat = $shoppingCart->articles->distinct();
-        dd($articlesNoRepeat);
+        
+       
         
         $items = [];
         
         foreach ($shoppingCart->articles as $article){
             
-            if($article->stock > 0){
+         /*   $articlesCount = InShoppingCart::where("shopping_cart_id","=", $shoppingCart->id)->where("article_id", "=", $article->id)->groupBy("article_id")->count();
+       */
+            $articlesCount = $shoppingCart->articles()->where("article_id", "=", $article->id)->groupBy("article_id")->count();
+          
+            if($article->stock >= $articlesCount){
                 
                 $item = array_add([
                         "title" => $article->name,
@@ -60,14 +66,15 @@ class PaymentsController extends Controller
                 array_push($items, $item);
             
             }else{
-                Order::cleanOrders();
-                Flash::success('El artículo '. $article->name . ' está agotado');
+                
+                
+                Flash::success('No hay suficiente disponibilidad del artículo '. $article->name);
                 return back();
                 
             }
         }
    
-        Order::cleanOrders();
+        
         
         $baseURL = url('/');
         
@@ -139,57 +146,58 @@ class PaymentsController extends Controller
     }
      public function success(Request $request){
         
-       
-        $order = Order::where('customid', $request->external_reference)->first();
+        
+        $paymentInfo = MercadoPago::get_payment($request->collection_id);
+      
+
+         //Si el order_id de la respuesta de MP es igual al de la url
+        if($paymentInfo['response']['collection']['order_id'] == $request->external_reference){ 
+         
+         
+         $order = Order::where('customid', $request->external_reference)->first();
        
          if($order){
-                $shopping_cart = Auth::user()->shoppingCart;
-                $shopping_cart->articles()->detach();
-                $order->payment_id = $request->collection_id;
-                $order->status = 'Por procesar';
-                $order->save();
              
-             
-                $array = [
-                    "name" => "House Creations",
-                    "email" => "info@housecreations.com",
-                    "subject" => "Orden en proceso",
-                    "body" => "Hemos recibido su pago #$order->payment_id, recuerde actualizar la información del envío"
-                    ];
-             
-                	
-                $requests = new Request();
-               
-                $requests->name = "House Creations";
-                $requests->email = "info@housecreations.com";
-                $requests->subject = "Orden en proceso";
-                $requests->body = "Hemos recibido su pago #$order->payment_id, recuerde actualizar la información del envío";
-                
-                $data = $array;
-              
-                //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
-                Mail::send('emails.message', $data, function($messagee) use ($requests)
-                {
+                if($order->received == "no"){
                     
-                    //remitente
-                    $messagee->from($requests->email, $requests->name);
-
-                    //asunto
-                    $messagee->subject($requests->subject);
- 
-                    //receptor
-                    $messagee->to(Auth::user()->email, Auth::user()->name);
- 
-            });
+                    $order->status = 'Por procesar';
+                    $order->received = "yes";
+                    $order->payment_id = $request->collection_id;
+                    $order->save();
+                    
+                    $shopping_cart = Auth::user()->shoppingCart;
+                    
+                    
+                   
+                    foreach($shopping_cart->articles as $article){
+                        
+                        $article->stock = $article->stock - 1;
+                        $article->save();
+                   
+                        
+                    }
+                    
+                    $shopping_cart->articles()->detach();
+                    
              
-             
-             
-             
-             return redirect('/home');
-             
+                    Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso", "Hemos recibido su pago #$order->payment_id, recuerde actualizar la información del envío", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
+                
+                
+                }
+                return redirect('/home');
+                
          }else{
-             dd('Error, la orden no corresponde a ninguna registrada en nuestra base de datos');
+             
+                Flash::success('Error, la orden no corresponde a ninguna registrada en nuestra base de datos');
+                return redirect('/home');
+         
          }
+     }else{
+            
+            Flash::success('Error en la orden');
+             return redirect('/home');
+        
+        }
         
     }
     

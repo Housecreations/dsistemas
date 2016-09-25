@@ -44,7 +44,7 @@ class OrdersController extends Controller
         $order->save();
           
         //Email al usuario
-        Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso de verificación", "Los datos del envío fueron actualizados. Su orden se encuentra en proceso de verificación", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->email);
+        Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso de verificación", "Los datos del envío fueron actualizados. Su orden se encuentra en proceso de verificación", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
         
         $base_url = url("/");
         //Email al administrador  

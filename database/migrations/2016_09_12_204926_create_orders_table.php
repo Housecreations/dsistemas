@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('customid')->unique()->nullable();
             $table->integer('shopping_cart_id')->unsigned();
-            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts');
+            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts'); //delete cascade
             $table->string('shipment_agency');
             $table->string('shipment_agency_id');
             $table->string('recipient_name');

@@ -22,7 +22,7 @@ Route::get('/home', [
 
 
 Route::get('/carrito', 'ShoppingCartsController@index');
-
+Route::get('/carrito/vaciar', 'ShoppingCartsController@vaciar');
 
 
 

@@ -82,7 +82,7 @@
 <hr>
 <div class="form-group">
     
-    {!! Form::submit('Actualizar', ['class' => 'button'])!!}
+    {!! Form::submit('Actualizar', ['class' => 'cart-button'])!!}
     
 </div>
 <a href="{{ url('/home')}}" class="button">Atrás</a>
@@ -111,7 +111,7 @@
     
     <div class="col-md-12">
        <hr>
-        <a href="{{ url('/home')}}" class="button">Atrás</a>
+        <a href="{{ url('/home')}}" class="link-button">Atrás</a>
     </div>
 </div>
 

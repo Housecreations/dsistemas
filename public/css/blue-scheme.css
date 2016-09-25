@@ -9,6 +9,9 @@ http://www.templatemo.com/preview/templatemo_460_medigo
 /*------------------------------------------------------
 	BASIC STYLES 
 --------------------------------------------------------*/
+.order-row{
+    border: solid 5px rgba(2, 0, 8, 0.36);
+}
 
 .top-margin{
     margin-top: 15px;

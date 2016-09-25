@@ -55,6 +55,10 @@
            <h5>Agencia de envío: {{$order->shipment_agency}}</h5>
            <h5>Identificador de agencia: {{$order->shipment_agency_id}}</h5>
            <h5>Número de guía: {{$order->guide_number}}</h5>
+           @if($order->status == "Enviado")
+           <h5>Fecha de envío: {{$order->updated_at}}</h5>
+           @endif
+           <hr>
            <h5 class="text-center">Información del receptor</h5>
            <h5>Nombres: {{$order->recipient_name}}</h5>
            <h5>C.I:{{$order->recipient_id}}</h5>

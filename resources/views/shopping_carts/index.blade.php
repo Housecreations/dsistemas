@@ -47,6 +47,7 @@
             <tr>
                 <td>Total</td>
                 <td>{{$total}}</td>
+                <td> <a href="{{ url('carrito/vaciar') }}" onclick="return confirm('Seguro que deseas vaciar el carrito?')" class=''>Vaciar carrito</a></td>
             </tr>
             
         </tbody>
