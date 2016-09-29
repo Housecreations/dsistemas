@@ -12,7 +12,7 @@
 <div class="container-fluid users">
 <div class="col-md-1"></div>
 
-<div class="col-md-10">
+<div class="col-md-10 card bottom-space">
 
 <a href="{{ route('admin.index')}}" class="button">Atrás</a>
 <hr>
@@ -62,5 +62,11 @@
 </div>
 @endsection
 
-
+@section('js')
+<script>
+$('tr[data-href]').on("click", function() {
+    document.location = $(this).data('href');
+});
+    </script>
+@endsection
 
