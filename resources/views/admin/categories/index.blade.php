@@ -9,7 +9,7 @@
  <div class="">
    <div class="container-fluid users">
 <div class="col-md-3"></div>
-<div class="col-md-6">
+<div class="col-md-6 card">
 
     <a href="{{ route('admin.index')}}" class="button">Atrás</a>
      <a href="{{ route('admin.categories.create') }}" class='button'>Nueva categoria</a>

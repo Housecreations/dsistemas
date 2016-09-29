@@ -31,7 +31,7 @@
                <span>{{$totalMonthCount}}</span>
                Cantidad de ventas
            </div>
-           <a href="{{url('/admin/orders')}}"><h5>Órdenes del mes</h5> <span class="badge">0</span></a>
+           <a href="{{url('/admin/orders')}}"><h5>Órdenes del mes</h5> <span class="badge">{{$orderCount}}</span></a>
            </div>
          
        </div>

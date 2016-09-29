@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="{{ asset('css/animate.min.css')}}">
 <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/nivo-slider.css')}}">
+    <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css')}}">
 	
 	
 	<!-- JavaScripts -->
@@ -96,29 +97,19 @@
 <script src="{{ asset('js/min/plugins.min.js') }}"></script>
 <script src="{{ asset('js/medigo-custom.js') }}"></script>
 <script src="{{ asset('js/wow.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.cycle2.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.cycle2.carousel.min.js') }}"></script>
-     <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
+    
      
+   
     
+    @yield('js')
     
-    
-     <script src="js/jquery.nivo.slider.pack.js"></script>
+     
    
     <script>
 $('div.alert').not('.alert-important').delay(3000).slideUp(350);
 </script>
  
-  <script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider({
-            pauseTime: 6000,
-          prevText: '',
-          nextText: '',
-          controlNav: false,
-        });
-    });
-    </script>
+  
 
 </body>
 </html>

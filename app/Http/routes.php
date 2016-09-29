@@ -11,6 +11,18 @@
 |
 */
 
+Route::get('/tags/{tag}', function ($tag) {
+   
+    
+   $articles = App\Tag::where('slug', '=', $tag)->first()->articles()->orderBy('article_id', 'DESC')->get();
+
+   $tag = App\Tag::where('slug', '=', $tag)->first();
+  
+  
+    return view('showtags', ['articles' => $articles, 'tag' => $tag]);
+});
+
+
 
 Route::get('/', 'WelcomeController@index');
 
@@ -85,59 +97,60 @@ Route::get('/contact', ['as' => 'contact', function () {
 
 
 
-/* ruta para mostrar un articulo */
-Route::get('articulos/{category}/{slug}', [ 'as' => 'hombres.mostrarArticulo', function ($cat, $slug) {
-     $categories = App\Category::all();
-    
-  
-    $article = App\Article::where('slug', '=', $slug)->get();
-    $article_id = $article[0]->id;
-    $article = App\Article::find($article_id);
-  
-    return view('showArticle')->with('categories', $categories)->with('article', $article);
-}]);
+
 
 
 /* ruta para motrar los articulos de una categoria*/
 
 Route::get('/articulos/{category}', function ($cat) {
-     $categories = App\Category::all();
+     
     
-    foreach ($categories as $category) {
-        
-        if ($category->name == $cat) {
-            
-            $category_id = $category->id;
-        }
-    }
-    
-  
-    $articles = App\Article::where('category_id', '=', $category_id)->orderBy('id', 'DESC')->get();
-  
-   /*  $categories = App\Category::all();*/
-    return view('show')->with('categories', $categories)->with('articles', $articles);
+    $articles = App\Category::where('slug', '=', $cat)->first()->articles()->orderBy('id', 'DESC')->get();
+
+    return view('show')->with('articles', $articles);
 });
 
+
+
 Route::get('articulos/{category}/{slug}', [ 'as' => 'mostrar.articulo', function ($cat, $slug) {
-     $categories = App\Category::all();
     
+    $article = App\Article::where('slug', '=', $slug)->first();
+    $tags = $article->tags;
   
-    $article = App\Article::where('slug', '=', $slug)->get();
-    $article_id = $article[0]->id;
-    $article = App\Article::find($article_id);
   
-    return view('showArticle')->with('categories', $categories)->with('article', $article);
+    $relatedArticles = collect([]);
+    
+   
+    foreach($tags as $tag){
+        
+    $relatedArticle = $tag->articles()->whereNotIn('article_id',[$article->id])->get();
+     
+   
+        $relatedArticles->push($relatedArticle);
+     
+        
+              
+    }
+   
+    $relatedArticles = $relatedArticles->collapse()->groupBy('id');
+    
+    $articles = collect([]);
+    foreach($relatedArticles as $relatedArticle){
+        
+        $articles->push($relatedArticle[0]);
+        
+    }
+  
+   
+        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles]);
+    
 }]);
 
 
 Route::get('/QuienesSomos', function () {
-     $categories = App\Category::all();
+   
+    return view('whoweare');
     
-    
-    
-  
-
-    return view('whoweare')->with('categories', $categories);
 });
 
 
@@ -146,18 +159,13 @@ Route::get('/QuienesSomos', function () {
 
 
 Route::get('/descuentos', function () {
-     $categories = App\Category::all();
-    
-    
-    
-  
+   
     $articles = App\Article::where('ondiscount', '=', 'yes')->orderBy('id', 'DESC')->get();
   
-   /*  $categories = App\Category::all();*/
-    return view('showoutlet')->with('categories', $categories)->with('articles', $articles);
+  
+    return view('showoutlet')->with('articles', $articles);
+    
 });
-
-
 
 
 
@@ -172,7 +180,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
 ]);
     
-  
+    Route::resource('tags', 'TagsController');
     
     
     Route::get('downloads/create', [
@@ -293,11 +301,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
     Route::get('/', ['as' => 'admin.index', function () {
        
-        $unread = App\Message::where('read', '=', 'no')->get();
-        $unread = sizeof($unread);
+        $unread = App\Message::where('read', '=', 'no')->count();
         
         $totalMonth = App\Order::totalMonth();
         $totalMonthCount = App\Order::totalMonthCount();
+        $orderCount = App\Order::orderCount();
         
         if ($unread > 99) {
             
@@ -307,7 +315,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
       
         $carousel = App\CarouselImage::find(1);
         
-        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount]);
+        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount, 'orderCount' => $orderCount]);
     }]);
     
     Route::resource('users', 'UsersController');

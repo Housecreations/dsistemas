@@ -34,3 +34,22 @@
 
 @endsection
 
+@section('js')
+<script src="{{ asset('js/jquery.cycle2.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.cycle2.carousel.min.js') }}"></script>
+     <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
+     
+     
+<script src="js/jquery.nivo.slider.pack.js"></script>
+ <script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider({
+            pauseTime: 6000,
+          prevText: '',
+          nextText: '',
+          controlNav: false,
+        });
+    });
+    </script>
+@endsection
+

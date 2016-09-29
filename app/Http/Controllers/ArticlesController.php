@@ -11,6 +11,7 @@ use App\Article;
 use App\Http\Requests\ArticleRequest;
 use Laracasts\Flash\Flash;
 use App\Image;
+use App\Tag;
 
 class ArticlesController extends Controller
 {
@@ -69,8 +70,9 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-       
-     return view('admin.articles.create');
+        $tags = Tag::orderBy('name', 'ASC')->lists('name', 'id');
+        
+        return view('admin.articles.create', ['tags' => $tags]);
         
     }
  
@@ -82,6 +84,7 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        
         
         Article::saveArticle($request);
         
@@ -107,8 +110,11 @@ class ArticlesController extends Controller
     {
      
         $article = Article::find($id);
+        $tags = Tag::orderBy('name', 'ASC')->lists('name', 'id');
+        
+       
       
-        return view('admin.articles.edit')->with('article', $article);
+        return view('admin.articles.edit', ['article' => $article, 'tags' => $tags]);
         
     }
  
@@ -123,9 +129,10 @@ class ArticlesController extends Controller
     {
         $article = Article::find($id);
         $article->fill($request->all());
-      
-        
         $article->save();
+        
+        $article->tags()->sync($request->tags);
+        
         
         Flash::success('El artículo se editó con éxito');
         

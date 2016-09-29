@@ -33,7 +33,7 @@
 <div class="form-group">
  
      <label for="category">Categoria</label>
-    <select class="form-control" required="required" id="category_id" name="category_id">
+    <select class="form-control select-category" required="required" id="category_id" name="category_id">
    
        @foreach($categories as $category)  
         
@@ -55,7 +55,11 @@
         </select>
     
 </div>
-
+<div class="form-group">
+{!! Form::label('tags', 'Tags') !!}
+{!! Form::select('tags[]', $tags, $article->tags->lists('id')->ToArray(), ['class' => 'form-control select-tags', 'multiple','required']) !!}
+</div>
+    
      <div class="form-group">
 {!! Form::label('stock', 'Cantidad disponible') !!}
 {!! Form::number('stock', $article->stock, ['class' => 'form-control', 'required']) !!}
@@ -76,7 +80,7 @@
 
 <div class="form-group">
     
-    {!! Form::submit('Editar', ['class' => 'button'])!!}
+    {!! Form::submit('Editar', ['class' => 'cart-button'])!!}
     
 </div>
 
@@ -85,4 +89,16 @@
 
     </div>
 </div>
+@endsection
+@section('js')
+ <script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
+ <script>
+$('.select-tags').chosen({
+    placeholder_text_multiple: 'Seleccione un máximo de 5 tags',
+    max_selected_options: 5
+});
+     $('.select-category').chosen({
+         no_results_text: 'No se encontraron categorias'
+     });
+</script>
 @endsection

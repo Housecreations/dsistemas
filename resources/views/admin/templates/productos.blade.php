@@ -80,7 +80,7 @@
         <nav class="templatemo-left-nav">          
           <ul>
              @foreach($categories as $category)
-					            		<li><a href="/articulos/{{$category->name}}">{{$category->name}}</a></li>
+					            		<li><a href="/articulos/{{$category->slug}}">{{$category->name}}</a></li>
 					            		
                                         @endforeach
                                          <li><a href="/descuentos">Descuentos</a></li>

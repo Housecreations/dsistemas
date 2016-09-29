@@ -6,14 +6,29 @@ $(window).load(function() { // makes sure the whole site is loaded
       $('#preloader').fadeOut('slow');
     $('body').css({'overflow':'visible'});
       
+    $('#slider-related').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 210,
+    itemMargin: 0,
+    minItems: 2,
+    maxItems: 3
+           
+        });
+    
+    
         $('#carousel').flexslider({
             animation: "slide",
             controlNav: false,
             animationLoop: false,
             slideshow: false,
-            itemWidth: 170,
-            itemMargin: 5,
-            asNavFor: '#slider'
+            itemWidth: 105,
+            itemMargin: 0,
+            asNavFor: '#slider',
+            minItems: 2,
+    maxItems: 3
         });
 
         $('#slider').flexslider({

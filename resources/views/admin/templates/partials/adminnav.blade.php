@@ -44,6 +44,12 @@
 <h2>Descuentos</h2>
 </a>
 </div>
+   
+<div class="col-md-1 col-xs-3 admin-nav">
+<a href=" {{ route('admin.tags.index')}}">
+<h2>Tags</h2>
+</a>
+</div>
     
 
 

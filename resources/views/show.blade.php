@@ -48,16 +48,19 @@
   
         
    
-			    	<div class="grid mask">
+			    	    
+         <a href="{{ route('mostrar.articulo', [$article->category->slug, $article->slug])}}" >
+   <div class="grid mask">
 						<figure>
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
 								<h5>{{$article->name}} ! {{$article->price}} </h5>
-								<a data-toggle="modal" href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}" class="btn btn-primary btn-lg">Ver mas</a>
+								
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->
 			    	</div><!-- /grid-mask -->
-		
+    
+        </a>
         
         
         

@@ -47,6 +47,10 @@ http://www.templatemo.com/preview/templatemo_460_medigo
     border-radius: 10px 10px 10px 10px;
 }
 
+.bottom-space{
+    padding-bottom: 120px;
+}
+
 .top-space{
     
     padding-top: 15px;
@@ -115,6 +119,27 @@ http://www.templatemo.com/preview/templatemo_460_medigo
    
 }
 
+a.tag {
+    background-color: #1f2124;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+    transition: all 0.8s;
+    color: white;
+}
+
+.tags a:hover, a:active {
+    color: #1f2124;
+    background: white;
+}
+.tags h4 {
+    background-color: #1f2124;
+    text-align: center;
+    color: white;
+    border-radius: 2px 2px;
+    padding: 2px;
+    font-size: 18px;
+}
+
 a.carrito {
     position: fixed;
     top: 0;
@@ -143,7 +168,7 @@ footer.footer-productos{
     float: none;
 }
 .col-md-1.col-xs-3.admin-nav h2, .col-md-2.col-xs-3.admin-nav h2 {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 
@@ -169,11 +194,20 @@ body {
 
 
 
+.flexslider .slides img {
+   
+    height: 400px;
+}
 
 
-
-
-
+#slider-related.flexslider .slides img {
+    height: 180px;
+}
+#carousel.flexslider .slides img {
+    width: 100%;
+    display: block;
+    height: 100px;
+}
 
 
 .main-navigation.pull-right {
@@ -183,15 +217,30 @@ body {
     left: 26%;
     width: 100%;
 }
-
-.item-content{
-   padding-left: 35px;
+.admin-item-content{
+     padding-left: 35px;
+    padding-bottom: 35px;
+    padding-right: 35px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 5px;
+    width: 32%;
+    text-align: center;
+    
+}
+.item-content {
+    padding-left: 35px;
     padding-bottom: 35px;
     padding-right: 35px;
     
 }
-.item-content img {
+.item-content img, .admin-item-content img {
     height: 250px;
+        border: solid 2px #efedeb;
+}
+
+.actions-content{
+    padding: 10px;
 }
 
 .image img, .front img {
@@ -214,7 +263,7 @@ body {
 	left: 0;
 	padding: 20px;
 	color: #fff;
-	background: #3498db;
+	    background: #1f2124;
 }
 
 .grid figcaption h5 {
@@ -299,10 +348,10 @@ body {
 }
 .items{
       background: white;
-    margin-top: 150px;
+    margin-top: 120px;
     margin-left: 22.5%;
     padding-left: 2%;
-    padding-bottom: 150px;
+    padding-bottom: 170px;
     padding-right: 2%;
     margin-right: 2%;
     width: 75%;
@@ -316,6 +365,14 @@ h4.panel-title.big {
     color: white;
     text-align: center;
 }
+
+span.text-center.related-title {
+    display: block;
+    font-size: 14px;
+    color: black;
+}
+
+
 
 
 .cart-button{
@@ -720,7 +777,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #31373a;
-  font-family: "Raleway", sans-serif;
+
   font-weight: normal;
 }
 

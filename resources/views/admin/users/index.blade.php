@@ -8,7 +8,7 @@
 
  <div class="container-fluid users">    
 <div class="col-md-1"></div>
-<div class="col-md-10">
+<div class="col-md-10 card">
         
 
 <a href="{{ route('admin.index')}}" class="button">Atrás</a>

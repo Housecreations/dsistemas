@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid users">    
 <div class="col-md-2"></div>
-<div class="col-md-8">
+<div class="col-md-8 card bottom-space">
     
     <a href="{{ route('admin.articles.index')}}" class="button">Atrás</a>
     <hr>

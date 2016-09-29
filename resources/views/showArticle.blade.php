@@ -15,7 +15,7 @@
     
     
   
-    <li> <a href="/articulos/{{$article->category->name}}"> {{$article->category->name}}</a></li>
+    <li> <a href="/articulos/{{$article->category->slug}}"> {{$article->category->name}}</a></li>
    
   
    
@@ -125,7 +125,7 @@
   
 
   </div>
-          @if($article->stock > 0)
+          @if($article->stock > 0 && Auth::user()->type == 'member')
         <div class="agregar-carrito">
                    
                   
@@ -135,6 +135,49 @@
                    
                 </div> 
                 @endif
+        
+           
+           <div class="tags" style="display: block;">
+            <h4>Productos relacionados</h4>
+             
+               
+               
+               
+               <div id="slider-related" class="flexslider">
+                              <ul class="slides">
+                                
+     @foreach($relatedArticles as $article_related)
+                                 
+                                 <li>
+                                 <a href="{{url('/articulos/'.$article_related->category->slug.'/'.$article_related->slug)}}">
+                                 
+                                 <span class="text-center related-title">{{$article_related->name}}</span>
+                                  <img src="/images/articles/{{$article_related->images[0]->image_url}}" alt="Slide {{$article_related->id}}"/>
+                                 
+                                  </a>
+                              </li>
+                              
+                              @endforeach
+                              
+                          </ul>
+                      </div>
+            
+           
+        </div>
+             
+               
+                
+               
+                
+        <div class="tags">
+            <h4>Tags</h4>
+            @foreach($article->tags as $tag)
+            <a class="tag" href="{{url('/tags/'.$tag->slug)}}">{{$tag->name}}</a>
+            @endforeach
+        </div>
+        
+        
+                
       </div>
       
       

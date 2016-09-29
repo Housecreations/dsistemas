@@ -23,6 +23,14 @@ class Article extends Model implements SluggableInterface
     
     protected $fillable = ['name', 'description', 'category_id', 'ondiscount', 'stock', 'discount', 'price'];
     
+    
+    
+    public function tags(){
+        
+        return $this->belongsToMany('App\Tag','article_tag')->withPivot('id');
+        
+    }
+    
      public function category(){
         
         return $this->belongsTo('App\Category');
@@ -55,6 +63,8 @@ class Article extends Model implements SluggableInterface
         $article = new Article($request->all());
         $article->price = $article->price - ( $article->price * ($article->discount / 100) ); 
         $article->save();
+        
+        $article->tags()->sync($request->tags);
       
         $image = new Image();
         $image->article()->associate($article);

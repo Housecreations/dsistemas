@@ -38,21 +38,9 @@
        @foreach($articles as $article)
            
              
-            <div class="col-md-4 item-content">  
+            <div class="col-md-4 admin-item-content">
             <h5>{{$article->name}}</h5>
-            <img src="/images/articles/{{$article->images[0]->image_url}}" alt="">  
-               <span>{{$article->price}}</span>
-                <span>Unidades: {{$article->stock}}</span>
-                <span>% descuento: {{$article->discount}}</span>
-                <hr>
-                 <span>{{$article->category->name}}</span>
-                 <hr>
-                  
-                   
-                 
-        
-            
-               
+            <div class="actions-content">
                 <a href="{{ route('admin.articles.images', $article->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
                      <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-photo fa-stack-1x fa-inverse"></i>
@@ -67,7 +55,23 @@
                      <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-times fa-stack-1x fa-inverse"></i>
                     </span></a>
-                
+                </div>
+                  
+            
+            <img src="/images/articles/{{$article->images[0]->image_url}}" alt="">  
+               <span>Precio: {{$article->price}}</span>
+                <span>Unidades: {{$article->stock}}</span>
+                <span>% descuento: {{$article->discount}}</span>
+                <hr>
+                 <span>{{$article->category->name}}</span>
+                 <hr>
+                  
+                  @foreach($article->tags as $tag)
+                  <span class="tag">{{$tag->name}}</span>
+                 @endforeach
+        
+            
+               
                 </div>
               
                 

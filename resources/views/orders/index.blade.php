@@ -13,8 +13,8 @@
        
         <div class="col-md-12 card">
            <div class="row">
-           <div class="col-md-12">
-        <a href="{{url('/admin')}}">Atrás</a>
+           <div class="col-md-2">
+        <a href="{{url('/admin')}}" class="">Atrás</a>
    </div></div>
          <div class="col-md-12">
            <div class="row">

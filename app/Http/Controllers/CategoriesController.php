@@ -28,8 +28,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-       $categories = Category::all();
-        return view('admin.categories.create')->with('categories', $categories);
+     
+        return view('admin.categories.create');
         
     }
  
@@ -44,8 +44,8 @@ class CategoriesController extends Controller
           $category = new Category($request->all());
         $category->save();
          Flash::success("Categoria registrada");
-         $categories = Category::all();
-         return redirect()->route('admin.categories.index')->with('categories', $categories);
+        
+         return redirect()->route('admin.categories.index');
   
     }
  
