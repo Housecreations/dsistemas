@@ -1,27 +1,27 @@
 @extends('admin.templates.productos')
 
 
-@section('title', 'Actualizar orden')
+@section('title', 'Checkout')
 
 
 @section('content')
 
 <div class="col-md-10 items">
 
-<h4>Actualizar orden</h4><span>Verifique bien los datos, una vez cargados no podrá modificarlos</span>
+<h4>Checkout</h4><span>Verifique bien los datos, una vez cargados no podrá modificarlos</span>
 
 
 
 <hr>
 
-@if($order->edited == 'no')
+{{--@if($order->edited == 'no')--}}
 
 <div class="row">
 <div class="col-md-6">
 
     
 
-{!! Form::open(['route' => ['orders.update', $order->customid], 'method' => 'PUT']) !!}
+{!! Form::open(['url' => ['payments/pay'], 'method' => 'PUT']) !!}
 
 <h5 class="text-center">Información de envío</h5>
 
@@ -82,15 +82,15 @@
 <hr>
 <div class="form-group">
     
-    {!! Form::submit('Actualizar', ['class' => 'cart-button'])!!}
+    {!! Form::submit('Pagar', ['class' => 'cart-button'])!!}
     
 </div>
-<a href="{{ url('/home')}}" class="button">Atrás</a>
+<a href="{{ url('/carrito')}}" class="button">Atrás</a>
 
 
 {!! Form::close() !!}
 </div>
-@else
+{{--@else
 
 <div class="row">
     
@@ -111,10 +111,10 @@
     
     <div class="col-md-12">
        <hr>
-        <a href="{{ url('/home')}}" class="link-button">Atrás</a>
+        <a href="{{ url('/carrito')}}" class="link-button">Atrás</a>
     </div>
 </div>
 
-@endif
+@endif--}}
 
 @endsection

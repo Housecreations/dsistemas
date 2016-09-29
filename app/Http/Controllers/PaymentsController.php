@@ -19,8 +19,15 @@ use App\Mailer;
 use Illuminate\Support\Collection as Collection;
 
 class PaymentsController extends Controller
-{
-    public function index(){
+{   
+    
+    public function checkout(){
+        
+        return view('orders.checkout');
+        
+    }
+    
+    public function index(Request $request){
       
         
    /*$filters = array (
@@ -50,8 +57,7 @@ class PaymentsController extends Controller
         
         foreach ($shoppingCart->articles as $article){
             
-         /*   $articlesCount = InShoppingCart::where("shopping_cart_id","=", $shoppingCart->id)->where("article_id", "=", $article->id)->groupBy("article_id")->count();
-       */
+         
             $articlesCount = $shoppingCart->articles()->where("article_id", "=", $article->id)->groupBy("article_id")->count();
           
             if($article->stock >= $articlesCount){
@@ -113,14 +119,36 @@ class PaymentsController extends Controller
 	
         ),
              "notification_url" => "$baseURL/payments/notifications",
-             "external_reference" => $external_reference
+             "external_reference" => $external_reference,
+             
+            "payment_methods" => array (
+            "excluded_payment_methods" => array (),
+            "excluded_payment_types" => array (
+                array ( "id" => "ticket" ),
+                array ( "id" => "atm" ),
+                array ( "id" => "debit_card" ),
+                array ( "id" => "prepaid_card" ),
+            ),
+            "installments" => 12
+        )
 
 
     );
 
- 
-    
+
+
+    //orden
         
+        /*$order = Auth::user()->shoppingCart->orders()->where('customid', '=', $request->orders)->first();*/
+        $order->shipment_agency = $request->shipment_agency;
+        $order->shipment_agency_id = $request->shipment_agency_id;
+        $order->recipient_name = $request->recipient_name;
+        $order->recipient_id = $request->recipient_id;
+        $order->recipient_email = $request->recipient_email;
+        $order->edited = 'yes';
+        $order->save();
+      
+      
         try {
             $preference = MercadoPago::create_preference($preference_data);
             return redirect()->to($preference['response']['init_point']);
@@ -139,7 +167,7 @@ class PaymentsController extends Controller
         
          Flash::success('No se pudo procesar el pago, por favor intente nuevamente');
         
-        return redirect('/carrito');
+        return redirect('/checkout');
         
         
         
@@ -168,7 +196,7 @@ class PaymentsController extends Controller
                     $shopping_cart = Auth::user()->shoppingCart;
                     
                     
-                   
+                   //restar artículos vendidos
                     foreach($shopping_cart->articles as $article){
                         
                         $article->stock = $article->stock - 1;
@@ -176,14 +204,23 @@ class PaymentsController extends Controller
                    
                         
                     }
-                    
+                    //vaciar carrito
                     $shopping_cart->articles()->detach();
                     
-             
-                    Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso", "Hemos recibido su pago #$order->payment_id, recuerde actualizar la información del envío", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
                 
+                    
+                     //Email al usuario
+                    Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso de verificación", "Hemos recibido su pago #$order->payment_id. Su orden se encuentra en proceso de verificación", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
+        
+                    $base_url = url("/");
+                    //Email al administrador  
+                    Mailer::sendMail("House Creations", "info@housecreations.com", "Compra realizada", "Se ha realizado una compra, puede revisar la orden en el siguiente link: $base_url/admin/orders", "emails.message", env("CONTACT_MAIL"), env("CONTACT_NAME"));
+                    
+                    
+                    
                 
                 }
+             Flash::success('El pago fue exitoso, su orden se encuentra en proceso de verificación');
                 return redirect('/home');
                 
          }else{

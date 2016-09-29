@@ -64,14 +64,7 @@
            <h5>C.I:{{$order->recipient_id}}</h5>
            <h5>Correo Electrónico: {{$order->recipient_email}}</h5>
        </div>
-       <div class="col-md-12">
-         
-          @if($order->edited == 'no')
-           <hr>
-           <a href="{{url('/orders/'.$order->customid)}}" class="button">Actualizar información</a>
-          
-           @endif
-       </div>
+       
    </div>
    
   @endforeach

@@ -60,7 +60,7 @@
     
     @if(Auth::user()->type == 'member')
     
-    <a href="{{url('payments/pay')}}" class="cart-button">Pagar carrito</a>
+    <a href="{{url('/checkout')}}" class="cart-button">Ir al checkout</a>
     @endif
     
 @else

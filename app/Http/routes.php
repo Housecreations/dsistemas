@@ -44,15 +44,11 @@ Route::resource('in_shopping_carts', 'InShoppingCartsController', [
     
 ]);
 
-Route::resource('orders', 'OrdersController', [
-    
-    'only' => ['show', 'update']
-    
-]);
 
 
+route::get('/checkout', 'PaymentsController@checkout');
 
-Route::get('/payments/pay', 'PaymentsController@index');
+Route::put('/payments/pay', 'PaymentsController@index');
 
 
 Route::get('/payments/fail', 'PaymentsController@fail');
