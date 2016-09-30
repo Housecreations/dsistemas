@@ -67,7 +67,7 @@ $(document).ready(function(){
             success: function(data){
                 $button.css("background-color", "#00c853").val("Agregado");
                 
-                $(".item-count").html(data.products_count);
+                $(".item-count").html(data.products_count + " ");
                 
                 setTimeout(function(){
                     restartButton($button);
@@ -126,12 +126,12 @@ jQuery(document).ready(function($){
     
     
 
-	$(window).resize(function(){
+	/*$(window).resize(function(){
 		if ($(window).width() >= 1000){ //768	
 			$(".responsive_menu").hide();
 		}	
 	});
-
+*/
 	/************** SuperFish Menu *********************/
 		function initSuperFish(){
 			

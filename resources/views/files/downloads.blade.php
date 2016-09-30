@@ -31,23 +31,29 @@
     <li class="active">Descargas</li>
   
 </ol>
-       
+
+          
     @foreach($categories as $category)
-    <hr>
+   
+   
+
+     @foreach($category->files as $file)
+      <hr>
     <h2>{{$category->name}}</h2>
     <hr>
-    
-     @foreach($files as $file)
      
-    @if($file->category->name == $category->name ) 
+  
     
     <div class="">
     
-    <span>{{$file->name}} - <a href="{{route('files.downloads.get', $file->file_url)}}"> Descargar</a></span>
-   
+    <div>
+    <h4><i class="fa fa-file"></i> {{$file->name}} v{{$file->version}} - <a href="{{route('files.downloads.get', $file->file_url)}}"> <i class="fa fa-download"></i></a>
+   </h4> 
+   </div>
+    
     </div>
      
-    @endif
+   
     
     @endforeach
     

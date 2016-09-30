@@ -50,10 +50,11 @@
        @if(Auth::user())
        
         @if(Auth::user()->type == 'member')
-         <a href="{{url('/carrito')}}" class="carrito">Carrito: <span class="item-count">{{$productsCount}}</span> Items</a>
+         <a href="{{url('/carrito')}}" class="carrito"> <span class="item-count">{{$productsCount}} </span><i class="fa fa-shopping-cart"></i></a>
         @endif
         @else
-        <a href="{{url('/carrito')}}" class="carrito">Carrito: <span class="item-count">{{$productsCount}}</span> Items</a>
+        <a href="{{url('/carrito')}}" class="carrito"><span class="item-count">{{$productsCount}} </span><i class="fa fa-shopping-cart"></i> </a>
+        
         @endif
 			<div class="row">
 

@@ -54,7 +54,7 @@
 						<figure>
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
-								<h5>{{$article->name}} ! {{$article->price}} </h5>
+								<h5>{{$article->name}} | {{$article->price}} Bs </h5>
 								
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->

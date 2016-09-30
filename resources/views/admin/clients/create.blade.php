@@ -34,7 +34,7 @@
 
 <div class="form-group text-center">
     
-    {!! Form::submit('Registrar', ['class' => 'btn btn-primary'])!!}
+    {!! Form::submit('Registrar', ['class' => 'cart-button'])!!}
     
 </div>
 
