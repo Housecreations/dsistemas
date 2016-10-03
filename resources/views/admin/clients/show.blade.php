@@ -10,7 +10,7 @@
     @foreach($clients as $client)
     
         
-        <div class="col-md-4 item-content client top-space col-sm-4 col-xs-6">
+        <div class="col-md-4 item-content client top-space col-sm-4 col-xs-12">
         
             
             <img src="/images/clients/{{$client->logo_url}}" alt="">

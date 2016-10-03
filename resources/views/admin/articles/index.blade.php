@@ -7,12 +7,15 @@
 @section('content')
 
 
- <div class="container-fluid ">    
-<div class="col-md-1"></div>
-<div class="col-md-10 users">
+ <div class="">    
 
-    <a href="{{ route('admin.index')}}" class="button">Atrás</a>
-     <a href="{{ route('admin.articles.create') }}" class='button'>Nuevo Artículo</a>
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">
+   
+        <a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+        <a href="{{ route('admin.articles.create') }}" class='button button-md'>Nuevo Artículo</a>
+    <hr>
+    
+    
 
 
 
@@ -38,7 +41,7 @@
        @foreach($articles as $article)
            
              
-            <div class="col-md-4 admin-item-content">
+            <div class="col-md-4 col-sm-6 col-xs-12 admin-item-content">
             <h5>{{$article->name}}</h5>
             <div class="actions-content">
                 <a href="{{ route('admin.articles.images', $article->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>

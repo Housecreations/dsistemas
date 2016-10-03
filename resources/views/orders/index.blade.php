@@ -6,16 +6,16 @@
 
 @section('content')
 
-<div class="col-md-1"></div>
-<div class="col-md-10 users">
+<div class="col-md-1 col-sm-1 col-xs-1"></div>
+<div class="col-md-10  col-sm-10 col-xs-10 users">
    
     <div class="row">
        
-        <div class="col-md-12 card">
-           <div class="row">
-           <div class="col-md-2">
-        <a href="{{url('/admin')}}" class="">Atrás</a>
-   </div></div>
+        <div class="col-md-12  col-sm-12 col-xs-12 card">
+          
+        <a href="{{url('/admin')}}" class="button button-sm">Atrás</a>
+        <hr>
+  
          <div class="col-md-12">
            <div class="row">
             <h4>Órdenes del mes</h4>

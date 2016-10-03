@@ -20,6 +20,14 @@ class OrdersController extends Controller
         return view('orders.index', ['orders' => $orders]);
     }
     
+    public function showAll(){
+        
+        $orders = Order::all();
+      
+        return view('orders.index', ['orders' => $orders]);
+    }
+    
+    
   
     
      public function adminUpdate(Request $request, $id){

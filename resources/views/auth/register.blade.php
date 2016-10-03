@@ -5,10 +5,10 @@
 
 @section('content')
   
-    <div class="row big-padding">
-        <div class="col-md-8 col-md-offset-2">
+    <div class="items-no-nav card col-md-10">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4 class="panel-title big">Registro de usuario</h4></div>
+                <div><h4 class="text-center">Registro de usuario</h4></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.auth.register') }}">
                         {{ csrf_field() }}

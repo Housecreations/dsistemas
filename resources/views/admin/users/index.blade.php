@@ -6,17 +6,19 @@
 
 @section('content')
 
- <div class="container-fluid users">    
-<div class="col-md-1"></div>
-<div class="col-md-10 card">
+ <div class="">    
+
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">
         
 
-<a href="{{ route('admin.index')}}" class="button">Atrás</a>
-<a href="{{ route('admin.users.create')}}" class="button">Registrar nuevo usuario</a>
+<a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+<a href="{{ route('admin.users.create')}}" class="button button-md">Registrar nuevo usuario</a>
+<hr>
+
 
 
 <!-- Buscador de usuarios -->
-
+<div>
 {!! Form::open(['route' => 'admin.users.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
     
     <div class="input-group">
@@ -25,11 +27,11 @@
     
     <span class="input-group-addon" id="searchUsers"><span class="glyphicon glyphicon-search"  aria-hidden="true"></span></span>
     </div>
-
+</div>
 {!! Form::close() !!}
 <!-- Fin buscador de usuarios -->
 
-
+<div>
 <table class='table table-hover'>
     
     <thead>
@@ -66,6 +68,7 @@
 <div class="text-center">
     {!! $users->render() !!}
 </div>
+     </div>
 
      </div>
 </div>

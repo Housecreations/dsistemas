@@ -35,19 +35,20 @@
           
     @foreach($categories as $category)
    
-   
-
-     @foreach($category->files as $file)
-      <hr>
+    @if(count($category->files) > 0)
+    <hr>
     <h2>{{$category->name}}</h2>
     <hr>
+    @endif
+     @foreach($category->files as $file)
+      
      
   
     
     <div class="">
     
     <div>
-    <h4><i class="fa fa-file"></i> {{$file->name}} v{{$file->version}} - <a href="{{route('files.downloads.get', $file->file_url)}}"> <i class="fa fa-download"></i></a>
+    <h4><i class="fa fa-file"></i> {{$file->name}} v{{$file->version}} - <a href="{{route('files.downloads.get', $file->file_url)}}"> <i class="fa fa-download"></i></a> ({{$file->size}} Mb)
    </h4> 
    </div>
     

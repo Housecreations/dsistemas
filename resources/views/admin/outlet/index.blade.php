@@ -1,43 +1,51 @@
 @extends('admin.templates.principal')
 
 
-@section('title', 'Outlet')
+@section('title', 'Descuentos')
 
 
 @section('content')
 
 
 
-<div class="col-md-12 users">
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">
 
-<div class="col-md-5"></div>
-<div class="col-md-2">
-<a href="{{ route('admin.index')}}" class="button">Atrás</a>
-<a href="{{route('admin.outlet.show')}}">Ver artículos
-</a></div>
-<br>
+
+
+<a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+
+
+
+
+<a href="{{route('admin.outlet.show')}}" class="button button-lg">Ver artículos en descuento
+</a>
+
+<hr>
   
 
-<h4 class="text-center">Seleccione un artículo para agregar a descuentos</h4>
+<h4 class="text-center top-space">Seleccione un artículo para agregar a descuentos</h4>
 <hr>
 
 
-<div class="col-md-1"></div>
+
 <div class="col-md-12"> 
 
     @foreach($articles as $article)
     
-    <div class="col-md-2 item-content">
+    <div class="col-md-4 col-sm-6 col-xs-12 admin-item-content">
+   
    
     <a class="" href="{{ route('admin.outlet.add', $article->id)}}">
+   <h4>{{$article->name}}</h4>
    
-    <div class="templatemo-gallery-item">
-							<img src="/images/articles/{{$article->images[0]->image_url}}" alt="Gallery Item" class="img-responsive">
+   
+    <div>
+							<img src="/images/articles/{{$article->images[0]->image_url}}" alt="Gallery Item">
 							
 							
 						
-									<h4 class="templatemo-white-text">{{$article->name}}</h4>
-									<h4 class="templatemo-gold-text">{{$article->price}} bs</h4>
+									
+									<h4>{{$article->price}} bs</h4>
 								
 							
 						</div>	

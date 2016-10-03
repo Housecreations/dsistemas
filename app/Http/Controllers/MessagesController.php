@@ -75,7 +75,7 @@ class MessagesController extends Controller
         
  
        //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
-       Mail::send('emails.message', $data, function($messagee) use ($request)
+       Mail::queue('emails.message', $data, function($messagee) use ($request)
        {
            //remitente
            $messagee->from($request->email, $request->name);

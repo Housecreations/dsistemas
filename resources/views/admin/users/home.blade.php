@@ -7,7 +7,7 @@
   
   
 
-   <div class="items col-md-10">
+   <div class="items col-md-10 col-sm-10 col-xs-10">
    
    <h4>Mis compras</h4>
    

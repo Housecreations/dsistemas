@@ -5,11 +5,11 @@
 
 <!-- Main Content -->
 @section('content')
-<div class="container users">
-    <div class="row">
+<div class="container">
+    <div class="items-no-nav col-md-10 card">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4 class="panel-title big">Restaurar contraseña</h4></div>
+                <div ><h4 class="text-center">Restaurar contraseña</h4></div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -21,10 +21,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Correo electrónico</label>
+                            
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo electrónico">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-10 col-md-offset-1">
                                 <button type="submit" class="button">
                                     <i class="fa fa-btn fa-envelope"></i> Enviar link de restauración
                                 </button>

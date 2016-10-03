@@ -6,11 +6,11 @@
 
 @section('content')
 
- <div class="container-fluid users">    
-<div class="col-md-4"></div>
-<div class="col-md-4">
+ <div class="items-no-nav col-sm-10 col-xs-10 col-md-10 card">    
 
-<a href="{{ route('admin.users.index')}}" class="button">Atrás</a>
+<div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+
+<a href="{{ route('admin.users.index')}}" class="button button-sm">Atrás</a>
     <hr>
 
 {!! Form::open(['route' => 'admin.users.store', 'method' => 'POST']) !!}

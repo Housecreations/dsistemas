@@ -11,6 +11,8 @@
 |
 */
 
+/*Route::get('/eliminar/carritosvacios', 'ShoppingCartsController@eliminarcarritos');*/
+
 Route::get('/tags/{tag}', function ($tag) {
    
     
@@ -169,6 +171,7 @@ Route::get('/descuentos', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
     Route::put('/orders/{id}', 'OrdersController@adminUpdate');
+    Route::get('/orders/all', 'OrdersController@showAll');
     
     Route::resource('orders', 'OrdersController', [
     
@@ -302,6 +305,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         $totalMonth = App\Order::totalMonth();
         $totalMonthCount = App\Order::totalMonthCount();
         $orderCount = App\Order::orderCount();
+        $orderCountAll = App\Order::orderCountAll();
         
         if ($unread > 99) {
             
@@ -311,7 +315,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
       
         $carousel = App\CarouselImage::find(1);
         
-        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount, 'orderCount' => $orderCount]);
+        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount, 'orderCount' => $orderCount, 'orderCountAll' => $orderCountAll]);
     }]);
     
     Route::resource('users', 'UsersController');

@@ -7,13 +7,13 @@
 @section('content')
 
  <div class="">
-   <div class="container-fluid users">
-<div class="col-md-3"></div>
-<div class="col-md-6 card">
+   <div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">
 
-    <a href="{{ route('admin.index')}}" class="button">Atrás</a>
-     <a href="{{ route('admin.tags.create') }}" class='button'>Nuevo tag</a>
-
+<div class="col-md-10 col-md-offset-1">
+  <a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+   <a href="{{ route('admin.tags.create') }}" class='button button-md'>Nuevo tag</a>
+     
+<hr>
 
 
 <!-- Buscador de usuarios -->

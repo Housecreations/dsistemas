@@ -31,7 +31,7 @@ class Mailer extends Model
                 $data = $array;
               
                 //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
-                Mail::send($mailtemplate, $data, function($messagee) use ($requests, $mailto, $nameto)
+                Mail::queue($mailtemplate, $data, function($messagee) use ($requests, $mailto, $nameto)
                 {
                     
                     //remitente

@@ -8,7 +8,7 @@
 
 @section('content') 
    
-    <div class="items col-md-10"> 
+    <div class="items col-md-10 col-sm-10 col-xs-10"> 
    
       
     @if(sizeof($articles)==0)
@@ -34,7 +34,7 @@
        
      @foreach($articles as $article)
     
-    <div class="col-md-6 item-content">
+    <div class="col-md-6 col-sm-6 col-xs-12 item-content">
     
         
         

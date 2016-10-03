@@ -13,6 +13,19 @@ use App\Article;
 class ShoppingCartsController extends Controller
 {   
     
+  /*  public function eliminarcarritos(){
+        
+        $shoppingCarts = ShoppingCart::all();
+        foreach($shoppingCarts as $shoppingCart){
+            
+            if(!$shoppingCart->user)
+                $shoppingCart->delete();
+            
+        
+        }
+        
+    }*/
+    
     public function vaciar(){
         if(Auth::user()){
             $shopping_cart = Auth::user()->shoppingCart;

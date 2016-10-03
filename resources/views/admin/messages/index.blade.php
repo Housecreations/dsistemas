@@ -9,12 +9,14 @@
 
 
 
-<div class="container-fluid users">
-<div class="col-md-1"></div>
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">
 
-<div class="col-md-10 card bottom-space">
 
-<a href="{{ route('admin.index')}}" class="button">Atrás</a>
+<div class="col-md-12 bottom-space">
+
+    <a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+
+
 <hr>
 
 @if(sizeof($messages) == 0)
@@ -26,6 +28,7 @@
    <thead>
     <th>Correo</th>
     <th>Asunto</th>
+    <th>Fecha</th>
     <th>Acciones</th>
 </thead>
 <tbody>
@@ -44,6 +47,7 @@
 
 <td>{{$message->email}}</td>
 <td>{{$message->subject}}</td>
+<td>{{$message->created_at}}</td>
 <td><a href="{{route('admin.messages.destroy', $message->id)}}" class="button">Eliminar</a></td>
 
     </div>

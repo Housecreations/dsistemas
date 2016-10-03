@@ -7,12 +7,15 @@
 @section('content')
 
  <div class="">
-   <div class="container-fluid users">
-<div class="col-md-3"></div>
-<div class="col-md-6 card">
+   <div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">
 
-    <a href="{{ route('admin.index')}}" class="button">Atrás</a>
-     <a href="{{ route('admin.categories.create') }}" class='button'>Nueva categoria</a>
+<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+  
+       <a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+        <a href="{{ route('admin.categories.create') }}" class='button button-md'>Nueva área</a>
+   
+    <hr>
+     
 
 
 
@@ -21,7 +24,7 @@
 {!! Form::open(['route' => 'admin.categories.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 <div class="input-group">
     
-    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar categoria...', 'aria-describedby' => 'searchCategories']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar área...', 'aria-describedby' => 'searchCategories']) !!}
 
    
     <span class="input-group-addon" id="searchCategories"><span class="glyphicon glyphicon-search"  aria-hidden="true"></span></span>

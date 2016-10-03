@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="col-md-10 items">
+<div class="col-md-10 col-sm-10 col-xs-10 items">
 
 <ol class="breadcrumb bc text-center">
   <li><a href="/">Inicio</a></li>
@@ -32,8 +32,8 @@
     
         <thead>
             <tr>
-                <td class="cart-header">Producto</td>
-                <td class="cart-header"></td>
+                <td class="cart-header to-dissapear">Producto</td>
+                <td class="cart-header to-appear">Producto</td>
                 <td class="cart-header">Precio</td>
                 <td class="cart-header">Acciones</td>
             </tr>
@@ -43,10 +43,10 @@
             
             @foreach($articles as $article)
             <tr class="text-center">
-                <td class="cart-image"><img src="/images/articles/{{$article->images[0]->image_url}}" alt=""></td>
+                <td class="cart-image to-dissapear"><img src="/images/articles/{{$article->images[0]->image_url}}" alt=""></td>
                 <td class="cart-name"><a class="a-no-style" href="/articulos/{{$article->category->slug}}/{{$article->slug}}">{{$article->name}}</a></td>
                 <td class="cart-price">{{$article->price}} Bs</td>
-                <td> <a href="{{ url('/in_shopping_carts/'.$article->pivot->id) }}"
+                <td> <a class="cart-button" href="{{ url('/in_shopping_carts/'.$article->pivot->id) }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('in_shopping_cart_form_{{$article->pivot->id}}').submit();">
                                         Eliminar
@@ -63,9 +63,9 @@
             @endforeach
             <tr class="text-center">
                 <td class="cart-total">Total</td>
-                <td></td>
+                <td class="to-dissapear"></td>
                 <td class="cart-price">{{$total}} Bs</td>
-                <td class="cart-empty-cart"> <a href="{{ url('carrito/vaciar') }}" onclick="return confirm('Seguro que deseas vaciar el carrito?')" class=''>Vaciar carrito</a></td>
+                <td class="cart-empty-cart"> <a href="{{ url('carrito/vaciar') }}" onclick="return confirm('Seguro que deseas vaciar el carrito?')" class='cart-button'>Vaciar carrito</a></td>
             </tr>
             
         </tbody>

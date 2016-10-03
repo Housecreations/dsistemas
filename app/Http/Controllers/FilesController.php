@@ -98,17 +98,20 @@ class FilesController extends Controller
          if($request->file('file')){
             
                     $file = $request->file('file');
-        $name = $file->getClientOriginalName();
+              $size = round(($file->getClientSize()/1024)/1024,2);  
+        $name = $request->name . '_' .time(). "." . $file->getClientOriginalExtension();
         $path = app_path().'\\files\\';    
         $file->move($path, $name);
-             
+          
         $file = new File($request->all());
-     $file->file_url = $name;  
+     $file->file_url = $name;
+             
+             $file->size = $size;
               $file->save();
              
               Flash::success("Archivo cargado");
-        $categories = Category::all();
-         return redirect()->route('admin.files.index')->with('categories', $categories);
+       
+         return redirect()->route('admin.files.index');
              
         }
  

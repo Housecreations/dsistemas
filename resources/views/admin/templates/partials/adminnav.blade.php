@@ -59,7 +59,11 @@
 
 <div class="col-md-1 col-xs-3 admin-nav">
     <a href="{{ route('admin.messages.index')}}">
+    @if($unread > 0)
+    <h2>Mensajes <span class="badge badge-color">{{$unread}}</span></h2>
+    @else
 <h2>Mensajes <span class="badge">{{$unread}}</span></h2>
+@endif
  </a>
 </div>
    

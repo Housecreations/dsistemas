@@ -5,11 +5,11 @@
 
 
 @section('content')
- <div class="container-fluid users">    
-<div class="col-md-4"></div>
-<div class="col-md-4">
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">    
+
+<div class="col-md-6 col-md-offset-3">
         
-         <a href="{{ route('admin.tags.index')}}" class="button">Atrás</a>
+         <a href="{{ route('admin.tags.index')}}" class="button button-sm">Atrás</a>
         <hr> 
 {!! Form::open(['route' => ['admin.tags.update', $tag->id], 'method' => 'PUT']) !!}
 

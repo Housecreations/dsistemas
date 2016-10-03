@@ -5,11 +5,11 @@
 
 
 @section('content')
- <div class="container-fluid users">    
-<div class="col-md-4"></div>
-<div class="col-md-4">
+ <div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">    
+
+<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
         
-         <a href="{{ route('admin.categories.index')}}" class="button">Atrás</a>
+         <a href="{{ route('admin.categories.index')}}" class="button button-sm">Atrás</a>
         <hr> 
 {!! Form::open(['route' => ['admin.categories.update', $category->id], 'method' => 'PUT']) !!}
 
@@ -24,7 +24,7 @@
 
 <div class="form-group text-center">
     
-    {!! Form::submit('Editar', ['class' => 'btn btn-primary'])!!}
+    {!! Form::submit('Editar', ['class' => 'button'])!!}
     
 </div>
 

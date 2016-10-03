@@ -10,18 +10,18 @@
 
 
 
-<div class="container-fluid users">
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">
 
 
-<div class="row">
-   <div class="col-md-2"></div>
-    <div class="col-md-8">
-    <a href="{{ route('admin.index')}}" class="button">Atrás</a>
-         <a href="{{ route('admin.front.mas')}}" class="button">Más</a>
-         <a href="{{ route('admin.front.menos')}}" class="button">Menos</a>
+
+   
+   
+    <a href="{{ route('admin.index')}}" class="button button-sm three">Atrás</a>
+         <a href="{{ route('admin.front.mas')}}" class="button button-sm three">Nueva imagen</a>
+         <a href="{{ route('admin.front.menos')}}" class="button button-sm three">Eliminar imagen</a>
 <hr>
-    </div>
-</div>
+   
+
 
 
 
@@ -31,7 +31,7 @@
     
 @foreach($images as $image)
 
-<div class="col-md-4">
+<div class="col-md-6 col-sm-6 col-xs-12 admin-item-content">
 <div class="image">
     <img src="/images/slider/{{$image->image_url}}" alt="">
 </div>
@@ -40,7 +40,7 @@
 
 <div class="form-group">
     
-   {!! Form::label('imagen', 'URL de la imagen') !!}
+   {!! Form::label('imagen', 'Imagen') !!}
    {!! Form::text('imagen', $image->image_url, ['class' => 'form-control', 'placeholder' => 'URL imagen']) !!}
     
 </div>
@@ -65,7 +65,7 @@
     {!! Form::submit('Editar', ['class' => 'button'])!!}
     
 </div>
-<h5><span>Puede usar una URL o cargar la imagen usted mismo</span></h5>
+
 </div>
 
 {!! Form::close() !!}

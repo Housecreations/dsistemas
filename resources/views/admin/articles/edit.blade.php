@@ -5,11 +5,11 @@
 
 
 @section('content')
-<div class="container-fluid">    
-<div class="col-md-4"></div>
-<div class="col-md-4 users">
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">    
+
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 ">
     
-    <a href="{{ route('admin.articles.index')}}" class="button">Atrás</a>
+    <a href="{{ route('admin.articles.index')}}" class="button button-sm">Atrás</a>
     <hr>
     
 {!! Form::open(['route' => ['admin.articles.update', $article->id], 'method' => 'PUT']) !!}

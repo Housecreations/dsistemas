@@ -6,24 +6,24 @@
 
 @section('content')
 
-<div class="items col-md-10">    
+<div class="items col-md-10 col-sm-10 col-xs-10">    
 <div class="text-center contact">
 <span class="title">Contáctenos</span>
 <hr>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 col-sm-6 col-xs-12">
 
 
 
 {!! Form::open(['route' => 'messages.store', 'method' => 'POST']) !!}
 
-<div class="form-group col-md-12">
+<div class="form-group col-md-12 col-sm-12 col-xs-12">
 
 {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => 'Nombre y apellido']) !!}
 </div>
 
-<div class="form-group col-md-12">
+<div class="form-group col-md-12 col-sm-12 col-xs-12">
 
 {!! Form::email('email', null, ['class' => 'form-control', 'required', 'placeholder' => 'Correo electrónico']) !!}
 </div>
@@ -31,31 +31,31 @@
 
 
 
-<div class="form-group col-md-12">
+<div class="form-group col-md-12 col-sm-12 col-xs-12">
 
 {!! Form::text('subject', null, ['class' => 'form-control', 'required', 'placeholder' => 'Asunto']) !!}
 </div>
 
-<div class="form-group col-md-12">
+<div class="form-group col-md-12 col-sm-12 col-xs-12">
 
 {!! Form::textarea('body', null, ['class' => 'form-control', 'size' => '20x5', 'required', 'placeholder' => 'Escriba su mensaje']) !!}
 </div>
 
 
 
-<div class="col-md-6">
-<div class="form-group text-center">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="form-group">
    
    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
     
-    {!! Form::submit('Enviar mensaje', ['class' => 'cart-button top-margin'])!!}
+    {!! Form::submit('Enviar mensaje', ['class' => 'button button-lg top-margin'])!!}
     
 </div>
 </div>
 {!! Form::close() !!}
 
     </div>
-    <div class="col-md-4 address">
+    <div class="col-md-4 col-sm-4 col-xs-12 address">
         
     
       

@@ -5,11 +5,11 @@
 
 
 @section('content')
-<div class="container-fluid">    
-<div class="col-md-4"></div>
-<div class="col-md-4 users">
+<div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">    
 
-<a href="{{ route('admin.files.index')}}" class="button">Atrás</a>
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+
+<a href="{{ route('admin.files.index')}}" class="button button-sm">Atrás</a>
     <hr>
 
 {!! Form::open(['route' => 'admin.files.store', 'method' => 'POST', 'files' => true]) !!}
@@ -43,7 +43,12 @@
 
 <div class="form-group">
 {!! Form::label('version', 'Versión') !!}
-{!! Form::text('version', null, ['class' => 'form-control', 'required', 'placeholder' => 'Versión del archivo']) !!}
+{!! Form::text('version', null, ['class' => 'form-control', 'required', 'placeholder' => 'Versión del archivo (1.4, 1.0, 2.3)']) !!}
+</div>
+
+<div class="form-group">
+{!! Form::label('os', 'S.O.') !!}
+{!! Form::text('os', null, ['class' => 'form-control', 'required', 'placeholder' => 'Sistema operativo (windows 7-32bits, linux)']) !!}
 </div>
 
 <div class="form-group">
@@ -55,7 +60,7 @@
 
 <div class="form-group text-center">
     
-    {!! Form::submit('Registrar', ['class' => 'btn btn-primary'])!!}
+    {!! Form::submit('Cargar archivo', ['class' => 'button'])!!}
     
 </div>
 

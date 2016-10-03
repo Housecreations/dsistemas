@@ -14,11 +14,19 @@ class Order extends Model
     }
     
     public static function totalMonth(){
-        return Order::monthly()->sum('total');
+        
+        if(Order::monthly()->sum('total'))
+            return Order::monthly()->sum('total');
+        else
+            return 0;
     }
     
     public static function orderCount(){
         return Order::monthly()->where('status', '=', 'Por procesar')->count();
+    }
+    
+    public static function orderCountAll(){
+        return Order::where('status', '=', 'Por procesar')->count();
     }
     
     public static function totalMonthCount(){

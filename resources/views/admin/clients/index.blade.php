@@ -7,12 +7,12 @@
 @section('content')
 
  <div class="">
-   <div class="container-fluid users">
-<div class="col-md-3"></div>
-<div class="col-md-6 card">
+   <div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">
 
-    <a href="{{ route('admin.index')}}" class="button">Atrás</a>
-     <a href="{{ route('admin.clients.create') }}" class='button'>Nuevo Cliente</a>
+<div class="col-md-12  col-sm-12  col-xs-12 ">
+   <a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
+    <a href="{{ route('admin.clients.create') }}" class='button button-md'>Nuevo Cliente</a>
+     <hr>
 
 
 
@@ -35,12 +35,12 @@
 <div class="col-md-12">
       @foreach($clients as $client)
       
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6 col-xs-12 admin-item-content">
           
           <h3>{{$client->name}}</h3>
-          <img src="/images/clients/{{$client->logo_url}}" alt="">
           
-           <a href="{{ route('admin.clients.edit', $client->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
+           <div class="actions-content">
+                <a href="{{ route('admin.clients.edit', $client->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
                      <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
                     </span></a>
@@ -48,6 +48,12 @@
                      <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-times fa-stack-1x fa-inverse"></i>
                     </span></a>
+                </div>
+          
+          
+          <img src="/images/clients/{{$client->logo_url}}" alt="">
+          
+           
           
           
       </div>

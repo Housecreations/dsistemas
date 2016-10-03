@@ -8,7 +8,7 @@
 
 @section('content') 
    <div class="col-md-1"></div>
-    <div class="items col-md-10"> 
+    <div class="items col-md-10 col-sm-10"> 
    
       
     @if(sizeof($articles)==0)
@@ -27,13 +27,13 @@
        <ol class="breadcrumb bc text-center">
   <li><a href="/">Inicio</a></li>
 
-    <li class="active">Outlet</li>
+    <li class="active">Descuentos</li>
   
 </ol>
        
      @foreach($articles as $article)
     
-  <div class="col-md-6 item-content">
+  <div class="col-md-6 col-sm-6 item-content">
     
         
         
