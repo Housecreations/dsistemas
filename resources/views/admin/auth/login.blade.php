@@ -7,13 +7,13 @@
 
 
 
- <div class="items-no-nav col-md-10 col-sm-10 col-xs-10">    
+ <div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">    
 
 <div class="col-md-5 col-sm-7 col-md-offset-4 col-sm-offset-3">
 {!! Form::open(['route' => 'admin.auth.login', 'method' => 'POST']) !!}
 <div class="form-group">
 
- {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo Electrónico']) !!}
+ {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo Electrónico', 'autofocus']) !!}
 </div>
 
 <div class="form-group">

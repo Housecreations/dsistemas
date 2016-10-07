@@ -8,7 +8,7 @@
   
 {{--{{$article->articlesDetails}}
    --}}
-   <div class="items col-md-10 col-sm-10 col-xs-10">
+   <div class="items col-md-10 col-sm-10 col-xs-10 card">
     <ol class="breadcrumb bc text-center">
   <li><a href="/">Inicio</a></li>
 
@@ -35,6 +35,9 @@
   
   
    <div id="slider" class="flexslider">
+                             @if($article->discount > 0)
+                    <div class="oferta-article">{{$discount}} Bs</div>
+                    @endif
                               <ul class="slides">
                                 
     @foreach($article->images as $image)

@@ -8,7 +8,7 @@
 
 @section('content') 
    <div class="col-md-1"></div>
-    <div class="items col-md-10 col-sm-10"> 
+    <div class="items col-md-10 col-sm-10 card"> 
    
       
     @if(sizeof($articles)==0)
@@ -28,8 +28,9 @@
   <li><a href="/">Inicio</a></li>
 
     <li class="active">{{$tag->name}}</li>
-  
+  <hr>
 </ol>
+      
        
      @foreach($articles as $article)
     
@@ -52,10 +53,13 @@
         
         <a href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}" >
    <div class="grid mask">
+                    @if($article->discount > 0)
+                    <div class="oferta">{{$article->discount}}% de descuento</div>
+                    @endif
 						<figure>
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
-								<h5>{{$article->name}} | {{$article->price}} Bs</h5>
+								<h5>{{$article->name}}</h5>
 								
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->

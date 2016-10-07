@@ -16,7 +16,7 @@ class AddClientsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('logo_url');
-            $table->string('message');
+            $table->text('message');
             
             $table->timestamps();
         });

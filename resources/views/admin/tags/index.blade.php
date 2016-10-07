@@ -48,10 +48,8 @@
            
            
                <td>
-                <a href="{{ route('admin.tags.edit', $tag->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
-                     <i class="fa fa-square fa-stack-2x"></i>
-  <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
-                    </span></a>
+                <a href="{{ route('admin.tags.edit', $tag->id)}}" class='button button-md'>
+                    <i class="fa fa-wrench"></i></a>
                     
                     
           {{-- <a href="{{ route('admin.tags.destroy', $category->id) }}" onclick="return confirm('Seguro que deseas eliminarlo?')" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
@@ -60,20 +58,11 @@
                     </span></a>--}}
                     
                     
-                    <a href="{{ url('/admin/tags/'.$tag->id) }}"
-                                        onclick="event.preventDefault();
-                                                 
-                                                 return confirm('Seguro que deseas eliminarlo?');
-                                                 document.getElementById('tag_form_{{$tag->id}}').submit();">
-                                        <span class='fa-stack fa-lg ' aria-hidden='true'>
-                     <i class="fa fa-square fa-stack-2x"></i>
-  <i class="fa fa-times fa-stack-1x fa-inverse"></i>
-                    </span>
-                                    </a>
+                    
                                    
-                                   {!! Form::open(['url'=> '/admin/tags/'.$tag->id, 'method' => 'DELETE', 'style' => 'display:none;', 'id' => 'tag_form_'.$tag->id]) !!}
+                                   {!! Form::open(['url'=> '/admin/tags/'.$tag->id, 'method' => 'DELETE', 'style' => 'display:block;', 'id' => 'tag_form_'.$tag->id]) !!}
                                        <input type="hidden" name="tag_id" value="{{$tag->id}}">
-                                       <input type="submit">
+                   <button class="button button-md" onclick='return confirm("¿Estas seguro?")' type="submit"><i class="fa fa-remove"></i></button>
       
                                     {!! Form::close() !!}
                     

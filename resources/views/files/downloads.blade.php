@@ -8,7 +8,7 @@
 
 @section('content') 
    <div class="col-md-1"></div>
-   <div class="items col-md-10"> 
+   <div class="items col-md-10 card"> 
    
       
     @if(sizeof($files)==0)
@@ -37,7 +37,7 @@
    
     @if(count($category->files) > 0)
     <hr>
-    <h2>{{$category->name}}</h2>
+    <h3>{{$category->name}}</h3>
     <hr>
     @endif
      @foreach($category->files as $file)
@@ -48,8 +48,8 @@
     <div class="">
     
     <div>
-    <h4><i class="fa fa-file"></i> {{$file->name}} v{{$file->version}} - <a href="{{route('files.downloads.get', $file->file_url)}}"> <i class="fa fa-download"></i></a> ({{$file->size}} Mb)
-   </h4> 
+    <h5><i class="fa fa-file"></i> {{$file->name}} v{{$file->version}} - <a href="{{route('files.downloads.get', $file->file_url)}}"> <i class="fa fa-download"></i></a> ({{$file->size}} Mb)
+   </h5> 
    </div>
     
     </div>

@@ -2,13 +2,13 @@
  @if(sizeof($articles)==0)
  @section('title', 'No se encontraron articulos') 
  @else
-@section('title', $articles[0]->category->name) 
+@section('title', 'En descuento') 
 @endif
 
 
 @section('content') 
    <div class="col-md-1"></div>
-    <div class="items col-md-10 col-sm-10"> 
+    <div class="items col-md-10 col-sm-10 card"> 
    
       
     @if(sizeof($articles)==0)
@@ -28,7 +28,7 @@
   <li><a href="/">Inicio</a></li>
 
     <li class="active">Descuentos</li>
-  
+  <hr>
 </ol>
        
      @foreach($articles as $article)
@@ -49,12 +49,13 @@
    
 		
         
-         <a href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}" >
+         <a href="{{ route('mostrar.articulo', [$article->category->slug, $article->slug])}}" >
    <div class="grid mask">
+                    <div class="oferta">{{$article->discount}}% de descuento</div>
 						<figure>
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
-								<h5>{{$article->name}} | {{$article->price}} Bs </h5>
+								<h5>{{$article->name}}</h5>
 								
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->

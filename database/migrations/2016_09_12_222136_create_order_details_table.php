@@ -17,7 +17,7 @@ class CreateOrderDetailsTable extends Migration
            $table->integer('order_id')->unsigned();
            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
            $table->string('name');
-            $table->decimal('price', 9, 2);
+            $table->decimal('price', 10, 2);
            
            $table->timestamps();
            

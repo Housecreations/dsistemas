@@ -16,7 +16,7 @@ class CategoriesController extends Controller
 {
    public function index(Request $request)
     {
-     $categoriesrender = Category::search($request->name)->orderBy('id', 'ASC')->paginate(5);
+        $categoriesrender = Category::search($request->name)->orderBy('id', 'ASC')->paginate(5);
         
         return view('admin.categories.index')->with('categoriesrender', $categoriesrender);
     }
@@ -41,11 +41,11 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-          $category = new Category($request->all());
-        $category->save();
-         Flash::success("Categoria registrada");
+            $category = new Category($request->all());
+            $category->save();
+            Flash::success("Categoria registrada");
         
-         return redirect()->route('admin.categories.index');
+            return redirect()->route('admin.categories.index');
   
     }
  
@@ -55,11 +55,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
-        
-        
-    }
+    
  
     /**
      * Show the form for editing the specified resource.
@@ -69,9 +65,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-      $category = Category::find($id);
-       $categories = Category::all();
-        return view('admin.categories.edit')->with('category', $category)->with('categories', $categories);
+        $category = Category::find($id);
+      
+        return view('admin.categories.edit')->with('category', $category);
     }
  
     /**
@@ -84,15 +80,13 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
      
-       $category = Category::find($id);
+        $category = Category::find($id);
         $category->fill($request->all());
-      
-        
         $category->save();
         
         Flash::success('La categoria se editó con éxito');
-         $categories = Category::all();  
-        return redirect()->route('admin.categories.index')->with('categories', $categories);
+       
+        return redirect()->route('admin.categories.index');
     }
  
     /**
@@ -103,16 +97,16 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-       $category = Category::find($id);
+        $category = Category::find($id);
         $category->delete();
         
         Flash::error('La categoria ' . $category->name. ' ha sido eliminada');
-        $categories = Category::all();  
-        return redirect()->route('admin.categories.index')->with('categories', $categories);
+         
+        return redirect()->route('admin.categories.index');
     }
     
     
-    public function getCategories(Request $request, $gender){
+   /* public function getCategories(Request $request, $gender){
         
      if($request->ajax()){
          
@@ -128,5 +122,5 @@ class CategoriesController extends Controller
         
      }
         
-    }
+    }*/
 }

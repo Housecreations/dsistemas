@@ -4,7 +4,7 @@
 
 @section('content') 
 
-<div class="items col-md-10 col-sm-10 col-xs-10">
+<div class="items col-md-10 col-sm-10 col-xs-10 card">
     <h4 class="text-center">Nuestros clientes</h4>
         <hr>
     @foreach($clients as $client)

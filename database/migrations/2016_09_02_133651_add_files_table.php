@@ -19,7 +19,7 @@ class AddFilesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('file_url');
-            $table->integer('size'); //decimal
+            $table->decimal('size', 10, 2); //decimal
             $table->string('version');
             $table->string('os');
             

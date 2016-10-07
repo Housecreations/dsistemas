@@ -44,6 +44,60 @@
             <div class="col-md-4 col-sm-6 col-xs-12 admin-item-content">
             <h5>{{$article->name}}</h5>
             <div class="actions-content">
+               
+              {{-- <a id="eye_{{$article->id}}" href="{{ route('admin.articles.visible', $article->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
+                     <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+                    </span></a>
+                  --}}  
+                    
+                    
+                    {!! Form::open(['route' => ['admin.articles.visible', $article->id], 'method' => 'POST', 'id' => "visible_form_$article->id", 'class' => 'visible form-visible']) !!}
+
+<input type="hidden" name="article_id" value="{{$article->id}}">
+
+ 
+
+       
+@if($article->visible == 'yes')
+<button type="submit" class="button-visible ">
+   Visible
+</button>
+@else
+<button type="submit" class="button-visible no-visible">
+   Oculto
+</button>
+@endif
+
+{!! Form::close() !!}
+                    
+                    
+            
+                   
+     {!! Form::open(['route' => ['admin.discount', $article->id], 'method' => 'POST', 'id' => "discount_form_$article->id", 'class' => 'visible form-discount']) !!}
+
+<input type="hidden" name="article_id" value="{{$article->id}}">
+
+ 
+
+       
+@if($article->ondiscount == 'yes')
+<button type="submit" class="button-discount ">
+   En descuento
+</button>
+@else
+<button type="submit" class="button-discount no-discount">
+   Sin descuento
+</button>
+@endif
+
+{!! Form::close() !!}
+                                                  
+                    
+                        
+                                
+               
+               
                 <a href="{{ route('admin.articles.images', $article->id)}}" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
                      <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-photo fa-stack-1x fa-inverse"></i>

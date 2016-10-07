@@ -23,7 +23,7 @@ class AddArticlesTable extends Migration
             $table->string('description');
             $table->integer('stock');
             $table->integer('discount');
-            $table->double('price');
+            $table->decimal('price', 10, 2);
             $table->enum('ondiscount',['yes','no'])->default('no');
            $table->enum('visible',['yes','no'])->default('yes');
           

@@ -19,8 +19,6 @@ class ArticlesController extends Controller
     
      public function deleteimage($id, $image_id)
     {
-       
-            
             Image::deleteImage($image_id);
          
             return back();
@@ -42,8 +40,7 @@ class ArticlesController extends Controller
     {
          $article = Article::find($id);
          
-      
-        return view('admin.articles.images')->with('article', $article);
+         return view('admin.articles.images')->with('article', $article);
     }
     
     
@@ -129,6 +126,7 @@ class ArticlesController extends Controller
     {
         $article = Article::find($id);
         $article->fill($request->all());
+        $article->slug = null;
         $article->save();
         
         $article->tags()->sync($request->tags);
@@ -137,7 +135,7 @@ class ArticlesController extends Controller
         Flash::success('El artículo se editó con éxito');
         
         
-            return redirect()->route('admin.articles.index');
+        return redirect()->route('admin.articles.index');
       
     }
  
@@ -149,14 +147,42 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-          $article = Article::find($id);
+        $article = Article::find($id);
+        
+        foreach($article->images as $image){
+            unlink(public_path()."\images\articles\\".$image->image_url);
+        }
+        
         $article->delete();
         
         Flash::error('El articulo ' . $article->name. ' ha sido eliminado');
-        $articles = Article::all();  
-        return redirect()->route('admin.articles.index')->with('articles', $articles);
+      
+        return redirect()->route('admin.articles.index');
          
     }
     
-    
+    public function visible(Request $request)
+    {   //ocultar o mostrar el artículo
+         if($request->ajax()){
+                
+             $article = Article::find($request->article_id);
+            
+             if($article->visible == 'yes'){
+                
+                 $article->visible = 'no';
+                 $article->save();
+             
+                 return response()->json(['clase'=>'button-visible no-visible', 'texto' => 'Oculto' ]);
+                                  
+                    
+             }else{
+                 
+                 $article->visible = 'yes';
+                 $article->save();
+             
+                 return response()->json(['clase' => 'button-visible', 'texto' => 'Visible']);
+                        
+            }
+         }
+    }
 }

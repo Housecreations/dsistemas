@@ -8,7 +8,7 @@
 
 @section('content') 
    
-    <div class="items col-md-10 col-sm-10 col-xs-10"> 
+    <div class="items col-md-10 col-sm-10 col-xs-10 card"> 
    
       
     @if(sizeof($articles)==0)
@@ -51,10 +51,13 @@
 			    	    
          <a href="{{ route('mostrar.articulo', [$article->category->slug, $article->slug])}}" >
    <div class="grid mask">
+                    @if($article->discount > 0)
+                    <div class="oferta">{{$article->discount}}% de descuento</div>
+                    @endif
 						<figure>
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
-								<h5>{{$article->name}} | {{$article->price}} Bs </h5>
+								<h5>{{$article->name}}</h5>
 								
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->

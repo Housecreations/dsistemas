@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Cart;
+use App\ShoppingCart;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\UserRequest;
 use App\Category;
@@ -22,7 +22,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         
-       $users = User::search($request->name)->orderBy('id', 'ASC')->paginate(5);
+       $users = User::search($request->name)->orderBy('id', 'DESC')->paginate(5);
       
         return view('admin.users.index')->with('users', $users);
     }
@@ -48,15 +48,38 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
     
-        $user = new User($request->all());
-        $user->password = bcrypt($request->password);
-        $user->save();
+        
        
-        if($user->type == 'member'){
-        $cart = new Cart();
-        $cart->user_id = $user->id;
-        $cart->save();
-        }
+      /*  if($request->type == 'member'){*/
+          
+        $shopping_cart_id = \Session::get('shopping_cart_id');
+        
+        
+        
+        $user = User::where('shopping_cart_id', '=', $shopping_cart_id)->get();
+        
+        if(!count($user) == 0)
+            $shopping_cart = ShoppingCart::createWithoutSession();
+            else
+            $shopping_cart = ShoppingCart::findBySession($shopping_cart_id);
+      
+        
+      /*  $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);*/
+        
+        User::create([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'shopping_cart_id' => $shopping_cart->id,
+            'email' => $request->email,
+            'type' => $request->type,
+            'password' => bcrypt($request->password),
+        ]);
+        /*}else{
+            dd('hola');
+            $user = new User($request->all());
+            $user->password = bcrypt($request->password);
+            $user->save();
+        }*/
         
         Flash::success("Se ha registrado de forma existosa");
         

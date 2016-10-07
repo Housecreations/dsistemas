@@ -19,129 +19,36 @@ class FrontController extends Controller
 {
     
     
-   
-    
-    public function outletshow()    
-    {
-         $categories = Category::all();
-        
-        
-          $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-        
-        
-         $articles = Article::where('ondiscount','=', 'yes')->orderBy('id','DESC')->get();
-        
-           return view('admin.outlet.show')->with('categories', $categories)->with('articles', $articles)->with('unread', $unread); 
-        
-    }
     
     
-    
-    
-     public function add($id)     
-    {
-         $article = Article::find($id);
-         $article->ondiscount = 'yes';
-         $article->save();
+     public function discount(Request $request)     
+    {   
+         if($request->ajax()){
+         $article = Article::find($request->article_id);
          
-         $categories = Category::all();
-        
-        
-          $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-        
-        
-         $articles = Article::where('ondiscount','=', 'no')->orderBy('id','DESC')->get();
-        
-           return view('admin.outlet.index')->with('categories', $categories)->with('articles', $articles)->with('unread', $unread); 
+             if($article->ondiscount == 'yes'){
+             $article->ondiscount = 'no';
+             $article->save();
+      
+             return response()->json(['clase'=>'button-discount no-discount', 'texto' => 'Sin descuento' ]);
+             }else{
+                 $article->ondiscount = 'yes';
+                 $article->save();
+      
+             return response()->json(['clase' => 'button-discount', 'texto' => 'En descuento']);
+             }
+             }
         
     }
     
-    
-     public function sus($id)     
-    {
-         $article = Article::find($id);
-         $article->ondiscount = 'no';
-         $article->save();
-         
-         $categories = Category::all();
-        
-        
-          $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-        
-        
-         $articles = Article::where('ondiscount','=', 'yes')->orderBy('id','DESC')->get();
-        
-           return view('admin.outlet.show')->with('categories', $categories)->with('articles', $articles)->with('unread', $unread); 
-        
-    }
-    
-    
-    
-    public function outletindex()    
-    {
-         $categories = Category::all();
-        
-        
-          $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-        
-        
-         $articles = Article::where('ondiscount','=', 'no')->orderBy('id','DESC')->get();
-        
-           return view('admin.outlet.index')->with('categories', $categories)->with('articles', $articles)->with('unread', $unread); 
-        
-    }
-    
-   
-    
-    
-    
-    
+  
     
     public function edit()
     {
      
+        $images = CarouselImage::all();
         
-         $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-        
-        
-       
-       $categories = Category::all();
-        
-    
-            
-            $images = CarouselImage::all();
-            
-         return view('admin.front.editcarousel')->with('images', $images)->with('categories', $categories)->with('unread', $unread);   
+        return view('admin.front.editcarousel')->with('images', $images);   
             
         
         
@@ -150,119 +57,53 @@ class FrontController extends Controller
      public function update(ImageRequest $request, $id)
     {
          
-       
-            
-            
              if($request->file('image')){
             
-                    $file = $request->file('image');
-        $name = 'DSistemas_' .$id. "." . $file->getClientOriginalExtension();
-        $path = public_path() . '/images/slider/';
-        $file->move($path, $name);
-                  $image = CarouselImage::find($id);
-   
-    $image->image_url = $name;
-                 $image->url_to = $request->url_to;
-    $image->save();
+                $file = $request->file('image');
+                $name = 'DSistemas_' .$id. "." . $file->getClientOriginalExtension();
+                $path = public_path() . '/images/slider/';
+                $file->move($path, $name);
+                
+                $image = CarouselImage::find($id);
+                $image->image_url = $name;
+                $image->url_to = $request->url_to;
+                $image->save();
         
-             
-             $images = CarouselImage::all();
-                 
-                  $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-        
-                 
-         $categories = Category::all();  
-        return view('admin.front.editcarousel')->with('images', $images)->with('categories', $categories)->with('unread', $unread); 
+                return back();
              
              
              
              }else{
                  
                $image = CarouselImage::find($id);
- 
-               
-    $image->image_url = $request->imagen;
-                 $image->url_to = $request->url_to;
-    $image->save();  
-                 
-                 
-             
-                 $images = CarouselImage::all();
-                 
-                  $unread = Message::where('read','=', 'no')->get();
-        $unread = sizeof($unread);
-        
-        if($unread > 99){
-            
-            $unread = '+99';
-        }
-                 
-                 
-        
-        
-                 
-         $categories = Category::all();  
-        return view('admin.front.editcarousel')->with('images', $images)->with('categories', $categories)->with('unread', $unread);  
+               $image->image_url = $request->imagen;
+               $image->url_to = $request->url_to;
+               $image->save();  
+
+               return back();
              }
-        
-                 
-      
             
-            
-            
-            
-        
-      
          }
     
      public function mas()
     {
     
-        
-        $image = new CarouselImage();
+         $image = new CarouselImage();
          $image->image_url = 'default.jpg';
          $image->save();
-        
-        
-       
-       $categories = Category::all();
-        
-    
             
-            $images = CarouselImage::all();
-            
-         return view('admin.front.editcarousel')->with('images', $images)->with('categories', $categories);   
+         return back();   
             
         
         
     }
     public function menos()
     {
-    
-        
         $images = CarouselImage::all();
         $image = $images->last();
         $image->delete();
         
-        
-      
-        
-       
-       $categories = Category::all();
-        
+        return back();
     
-            
-            $images = CarouselImage::all();
-            
-         return view('admin.front.editcarousel')->with('images', $images)->with('categories', $categories);   
-            
-        
-        
     }
 }

@@ -38,7 +38,7 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Email</th>
-       
+       <th>Tipo</th>
         <th>Acción</th>
     </thead>
     <tbody>
@@ -47,7 +47,7 @@
                <td>{{$user->id}}</td>
                <td>{{$user->name}}</td>
                <td>{{$user->email}}</td>
-               
+               <td>{{$user->type}}</td>
                
                
                  <td>

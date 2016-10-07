@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="items col-md-10 col-sm-10 col-xs-10">    
+<div class="items col-md-10 col-sm-10 col-xs-10 card">    
 <div class="text-center contact">
 <span class="title">Contáctenos</span>
 <hr>
@@ -16,11 +16,11 @@
 
 
 
-{!! Form::open(['route' => 'messages.store', 'method' => 'POST']) !!}
+{!! Form::open(['route' => 'messages.store', 'id' => 'message_form', 'method' => 'POST']) !!}
 
 <div class="form-group col-md-12 col-sm-12 col-xs-12">
 
-{!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => 'Nombre y apellido']) !!}
+{!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => 'Nombre y apellido', 'id' => 'form-name']) !!}
 </div>
 
 <div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -48,8 +48,8 @@
    
    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
     
-    {!! Form::submit('Enviar mensaje', ['class' => 'button button-lg top-margin'])!!}
-    
+    {{--{!! Form::submit('Enviar mensaje', ['class' => 'button button-lg top-margin'])!!}--}}
+    <button type="submit" class="button button-lg top-margin">Enviar mensaje</button>
 </div>
 </div>
 {!! Form::close() !!}

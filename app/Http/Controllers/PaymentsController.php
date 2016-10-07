@@ -47,20 +47,17 @@ class PaymentsController extends Controller
         */
         
         
-        
+        //obtener carrito
         $shoppingCart = Auth::user()->shoppingCart;
-        
-        
-       
-        
+        //array con los items
         $items = [];
         
         foreach ($shoppingCart->articles as $article){
             
          
-            $articlesCount = $shoppingCart->articles()->where("article_id", "=", $article->id)->groupBy("article_id")->count();
+            $articlesCount = $shoppingCart->articles()->where("article_id", "=", $article->id)->groupBy("article_id")->count(); //saber cuantos items son sin repetirse
           
-            if($article->stock >= $articlesCount){
+            if($article->stock >= $articlesCount){ //verificar que haya existencia
                 
                 $item = array_add([
                         "title" => $article->name,

@@ -16,7 +16,7 @@
 Route::get('/tags/{tag}', function ($tag) {
    
     
-   $articles = App\Tag::where('slug', '=', $tag)->first()->articles()->orderBy('article_id', 'DESC')->get();
+   $articles = App\Tag::where('slug', '=', $tag)->first()->articles()->where('visible', '=', 'yes')->orderBy('article_id', 'DESC')->get();
 
    $tag = App\Tag::where('slug', '=', $tag)->first();
   
@@ -48,7 +48,7 @@ Route::resource('in_shopping_carts', 'InShoppingCartsController', [
 
 
 
-route::get('/checkout', 'PaymentsController@checkout');
+
 
 Route::put('/payments/pay', 'PaymentsController@index');
 
@@ -58,10 +58,10 @@ Route::get('/payments/fail', 'PaymentsController@fail');
 Route::get('/payments/success', 'PaymentsController@success');
 
 
-Route::get('articulos/show/all', [
+/*Route::get('articulos/show/all', [
     'uses' => 'ArticlesController@all',
     'as' => 'articles.show.all'
-]);
+]);*/
 
 Route::get('/clients/show', [
     'uses' => 'ClientsController@show',
@@ -69,7 +69,7 @@ Route::get('/clients/show', [
 ]);
 
 
-Route::get('/load', 'WelcomeController@listing');
+
 
 
 Route::post('/contact', [
@@ -103,7 +103,7 @@ Route::get('/contact', ['as' => 'contact', function () {
 Route::get('/articulos/{category}', function ($cat) {
      
     
-    $articles = App\Category::where('slug', '=', $cat)->first()->articles()->orderBy('id', 'DESC')->get();
+    $articles = App\Category::where('slug', '=', $cat)->first()->articles()->where('visible', '=', 'yes')->orderBy('id', 'DESC')->get();
 
     return view('show')->with('articles', $articles);
 });
@@ -112,16 +112,21 @@ Route::get('/articulos/{category}', function ($cat) {
 
 Route::get('articulos/{category}/{slug}', [ 'as' => 'mostrar.articulo', function ($cat, $slug) {
     
-    $article = App\Article::where('slug', '=', $slug)->first();
+    $article = App\Article::where('slug', '=', $slug)->where('visible', '=', 'yes')->first();
+    
+    //si el articulo está oculto, muestra el error 404
+    if(!$article)
+    return abort(404);
+    
     $tags = $article->tags;
   
-  
+    $discount = $article->price + (($article->discount*$article->price)/100);
     $relatedArticles = collect([]);
     
    
     foreach($tags as $tag){
         
-    $relatedArticle = $tag->articles()->whereNotIn('article_id',[$article->id])->get();
+    $relatedArticle = $tag->articles()->whereNotIn('article_id',[$article->id])->where('visible', '=', 'yes')->get();
      
    
         $relatedArticles->push($relatedArticle);
@@ -140,7 +145,7 @@ Route::get('articulos/{category}/{slug}', [ 'as' => 'mostrar.articulo', function
     }
   
    
-        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles]);
+        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles, 'discount' => $discount]);
     
 }]);
 
@@ -158,7 +163,7 @@ Route::get('/QuienesSomos', function () {
 
 Route::get('/descuentos', function () {
    
-    $articles = App\Article::where('ondiscount', '=', 'yes')->orderBy('id', 'DESC')->get();
+    $articles = App\Article::where('ondiscount', '=', 'yes')->where('visible', '=', 'yes')->orderBy('id', 'DESC')->get();
   
   
     return view('showoutlet')->with('articles', $articles);
@@ -166,9 +171,11 @@ Route::get('/descuentos', function () {
 });
 
 
-
+route::get('/checkout',['uses'=>'PaymentsController@checkout','middleware' => 'members.auth']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    
+    
     
     Route::put('/orders/{id}', 'OrdersController@adminUpdate');
     Route::get('/orders/all', 'OrdersController@showAll');
@@ -246,26 +253,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     'as' => 'admin.messages.destroy'
     ]);
     
-    
-    Route::get('/outlet', [
-    'uses' => 'FrontController@outletindex',
-    'as' => 'admin.outlet.index'
+    Route::post('/discount/{id}', [
+    'uses' => 'FrontController@discount',
+    'as' => 'admin.discount'
     ]);
-    Route::get('/outlet/add/{id}', [
-    'uses' => 'FrontController@add',
-    'as' => 'admin.outlet.add'
-    ]);
-    
-    
-    Route::get('/outlet/show', [
-    'uses' => 'FrontController@outletshow',
-    'as' => 'admin.outlet.show'
-    ]);
-    
-    Route::get('/outlet/sus/{id}', [
-    'uses' => 'FrontController@sus',
-    'as' => 'admin.outlet.sus'
-    ]);
+   
     
     Route::get('/clients', [
     'uses' => 'ClientsController@index',
@@ -356,6 +348,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     'uses' => 'ArticlesController@newimage',
     'as' => 'admin.articles.images.new'
     ]);
+    Route::post('articles/{id}/visible', [
+    'uses' => 'ArticlesController@visible',
+    'as' => 'admin.articles.visible'
+    ]);
+    
+    
     /*  inicio rutas sites  */
     
   

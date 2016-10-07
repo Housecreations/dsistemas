@@ -18,7 +18,14 @@
 <div class="form-group">
     
    {!! Form::label('name', 'Nombre') !!}
-   {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre y apellido', 'required']) !!}
+   {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+    
+</div>
+
+<div class="form-group">
+    
+   {!! Form::label('lastname', 'Apellido') !!}
+   {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Apellido', 'required']) !!}
     
 </div>
 
@@ -26,6 +33,13 @@
     
    {!! Form::label('email', 'Correo electrónico') !!}
    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Sucorreo@dominio.com', 'required']) !!}
+    
+</div>
+
+<div class="form-group">
+    
+   {!! Form::label('type', 'Tipo') !!}
+   {!! Form::select('type', ['admin' => 'Administrador', 'member' => 'Miembro'],null, ['class' => 'form-control', 'placeholder' => 'Tipo usuario', 'required']) !!}
     
 </div>
 

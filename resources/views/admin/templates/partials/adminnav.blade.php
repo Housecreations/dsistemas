@@ -39,11 +39,7 @@
     
     
 
-<div class="col-md-1 col-xs-3 admin-nav">
-<a href=" {{ route('admin.outlet.index')}}">
-<h2>Descuentos</h2>
-</a>
-</div>
+
    
 <div class="col-md-1 col-xs-3 admin-nav">
 <a href=" {{ route('admin.tags.index')}}">

@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="col-md-10 items">
+<div class="col-md-10 items card">
 
 <h4>Checkout</h4><span>Verifique bien los datos, una vez cargados no podrá modificarlos</span>
 

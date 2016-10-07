@@ -41,15 +41,10 @@ class MessagesController extends Controller
     public function store(Request $request)
     {   
          
-         
-        
-        
-        
-        $token = $request->input("g-recaptcha-response");
-        
-        if($token){
+         if($request->ajax()){
+               $token = $request->input("g-recaptcha-response");
             
-            $client = new Client();
+              $client = new Client();
            
           
             
@@ -65,47 +60,38 @@ class MessagesController extends Controller
              
             if($result->success){
                 
-                 $message = new Message($request->all());
-        $message->message = $request->body;
-         $message->save();
+                $message = new Message($request->all());
+                $message->message = $request->body;
+                $message->save();
         
-         $data = $request->all();
+                $data = $request->all();
         
     
         
  
-       //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
-       Mail::queue('emails.message', $data, function($messagee) use ($request)
-       {
-           //remitente
-           $messagee->from($request->email, $request->name);
+                //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
+                Mail::send('emails.message', $data, function($messagee) use ($request)
+                {
+                //remitente
+                $messagee->from($request->email, $request->name);
  
-           //asunto
-           $messagee->subject($request->subject);
+                //asunto
+                $messagee->subject($request->subject);
  
-           //receptor
-           $messagee->to(env('CONTACT_MAIL'), env('CONTACT_NAME'));
+                //receptor
+                $messagee->to(env('CONTACT_MAIL'), env('CONTACT_NAME'));
  
-       });
+                });
         
-        
-         Flash::success("Mensaje enviado");
-        
-         return back();
-                
-                
+                return response()->json(['status' => 'success']);
+         
             }else{
-               Flash::success("No se pudo verificar el captcha");
-            return back(); 
-            }
+                
+                return response()->json(['status' => 'fail']);
             
-        }else
-        {
-            Flash::success("No se pudo verificar el captcha");
-            return back();
-        }
+            }
         
-        
+         }
        
   
     }
@@ -151,13 +137,11 @@ class MessagesController extends Controller
     public function destroy($id)
     {
        
-        $message = Message::find($id);
-        $message->delete();
+        $message = Message::destroy($id);
+      
         
-        Flash::error('El mensaje ha sido eliminado');
+        Flash::success('El mensaje ha sido eliminado');
         
-        
-        $categories = Category::all();  
         return redirect()->route('admin.messages.index');
     }
     

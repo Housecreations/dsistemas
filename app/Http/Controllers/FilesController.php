@@ -56,28 +56,20 @@ class FilesController extends Controller
 
 }
     public function files(){
-
-   
-        $categories = Category::all();
           
         $files = File::all();
         
-        return view('files.downloads')->with('categories', $categories)->with('files', $files);
+        return view('files.downloads')->with('files', $files);
         
 
     }
     
      public function index(Request $request){
 
-   
-    
-         
-         
-        $categories = Category::all();
           
-     $files = File::search($request->name)->orderBy('id', 'DESC')->simplePaginate(5);
+        $files = File::search($request->name)->orderBy('id', 'DESC')->simplePaginate(5);
  
-        return view('files.index')->with('categories', $categories)->with('files', $files);
+        return view('files.index')->with('files', $files);
         
 
     }
@@ -85,9 +77,7 @@ class FilesController extends Controller
      public function create()
     {
 
-        $categories = Category::all();
-       
-     return view('files.create')->with('categories', $categories);
+        return view('files.create');
         
     }
     
@@ -97,31 +87,24 @@ class FilesController extends Controller
             
          if($request->file('file')){
             
-                    $file = $request->file('file');
-              $size = round(($file->getClientSize()/1024)/1024,2);  
-        $name = $request->name . '_' .time(). "." . $file->getClientOriginalExtension();
-        $path = app_path().'\\files\\';    
-        $file->move($path, $name);
+            $file = $request->file('file');
+            $size = round(($file->getClientSize()/1024)/1024,2);  
+            $name = $request->name . '_' .time(). "." . $file->getClientOriginalExtension();
+            $path = app_path().'\\files\\';    
+            $file->move($path, $name);
           
-        $file = new File($request->all());
-     $file->file_url = $name;
+            $file = new File($request->all());
+            $file->file_url = $name;
+            $file->size = $size;
+            $file->save();
              
-             $file->size = $size;
-              $file->save();
-             
-              Flash::success("Archivo cargado");
+            Flash::success("Archivo cargado");
        
          return redirect()->route('admin.files.index');
              
         }
  
-      
-       
-        
-    
-              
-    
-         Flash::warning("Debe agregar un archivo");
+        Flash::warning("Debe agregar un archivo");
         return redirect()->back();
         
     }
@@ -129,12 +112,12 @@ class FilesController extends Controller
       public function destroy($id)
     {
           $file = File::find($id);
-         unlink(app_path()."\\files\\".$file->file_url);
-        $file->delete();
+          unlink(app_path()."\\files\\".$file->file_url);
+          $file->delete();
         
-        Flash::error('El archivo ' . $file->name. ' ha sido eliminado');
-        $files = File::all();  
-        return redirect()->route('admin.files.index')->with('files', $files);
+          Flash::error('El archivo ' . $file->name. ' ha sido eliminado');
+          $files = File::all();  
+          return redirect()->route('admin.files.index')->with('files', $files);
          
     }
  
