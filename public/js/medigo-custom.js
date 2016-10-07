@@ -50,6 +50,151 @@ $(window).load(function() { // makes sure the whole site is loaded
     
 $(document).ready(function(){    
     
+    
+    $(".form-discount").on("submit", function(ev){
+       ev.preventDefault();
+        
+        var $form = $(this);
+        var $button = $form.find("[type='submit']");
+        
+        $.ajax({
+            url: $form.attr("action"),
+            method: $form.attr("method"),
+            data: $form.serialize(),
+            dataType:"JSON",
+            beforeSend: function(){ 
+                $button.html("<i class='fa fa-refresh fa-spin'></i>");
+
+            },
+            success: function(data){
+              
+                
+               
+                
+                setTimeout(function(){
+                    
+                    $button.html(data.texto).attr("class", data.clase);
+                },3000);
+                
+            },
+            error: function(err){
+                console.log(err);
+                $button.css("background-color", "#d50000").html("Hubo un error");
+                
+                
+            }
+        });
+        
+        return false;
+        
+    });
+    
+    
+    
+    
+    $("#message_form").on("submit", function(ev){
+       ev.preventDefault();
+        
+        var $form = $(this);
+        var $button = $form.find("[type='submit']");
+        
+        $.ajax({
+            url: $form.attr("action"),
+            method: $form.attr("method"),
+            data: $form.serialize(),
+            dataType:"JSON",
+            beforeSend: function(){
+                $button.attr('style','font-size:12px;transition:none;');
+                $button.html("<i class='fa fa-refresh fa-spin'></i> Enviando mensaje");
+
+            },
+            success: function(data){
+              
+                $button.attr('style','');
+                
+                if(data.status === 'success'){
+                    
+                    $button.html("¡Mensaje enviado!").css("background-color", "#00c853");
+                    $('#message_form')[0].reset();
+                
+                }else{
+                
+                    $button.css("background-color", "#d50000").html("Falló la verificación");    
+                
+                }
+                
+                
+                
+                setTimeout(function(){
+                    
+                    restartButtonMessage($button);
+                    grecaptcha.reset();
+                    
+                },3000);
+                
+            },
+            error: function(err){
+                console.log(err);
+                $button.css("background-color", "#d50000").html("Hubo un error");
+                
+                  setTimeout(function(){
+                    
+                    restartButtonMessage($button);
+                    
+                },3000);
+            }
+        });
+        
+        return false;
+        
+    });
+    
+    
+    function restartButtonMessage($button){
+        $button.html("Enviar mensaje").attr("style", "");
+    }
+    
+    
+    $(".form-visible").on("submit", function(ev){
+       ev.preventDefault();
+        
+        var $form = $(this);
+        var $button = $form.find("[type='submit']");
+        
+        $.ajax({
+            url: $form.attr("action"),
+            method: $form.attr("method"),
+            data: $form.serialize(),
+            dataType:"JSON",
+            beforeSend: function(){ 
+                $button.html("<i class='fa fa-refresh fa-spin'></i>");
+
+            },
+            success: function(data){
+              
+                
+               
+                
+                setTimeout(function(){
+                    
+                    $button.html(data.texto).attr("class", data.clase);
+                },3000);
+                
+            },
+            error: function(err){
+                console.log(err);
+                $button.css("background-color", "#d50000").html("Hubo un error");
+                
+                
+            }
+        });
+        
+        return false;
+        
+    });
+    
+    
+    
       $("#shopping_cart_form").on("submit", function(ev){
        ev.preventDefault();
         
@@ -62,10 +207,10 @@ $(document).ready(function(){
             data: $form.serialize(),
             dataType:"JSON",
             beforeSend: function(){
-                $button.val("Cargando...");
+                $button.html("<i class='fa fa-refresh fa-spin'></i> Agregando al carrito");
             },
             success: function(data){
-                $button.css("background-color", "#00c853").val("Agregado");
+                $button.css("background-color", "#00c853").html("Agregado al carrito");
                 
                 $(".item-count").html(data.products_count + " ");
                 
@@ -76,7 +221,7 @@ $(document).ready(function(){
             },
             error: function(err){
                 console.log(err);
-                $button.css("background-color", "#d50000").val("Hubo un error");
+                $button.css("background-color", "#d50000").html("Hubo un error");
                 
                 setTimeout(function(){
                     restartButton($button);
@@ -89,7 +234,7 @@ $(document).ready(function(){
     });
     
     function restartButton($button){
-        $button.val("Agregar al carrito").attr("style", "");
+        $button.html("<i class='fa fa-shopping-cart'></i> Agregar al carrito").attr("style", "");
     }
     
     
