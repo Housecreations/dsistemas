@@ -105,22 +105,5 @@ class CategoriesController extends Controller
         return redirect()->route('admin.categories.index');
     }
     
-    
-   /* public function getCategories(Request $request, $gender){
-        
-     if($request->ajax()){
-         
-         
-         
-          $categories = Category::categories($gender);
-        
-      
-
-            
-        /*   return response()->json($categories);*/
-         return response()->json(['id' => '1', 'name' => 'pantalon' ]);
-        
-     }
-        
-    }*/
+  
 }

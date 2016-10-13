@@ -21,7 +21,7 @@ class Article extends Model implements SluggableInterface
     
     protected $table = "articles";
     
-    protected $fillable = ['name', 'description', 'category_id', 'ondiscount', 'stock', 'discount', 'price'];
+    protected $fillable = ['name', 'description', 'category_id', 'ondiscount', 'stock', 'discount', 'price', 'price_now'];
     
     
     
@@ -61,7 +61,8 @@ class Article extends Model implements SluggableInterface
         }
         
         $article = new Article($request->all());
-        $article->price = $article->price - ( $article->price * ($article->discount / 100) ); 
+        
+        $article->price_now = $article->price - ( $article->price * ($article->discount / 100) ); 
         $article->save();
         
         $article->tags()->sync($request->tags);

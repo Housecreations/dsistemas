@@ -22,7 +22,7 @@ class Category extends Model implements SluggableInterface
     
      protected $table = "categories";
     
-    protected $fillable = ['name', 'gender'];
+    protected $fillable = ['name'];
     
     public function articles(){
         

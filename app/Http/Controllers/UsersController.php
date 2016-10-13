@@ -11,6 +11,7 @@ use App\ShoppingCart;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\UserRequest;
 use App\Category;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -151,5 +152,36 @@ class UsersController extends Controller
         Flash::error('El usuario ' . $user->name. ' ha sido eliminado');
       
         return redirect()->route('admin.users.index');
+    }
+    
+     public function editPassword(){
+        
+        return view('admin.users.editPassword');
+    }
+     public function updatePassword(Request $request){
+        
+        $user = Auth::user();
+        
+        if (\Hash::check($request->password, $user->password))
+            {
+    
+            if($request->new_password == $request->confirm_password){
+               $user->password = bcrypt($request->new_password);
+                $user->save();
+                Flash::success('La contraseña se cambió con éxito');
+                return redirect()->route('admin.index'); 
+            }else{
+               Flash::success('Las contraseñas no coinciden');
+                return back(); 
+            }
+            
+            }else{  
+                Flash::success('Contraseña inválida');
+                return back();
+            }
+        
+        
+       
+        return redirect()->route('admin.index');
     }
 }

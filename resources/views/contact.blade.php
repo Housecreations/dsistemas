@@ -2,7 +2,9 @@
 
 
 @section('title', 'Contáctanos')
-
+@section('js-top')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
 
 @section('content')
 
@@ -35,6 +37,8 @@
 
 {!! Form::text('subject', null, ['class' => 'form-control', 'required', 'placeholder' => 'Asunto']) !!}
 </div>
+
+
 
 <div class="form-group col-md-12 col-sm-12 col-xs-12">
 

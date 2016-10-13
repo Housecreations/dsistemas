@@ -47,7 +47,7 @@
 
 <td>{{$message->email}}</td>
 <td>{{$message->subject}}</td>
-<td>{{$message->created_at}}</td>
+<td>{{$message->created_at->diffForHumans()}}</td>
 <td><a href="{{route('admin.messages.destroy', $message->id)}}" class="button">Eliminar</a></td>
 
     </div>

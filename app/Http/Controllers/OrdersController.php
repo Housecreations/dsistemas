@@ -10,19 +10,27 @@ use Laracasts\Flash\Flash;
 use App\Order;
 use Mail;
 use App\Mailer;
+use Carbon\Carbon;
 
 class OrdersController extends Controller
 {
-    public function index(){
+      public function __construct(){
         
-        $orders = Order::latest()->get();
-      
-        return view('orders.index', ['orders' => $orders]);
+        Carbon::setLocale('es');
     }
     
-    public function showAll(){
+    
+    public function index(){
         
-        $orders = Order::all();
+        $orders = Order::latest()->orderBy('id', 'DESC')->paginate(5);
+      
+      
+           return view('orders.month', ['orders' => $orders]);
+    }
+    
+    public function showAll(Request $request){
+        
+        $orders = Order::search($request->name)->where('status', '!=', 'No pagada')->orderBy('id', 'DESC')->paginate(5);
       
         return view('orders.index', ['orders' => $orders]);
     }

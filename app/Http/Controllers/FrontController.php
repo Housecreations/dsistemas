@@ -61,7 +61,7 @@ class FrontController extends Controller
             
                 $file = $request->file('image');
                 $name = 'DSistemas_' .$id. "." . $file->getClientOriginalExtension();
-                $path = public_path() . '/images/slider/';
+                $path = 'images/slider/';
                 $file->move($path, $name);
                 
                 $image = CarouselImage::find($id);

@@ -23,10 +23,11 @@ class CreateOrdersTable extends Migration
             $table->string('recipient_id');
             $table->string('recipient_email');
             $table->string('payment_id');
-            $table->enum('edited',['yes','no'])->default('no');
+            /*$table->enum('edited',['yes','no'])->default('no');*/
             $table->string('status')->default('En proceso');
             $table->string('guide_number')->nullable();
             $table->decimal('total', 10, 2); /*cambiar por decimal*/
+            $table->enum('received',['yes','no'])->default('no');
             $table->timestamps();
            
        });

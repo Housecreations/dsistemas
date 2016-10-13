@@ -34,6 +34,17 @@ Route::get('/home', [
     'middleware' => 'members.auth'
 ]);
 
+Route::get('/home/passwords', [
+    'uses' => 'MembersController@editPassword',
+    'as' => 'member.password.edit',
+    'middleware' => 'members.auth'
+]);
+Route::put('/home/passwords', [
+    'uses' => 'MembersController@updatePassword',
+    'as' => 'member.password.update',
+    'middleware' => 'members.auth'
+]);
+
 
 Route::get('/carrito', 'ShoppingCartsController@index');
 Route::get('/carrito/vaciar', 'ShoppingCartsController@vaciar');
@@ -120,7 +131,7 @@ Route::get('articulos/{category}/{slug}', [ 'as' => 'mostrar.articulo', function
     
     $tags = $article->tags;
   
-    $discount = $article->price + (($article->discount*$article->price)/100);
+   
     $relatedArticles = collect([]);
     
    
@@ -145,7 +156,7 @@ Route::get('articulos/{category}/{slug}', [ 'as' => 'mostrar.articulo', function
     }
   
    
-        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles, 'discount' => $discount]);
+        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles]);
     
 }]);
 
@@ -175,16 +186,52 @@ route::get('/checkout',['uses'=>'PaymentsController@checkout','middleware' => 'm
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
+      Route::post('/config/status', [
+    'uses' => 'ConfigsController@changeStatus',
+    'as' => 'admin.config.status'
+    ]);
     
     
-    Route::put('/orders/{id}', 'OrdersController@adminUpdate');
-    Route::get('/orders/all', 'OrdersController@showAll');
+    Route::get('/config', [
+    'uses' => 'ConfigsController@index',
+    'as' => 'admin.config.index'
+    ]);
+    Route::get('/config/shipment', [
+    'uses' => 'ShipmentsController@createShipment',
+    'as' => 'admin.shipment.create'
+    ]);
+    Route::post('/config/shipment', [
+    'uses' => 'ShipmentsController@storeShipment',
+    'as' => 'admin.shipment.store'
+    ]);
+    Route::get('/config/shipment/{id}', [
+    'uses' => 'ShipmentsController@editShipment',
+    'as' => 'admin.shipment.edit'
+    ]);
+    Route::put('/config/shipment/{id}', [
+    'uses' => 'ShipmentsController@updateShipment',
+    'as' => 'admin.shipment.update'
+    ]);
+    Route::get('/config/shipment/{id}/destroy', [
+    'uses' => 'ShipmentsController@destroyShipment',
+    'as' => 'admin.shipment.destroy'
+    ]);
+    
+   
     
     Route::resource('orders', 'OrdersController', [
     
     'only' => ['index']
     
 ]);
+    
+     Route::put('/orders/{id}', 'OrdersController@adminUpdate');
+   /* Route::get('/orders/all', 'OrdersController@showAll');*/
+    Route::get('/orders/all', [
+    'uses' => 'OrdersController@showAll',
+    'as' => 'admin.orders.all'
+    ]);
+    
     
     Route::resource('tags', 'TagsController');
     
@@ -216,7 +263,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     'uses' => 'FilesController@destroy',
     'as' => 'admin.files.destroy'
     ]);
-      
+    
+     Route::get('/payment', 'PaymentsController@searchView');
+    Route::post('/payment', [
+    'uses' => 'PaymentsController@search',
+    'as' => 'admin.payments.search'
+    ]);
     
     
     Route::get('/front/edit', [
@@ -258,6 +310,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     'as' => 'admin.discount'
     ]);
    
+    
+    Route::get('/password', [
+    'uses' => 'UsersController@editPassword',
+    'as' => 'admin.password.edit'
+    ]);
+     Route::put('/password', [
+    'uses' => 'UsersController@updatePassword',
+    'as' => 'admin.password.update'
+    ]);
+    
     
     Route::get('/clients', [
     'uses' => 'ClientsController@index',

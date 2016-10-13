@@ -11,10 +11,15 @@ use App\Category;
 use Laracasts\Flash\Flash;
 use Mail;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 
 class MessagesController extends Controller
 {
    
+    public function __construct(){
+        
+        Carbon::setLocale('es');
+    }
     
      public function index(Request $request)
     {
@@ -50,7 +55,7 @@ class MessagesController extends Controller
             
             $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
                 'form_params' => [
-                'secret' => '6LdOQAcUAAAAADFQ350NWoZrJ7ihuDnX9LGHv9gQ',
+                'secret' => env('RE_CAP_SECRET'),
                 'response' => $token
                 ]
             ]);

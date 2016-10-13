@@ -51,7 +51,7 @@
 			    
 			    	
         
-        <a href="{{ route('mostrar.articulo', [$article->category->name, $article->slug])}}" >
+        <a href="{{ route('mostrar.articulo', [$article->category->slug, $article->slug])}}" >
    <div class="grid mask">
                     @if($article->discount > 0)
                     <div class="oferta">{{$article->discount}}% de descuento</div>

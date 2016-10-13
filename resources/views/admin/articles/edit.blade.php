@@ -67,7 +67,7 @@
 
 <div class="form-group">
 {!! Form::label('price', 'Precio') !!}
-{!! Form::number('price', $article->price, ['class' => 'form-control', 'required']) !!}
+{!! Form::number('price', $article->price, ['class' => 'form-control', 'required', 'step' => '0.01']) !!}
 </div>
 
 <div class="form-group">

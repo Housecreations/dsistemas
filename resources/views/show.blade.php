@@ -58,6 +58,7 @@
 							<img class="img-responsive" src="/images/articles/{{$article->images[0]->image_url}}" alt="">
 							<figcaption>
 								<h5>{{$article->name}}</h5>
+								<h5>{{$article->price_now}} Bs</h5>
 								
 							</figcaption><!-- /figcaption -->
 						</figure><!-- /figure -->

@@ -53,8 +53,8 @@
     <script src="{{ asset('js/modernizr.custom.js') }}"></script> 
    
 	
-<script src='https://www.google.com/recaptcha/api.js'></script>
 
+@yield('js-top')
 
 </head>
 

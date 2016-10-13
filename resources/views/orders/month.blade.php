@@ -1,7 +1,7 @@
 @extends('admin.templates.principal')
 
 
-@section('title', 'Órdenes')
+@section('title', 'Órdenes del mes')
 
 
 @section('content')
@@ -18,23 +18,10 @@
   
          <div class="col-md-12">
            <div class="row">
-            <h4>Órdenes</h4>
+            <h4>Órdenes del mes</h4>
             
             
-            <!-- Buscador de usuarios -->
-<div>
-{!! Form::open(['route' => 'admin.orders.all', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
-    
-    <div class="input-group">
-    
-    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar orden...', 'aria-describedby' => 'searchOrders']) !!}
-    
-    <span class="input-group-addon" id="searchOrders"><span class="glyphicon glyphicon-search"  aria-hidden="true"></span></span>
-    </div>
-</div>
-{!! Form::close() !!}
-<!-- Fin buscador de usuarios -->
-           <br>
+           
             
             
             @foreach($orders as $order)
@@ -108,51 +95,7 @@
            <div class="text-center">
     {!! $orders->render() !!}
 </div>
-            <!--<table class="table table-hover">
-                <thead>
-                    <tr>
-                        <td>ID venta</td>
-                        <td>Comprador</td>
-                        <td>Receptor</td>
-                        <td>Agencia Envío</td>
-                        <td>Identificador agencia</td>
-                        <td>Número de guía</td>
-                        <td>Status</td>
-                        <td>Fecha de venta</td>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($orders as $order)
-                    <tr>
-                        <td>{{$order->payment_id}}</td>
-                        <td>{{$order->shoppingCart->user->email}}</td>
-                        <td>{{$order->recipient_email}}</td>
-                        <td>{{$order->shipment_agency}}</td>
-                        <td>{{$order->shipment_agency_id}}</td>
-                        <td>
-                            <a href="#" data-type='text' 
-                                        data-pk='{{$order->id}}' 
-                                        data-url="{{url('/admin/orders/'.$order->id)}}"
-                                        data-title='Número de guía'
-                                        data-value="{{$order->guide_number}}"
-                                        class="set-guide-number"
-                                        data-name="guide_number"></a>
-                        </td>
-                        <td><a href="#" data-type='select' 
-                                        data-pk='{{$order->id}}' 
-                                        data-url="{{url('/admin/orders/'.$order->id)}}"
-                                        data-title='Status'
-                                        data-value="{{$order->status}}"
-                                        class="select-status"
-                                        data-name="status"></a>
-                        </td>
-                        <td>{{$order->created_at}}</td>
-                       
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>-->
+         
             </div>
             </div>
         </div>

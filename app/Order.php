@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-   protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'edited', 'status', 'guide_number', 'total'];
+   protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'edited', 'status', 'guide_number', 'total', 'received'];
     
-    public static function cleanOrders($shoppingCart){
-        $shoppingCart->orders()->where('status', '=', 'En proceso')->delete();
-       /* Order::where('status', '=', 'En proceso')->delete();*/
-    }
+   public function scopeSearch($query, $name){
+    
+    return $query->where('payment_id', 'LIKE', "%$name%");
+    
+}
     
     public static function totalMonth(){
         
@@ -47,7 +48,7 @@ class Order extends Model
     
     public function scopeMonthly($query){
          
-        return $query->whereMonth('created_at', '=', date('m'));
+        return $query->where('status', '!=', 'No pagada')->whereMonth('created_at', '=', date('m'));
     }
     
     
@@ -59,7 +60,9 @@ class Order extends Model
     
     public function approve(){
         
-        $this->updateCustomIDAndStatus('approve');
+        $this->status = 'No pagada';
+        $this->customid = $this->generateCustomID();
+        $this->save();
         
     }
     public function fail(){
@@ -73,15 +76,7 @@ class Order extends Model
         return md5("$this->id $this->updated_at");
     }
     
-    public function updateCustomIDAndStatus($result){
-        if($result == 'approve')
-        $this->status = 'En proceso';
-        else
-        $this->status = 'Por pagar';
-        
-        $this->customid = $this->generateCustomID();
-        $this->save();
-    }
+  
     
     public function orderDetails(){
         

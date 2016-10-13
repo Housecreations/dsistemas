@@ -9,7 +9,15 @@
 
    <div class="items col-md-10 col-sm-10 col-xs-10 card">
    
-   <h4>Mis compras</h4>
+    <div class="col-md-12 col-sm-12 col-xs-12 user-nav">
+   <div class="col-md-6 col-sm-6 col-xs-6">
+   <h3>Mis compras</h3>
+   </div>
+   
+    <div class="col-md-6 col-sm-6 col-xs-6">
+    <a href="{{route('member.password.edit')}}" class="button button-lg float-right">Cambiar contraseña</a>
+   </div>
+   </div>
    
    
    @if(count($Orders) == 0)
@@ -23,10 +31,10 @@
    <hr>
    <div class="row">
      <div class="col-md-6">
-       <h5>Estado: {{$order->status}}</h5>
+       <h5 class="order-status {{$order->status}}">Estado: {{$order->status}}</h5>
        </div>
       <div class="col-md-6 text-right">
-       <h5>Compra #{{$order->payment_id}}</h5>
+       <h5>Compra #{{$order->payment_id}}</h5><h5> Fecha: {{$order->created_at->format('d/m/Y')}}</h5>
        </div>
    
        <div class="col-md-6">
@@ -56,7 +64,7 @@
            <h5>Identificador de agencia: {{$order->shipment_agency_id}}</h5>
            <h5>Número de guía: {{$order->guide_number}}</h5>
            @if($order->status == "Enviado")
-           <h5>Fecha de envío: {{$order->updated_at}}</h5>
+           <h5>Fecha de envío: {{$order->updated_at->format('d/m/Y')}}</h5>
            @endif
            <hr>
            <h5 class="text-center">Información del receptor</h5>

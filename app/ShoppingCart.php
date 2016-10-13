@@ -58,7 +58,7 @@ class ShoppingCart extends Model
     
     public function total(){
         
-        return $this->articles()->sum('price');
+        return $this->articles()->sum('price_now');
     }
     
     

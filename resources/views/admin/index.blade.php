@@ -53,6 +53,10 @@
             <span class="badge">{{$orderCountAll}}</span>
             @endif
             </a>
+            
+            <a href="{{url('/admin/payment')}}"><h5>Buscar un pago</h5> 
+        
+            </a>
            
            </div>
            

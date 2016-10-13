@@ -30,6 +30,9 @@
 					            	<ul>
 					            	@if(Auth::user()->type == 'admin')
 					            		<li><a href="{{ route('admin.index')}}">Panel de control</a></li>
+					            		<li><a href="{{ route('admin.password.edit')}}">Mi cuenta</a></li>
+					            		<li><a href=" {{ route('admin.config.index')}}">Configuración
+                                        </a></li>
 					            		@else
 					            		<li><a href="{{ route('member.index')}}">Mi cuenta</a></li>
 					            		@endif
@@ -95,6 +98,10 @@
 					            	<ul>
 					            		@if(Auth::user()->type == 'admin')
 					            		<li><a href="{{ route('admin.index')}}">Panel de control</a></li>
+					            		<li><a href="{{ route('admin.password.edit')}}">Mi cuenta</a></li>
+					            		<li><a href=" {{ route('admin.config.index')}}">
+                                        Configuración
+                                        </a></li>
 					            		@else
 					            		<li><a href="{{ route('member.index')}}">Mi cuenta</a></li>
 					            		@endif
