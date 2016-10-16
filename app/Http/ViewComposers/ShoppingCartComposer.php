@@ -21,7 +21,7 @@ class ShoppingCartComposer{
            
        }
         else{
-        
+        try{
         $shopping_cart_id = \Session::get('shopping_cart_id');
         
         $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
@@ -31,6 +31,21 @@ class ShoppingCartComposer{
         \Session::put('shopping_cart_id', $shopping_cart->id);
         
         $view->with('productsCount', $shopping_cart->products_size());
+            
+        
+        }catch(\ErrorException $err){
+            
+            $shopping_cart = ShoppingCart::create([
+           
+            "status" => "incompleted"
+            
+        ]);
+            
+             \Session::put('shopping_cart_id', $shopping_cart->id);
+        
+        $view->with('productsCount', $shopping_cart->products_size());
+            
+        }
             }
         
     }

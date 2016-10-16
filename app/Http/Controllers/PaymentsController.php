@@ -26,8 +26,24 @@ class PaymentsController extends Controller
     
     public function search(Request $request){
         
-      
+        try{
+            $className = 'JPBlancoDB\MercadoPago\MercadoPago';
+        
+            if (!class_exists($className)) {
+                throw new \Exception('The class '.$className.' does not exist.');
+            }
+            
+            
         $paymentInfo = MercadoPago::get_payment($request->payment_id);
+        }catch(\Exception $err){
+            if($err->getCode() == '404'){
+                Flash::success('No hemos podido encontrar el pago');
+                return back();
+            }
+            return abort(500);
+            
+        }
+        
         $order = Order::where('customid',$paymentInfo['response']['collection']['order_id'])->first();
      
         if($order){

@@ -11,7 +11,7 @@
 |
 */
 
-/*Route::get('/eliminar/carritosvacios', 'ShoppingCartsController@eliminarcarritos');*/
+Route::get('/eliminar/carritosvacios', 'ShoppingCartsController@eliminarcarritos');
 
 Route::get('/tags/{tag}', function ($tag) {
    

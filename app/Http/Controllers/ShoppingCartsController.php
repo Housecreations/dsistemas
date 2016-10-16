@@ -14,7 +14,7 @@ use App\Config;
 class ShoppingCartsController extends Controller
 {   
     
-  /*  public function eliminarcarritos(){
+  public function eliminarcarritos(){
         
         $shoppingCarts = ShoppingCart::all();
         foreach($shoppingCarts as $shoppingCart){
@@ -25,7 +25,7 @@ class ShoppingCartsController extends Controller
         
         }
         
-    }*/
+    }
     
     public function vaciar(){
         if(Auth::user()){

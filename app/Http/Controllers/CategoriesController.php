@@ -98,6 +98,16 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        
+        foreach($category->articles as $article){
+            
+            foreach($article->images as $image){
+                
+                 unlink(public_path()."\images\articles\\".$image->image_url);
+            }
+            
+        }
+        
         $category->delete();
         
         Flash::error('La categoria ' . $category->name. ' ha sido eliminada');
