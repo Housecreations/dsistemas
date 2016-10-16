@@ -12,6 +12,7 @@ use App\Http\Requests\ArticleRequest;
 use Laracasts\Flash\Flash;
 use App\Image;
 use App\Tag;
+use App\Config;
 
 class ArticlesController extends Controller
 {
@@ -48,8 +49,8 @@ class ArticlesController extends Controller
    public function index(Request $request)
     {
          $articles = Article::search($request->name)->orderBy('id', 'DESC')->simplePaginate(6);
-       
-        return view('admin.articles.index')->with('articles', $articles);
+        $currency = Config::find(1);
+        return view('admin.articles.index', ['articles' => $articles, 'currency' => $currency->currency]);
     }
     
     

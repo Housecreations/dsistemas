@@ -13,6 +13,7 @@ class AddClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
+            $table->engine('InnoDB');
             $table->increments('id');
             $table->string('name');
             $table->string('logo_url');

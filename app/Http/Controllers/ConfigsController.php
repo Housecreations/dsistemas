@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Shipment;
 use App\Config;
+use Laracasts\Flash\Flash;
+
 class ConfigsController extends Controller
 {
   public function index(){
@@ -14,6 +16,18 @@ class ConfigsController extends Controller
     return view('admin.config.index', ['shipments' => Shipment::orderBy('id', 'DESC')->get(), 'config' => Config::all()->first()]);  
       
   }
+    
+    public function changeEmails(Request $request){
+        
+        $config = Config::find(1);
+        $config->sender_email = $request->sender_email;
+        $config->receiver_email = $request->receiver_email;
+        $config->save();
+        
+        Flash::success('Se han actualizado los correos');
+        return redirect()->route('admin.index');
+        
+    }
     
      public function changeStatus(Request $request)
     {   //ocultar o mostrar el artículo

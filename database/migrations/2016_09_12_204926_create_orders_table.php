@@ -13,6 +13,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function(Blueprint $table){
+            $table->engine('InnoDB');
             $table->increments('id');
             $table->string('customid')->unique()->nullable();
             $table->integer('shopping_cart_id')->unsigned();

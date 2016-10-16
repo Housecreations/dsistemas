@@ -13,6 +13,7 @@ class AddCarouselImagesTable extends Migration
     public function up()
     {
         Schema::create('carousel_images', function (Blueprint $table) {
+            $table->engine('InnoDB');
             $table->increments('id');
             $table->string('image_url');
             $table->timestamps();

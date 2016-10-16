@@ -27,7 +27,9 @@
 
 <div class="">
     
-   
+   @if(sizeof($articles) == 0)
+   <h3 class="text-center bottom-space-md">No hay productos en el carrito</h3>
+   @else
     <table class="table table-condesed">
     
         <thead>
@@ -45,7 +47,7 @@
             <tr class="text-center">
                 <td class="cart-image to-dissapear"><img src="/images/articles/{{$article->images[0]->image_url}}" alt=""></td>
                 <td class="cart-name"><a class="a-no-style" href="/articulos/{{$article->category->slug}}/{{$article->slug}}">{{$article->name}}</a></td>
-                <td class="cart-price">{{$article->price_now}} Bs</td>
+                <td class="cart-price">{{$article->price_now}} {{$currency}}</td>
                 <td> <a class="cart-button button-sm" href="{{ url('/in_shopping_carts/'.$article->pivot->id) }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('in_shopping_cart_form_{{$article->pivot->id}}').submit();">
@@ -61,12 +63,14 @@
             </tr>
             
             @endforeach
+           
             <tr class="text-center">
                 <td class="cart-total">Total</td>
                 <td class="to-dissapear"></td>
-                <td class="cart-price">{{$total}} Bs</td>
+                <td class="cart-price">{{$total}} {{$currency}}</td>
                 <td class="cart-empty-cart"> <a href="{{ url('carrito/vaciar') }}" onclick="return confirm('Seguro que deseas vaciar el carrito?')" class='cart-button button-lg'>Vaciar carrito</a></td>
             </tr>
+         
             
         </tbody>
         
@@ -90,7 +94,7 @@
 <a href="{{route('admin.auth.login')}}" class="cart-button">Inicia sesión para pagar</a>
 
 @endif
-
+@endif
 </div>
 
 @endsection

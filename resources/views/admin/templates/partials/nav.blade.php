@@ -4,10 +4,10 @@
        
        <div class="responsive_menu">
         <ul class="main_menu">
-            <li><a href="/">Inicio</a></li>
+           
 					            <li><a href="/QuienesSomos">Quiénes somos</a>
                                       <li><a href="{{route('clients.show')}}">Clientes</a>
-                                    <li><a href="#">Productos</a>
+                                    <li><a href="/articulos">Productos</a>
 					            	<ul>
                                         @foreach($categories as $category)
 					            		<li><a href="/articulos/{{$category->slug}}">{{$category->name}}</a></li>
@@ -73,10 +73,10 @@
 
 						<nav class="main-nav visible-md visible-lg">
 							<ul class="sf-menu">
-								<li><a href="/">Inicio</a></li>
+								
 					            <li><a href="/QuienesSomos">Quiénes somos</a>
                                     <li><a href="{{route('clients.show')}}">Clientes</a>
-                                    <li><a href="#">Productos</a>
+                                    <li><a href="/articulos">Productos</a>
 					            	<ul>
                                         @foreach($categories as $category)
 					            		<li><a href="/articulos/{{$category->slug}}">{{$category->name}}</a></li>

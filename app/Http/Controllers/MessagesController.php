@@ -12,6 +12,8 @@ use Laracasts\Flash\Flash;
 use Mail;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
+use App\Mailer;
+
 
 class MessagesController extends Controller
 {
@@ -25,7 +27,7 @@ class MessagesController extends Controller
     {
    
         
-         $messages = Message::orderBy('id', 'DESC')->get();
+         $messages = Message::orderBy('id', 'DESC')->paginate(10);
          
         return view('admin.messages.index')->with('messages', $messages);
     }
@@ -70,23 +72,8 @@ class MessagesController extends Controller
                 $message->save();
         
                 $data = $request->all();
-        
-    
-        
- 
-                //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
-                Mail::send('emails.message', $data, function($messagee) use ($request)
-                {
-                //remitente
-                $messagee->from($request->email, $request->name);
- 
-                //asunto
-                $messagee->subject($request->subject);
- 
-                //receptor
-                $messagee->to(env('CONTACT_MAIL'), env('CONTACT_NAME'));
- 
-                });
+            
+                Mailer::sendMessageEmail($request, $data);
         
                 return response()->json(['status' => 'success']);
          

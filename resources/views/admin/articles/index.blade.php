@@ -116,8 +116,8 @@
                   
             
             <img src="/images/articles/{{$article->images[0]->image_url}}" alt="">  
-               <span>Precio: {{$article->price}}</span>
-                <span>Unidades: {{$article->stock}}</span>
+               <span>Precio: {{$article->price}} {{$currency}}</span><br>
+                <span>Unidades: {{$article->stock}}</span><br>
                 <span>% descuento: {{$article->discount}}</span>
                 <hr>
                  <span>{{$article->category->name}}</span>

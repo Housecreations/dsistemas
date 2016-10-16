@@ -51,7 +51,8 @@ class ShoppingCartsController extends Controller
             $articles = $shopping_cart->articles()->get();
                      
             $total = $shopping_cart->total();
-             return view('shopping_carts.index', ['articles' => $articles, 'total' => $total, 'active' => Config::all()->first()]);
+            $currency = Config::find(1);
+             return view('shopping_carts.index', ['articles' => $articles, 'total' => $total, 'active' => Config::all()->first(), 'currency' => $currency->currency]);
             
            
        }else{
@@ -61,9 +62,9 @@ class ShoppingCartsController extends Controller
             
             $articles = $shopping_cart->articles()->get();
             $total = $shopping_cart->total();
-            
+            $currency = Config::find(1);
 
-             return view('shopping_carts.index', ['articles' => $articles, 'total' => $total]);
+             return view('shopping_carts.index', ['articles' => $articles, 'total' => $total, 'currency' => $currency->currency]);
         
         }
         

@@ -9,6 +9,7 @@
 <div class="col-md-10 items card">
 
 <h4>Checkout</h4><span>Verifique bien los datos, una vez cargados no podrá modificarlos</span>
+<h4>¡IMPORTANTE!</h4><span>Una vez realizado el pago en la plataforma, haga clic en 'continuar' para ser redireccionado de vuelta a la aplicación</span>
 
 
 
@@ -48,6 +49,9 @@
     
 </div>
 
+
+<img class='payment-logo' src="/images/mercadopago.png" alt="">
+<img class='payment-logo' src="/images/visa-master-logo.png" alt="">
 
 </div>
 

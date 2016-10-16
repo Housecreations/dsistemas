@@ -9,6 +9,11 @@ http://www.templatemo.com/preview/templatemo_460_medigo
 /*------------------------------------------------------
 	BASIC STYLES 
 --------------------------------------------------------*/
+.payment-logo {
+    padding-top: 25px;
+    width: 20%;
+}
+
 .order-row{
     border: solid 5px rgba(2, 0, 8, 0.36);
 }
@@ -844,12 +849,13 @@ padding-top: 120px;
 
 
 .col-md-6.left-nav {
-    z-index: 1;
+    z-index: 12;
     padding-top: 60px;
         width: 20%;
         padding-left: 0px;
     padding-right: 0px;
     position: fixed;
+   
 }
 
 .templatemo-flex-row {
@@ -2726,7 +2732,11 @@ top:50%;}
     .breadcrumb {
   
     font-size: 10px;
-}
+} .mask figcaption {
+    
+    top: 35%;
+    
+        opacity: 1;}
 }
 /*telefonos medianos*/
 @media (max-height: 639px) and (min-height: 500px) {
@@ -2770,7 +2780,11 @@ top:50%;}
      .breadcrumb {
   
     font-size: 10px;
-}
+} .mask figcaption {
+    
+    top: 35%;
+    
+        opacity: 1;}
 }
 /*telefonos grandes*/
 @media (max-height: 731px) and (min-height: 640px) {

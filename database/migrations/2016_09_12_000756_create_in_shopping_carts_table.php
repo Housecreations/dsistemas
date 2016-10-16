@@ -13,7 +13,7 @@ class CreateInShoppingCartsTable extends Migration
    public function up()
     {
         Schema::create('in_shopping_carts', function(Blueprint $table){
-         
+         $table->engine('InnoDB');
            $table->increments('id');
            
            $table->integer('article_id')->unsigned();

@@ -48,12 +48,12 @@
          @foreach($order->orderDetails as $orderDetail)
           <tr>
               <td>{{$orderDetail->name}}</td>
-              <td>{{$orderDetail->price}}</td>
+              <td>{{$orderDetail->price}} {{$currency}}</td>
           </tr>
         @endforeach
           <tr>
                 <td>Total</td>
-                <td>{{$order->total}}</td>
+                <td>{{$order->total}} {{$currency}}</td>
             </tr>
       </tbody>
        </table>

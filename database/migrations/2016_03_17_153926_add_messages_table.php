@@ -13,6 +13,7 @@ class AddMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
+            $table->engine('InnoDB');
             $table->increments('id');
              $table->string('name');
              $table->string('email');

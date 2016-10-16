@@ -13,7 +13,8 @@ class AddImagesTable extends Migration
     public function up()
     {
        Schema::create('images', function (Blueprint $table) {
-            $table->increments('id');
+           $table->engine('InnoDB'); 
+           $table->increments('id');
             
             $table->integer('article_id')->unsigned();
             

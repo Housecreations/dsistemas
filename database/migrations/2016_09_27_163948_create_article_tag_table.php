@@ -13,7 +13,7 @@ class CreateArticleTagTable extends Migration
     public function up()
     {
         Schema::create('article_tag', function(Blueprint $table){
-         
+         $table->engine('InnoDB');
            $table->increments('id');
            
            $table->integer('article_id')->unsigned();

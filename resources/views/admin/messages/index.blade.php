@@ -12,7 +12,7 @@
 <div class="items-no-nav col-md-10 col-sm-10 col-xs-12 card">
 
 
-<div class="col-md-12 bottom-space">
+<div class="col-md-12">
 
     <a href="{{ route('admin.index')}}" class="button button-sm">Atrás</a>
 
@@ -61,6 +61,9 @@
 </tbody>
 </table>
 @endif
+</div>
+<div class="text-center">
+    {{$messages->render()}}
 </div>
 
 </div>

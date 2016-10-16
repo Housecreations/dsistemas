@@ -8,5 +8,6 @@ class Config extends Model
 {
     protected $table = "configs";
     
-    protected $fillable = ['active'];
+    protected $fillable = ['active', 'sender_email', 'receiver_email'];
+    
 }

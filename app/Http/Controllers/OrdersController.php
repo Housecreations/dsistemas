@@ -11,6 +11,7 @@ use App\Order;
 use Mail;
 use App\Mailer;
 use Carbon\Carbon;
+use App\Config;
 
 class OrdersController extends Controller
 {
@@ -23,16 +24,16 @@ class OrdersController extends Controller
     public function index(){
         
         $orders = Order::latest()->orderBy('id', 'DESC')->paginate(5);
+        $currency = Config::find(1);
       
-      
-           return view('orders.month', ['orders' => $orders]);
+           return view('orders.month', ['orders' => $orders, 'currency' => $currency->currency]);
     }
     
     public function showAll(Request $request){
         
         $orders = Order::search($request->name)->where('status', '!=', 'No pagada')->orderBy('id', 'DESC')->paginate(5);
-      
-        return view('orders.index', ['orders' => $orders]);
+         $currency = Config::find(1);
+        return view('orders.index', ['orders' => $orders, 'currency' => $currency->currency]);
     }
     
     
@@ -49,9 +50,7 @@ class OrdersController extends Controller
          if($order->guide_number && $order->status == "Enviado"){
         
         //email al usuario     
-          Mailer::sendMail("House Creations", "info@housecreations.com", "Orden enviada", "
-          La orden #$order->payment_id ha sido enviada a través de $order->shipment_agency con código $order->shipment_agency_id bajo el número de guía $order->guide_number. 
-          ", "emails.sendOrderEmail", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
+          Mailer::sendEmail($order);
              
             
              }

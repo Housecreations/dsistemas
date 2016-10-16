@@ -24,7 +24,7 @@
           
            
            <div class="col-md-6 sale-data">
-               <span>{{$totalMonth}} Bs</span>
+               <span>{{$totalMonth}} {{$currency}}</span>
                Ingresos del mes
            </div>
            <div class="col-md-6 sale-data">

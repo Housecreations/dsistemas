@@ -36,7 +36,7 @@
   
    <div id="slider" class="flexslider">
                              @if($article->discount > 0)
-                    <div class="oferta-article">{{$article->price}} Bs</div>
+                    <div class="oferta-article">{{$article->price}} {{$currency}}</div>
                     @endif
                               <ul class="slides">
                                 
@@ -76,7 +76,7 @@
       <span class="title">{{$article->name}}</span>
      </div>
       <div class="row up">
-      <div class="price">{{$article->price_now}} Bs </div>
+      <div class="price">{{$article->price_now}} {{$currency}} </div>
       
       
       

@@ -8,7 +8,7 @@
   
 <div class="items-no-nav col-md-10 col-sm-10 col-xs-10 card">    
 
-<div class="col-md-7 col-md-offset-2 col-sm-7 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 
 
 <div class="button-container">
@@ -64,6 +64,34 @@ Tienda Inactiva
       </tbody>
       
   </table>
+   <hr>
+   <div>
+    <h4 class="text-center">Correos de la aplicación</h4>
+       <hr>
+      {!! Form::open(['route' => 'admin.config.emails', 'method' => 'POST', 'id' => 'store-status-form']) !!}
+
+
+
+<div class="form-group">
+{!! Form::label('sender_email', 'Cuenta para envío de correos de la aplicación') !!}
+{!! Form::text('sender_email', $config->sender_email, ['class' => 'form-control', 'required', 'placeholder' => 'Desde aquí se enviarán los correos de tu aplicación']) !!}
+</div>
+<div class="form-group">
+{!! Form::label('receiver_email', 'Cuenta para recepción de correos') !!}
+{!! Form::text('receiver_email', $config->receiver_email, ['class' => 'form-control', 'required', 'placeholder' => 'Aquí se recibirán los correos de las ventas y los mensajes enviados']) !!}
+</div>
+
+<div class="form-group">
+   
+<button type="submit" class="button">
+Guardar cambios en correos
+</button>
+
+    
+</div> 
+      {!! Form::close() !!}
+       
+   </div>
     </div>
 </div>
   

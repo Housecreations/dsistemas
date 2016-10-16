@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Order;
+use App\Config;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
 class MembersController extends Controller
@@ -17,8 +18,8 @@ class MembersController extends Controller
            
             
             $Orders = Auth::user()->shoppingCart->orders()->orderBy('id', 'DESC')->get();
-           
-           return view('admin.users.home', ['Orders' => $Orders]);
+           $currency = Config::find(1);
+           return view('admin.users.home', ['Orders' => $Orders, 'currency' => $currency->currency]);
            
        }else{
            

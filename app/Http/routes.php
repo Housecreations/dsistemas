@@ -20,8 +20,8 @@ Route::get('/tags/{tag}', function ($tag) {
 
    $tag = App\Tag::where('slug', '=', $tag)->first();
   
-  
-    return view('showtags', ['articles' => $articles, 'tag' => $tag]);
+  $currency = App\Config::find(1);
+    return view('showtags', ['articles' => $articles, 'tag' => $tag, 'currency' => $currency->currency]);
 });
 
 
@@ -106,7 +106,13 @@ Route::get('/contact', ['as' => 'contact', function () {
 
 
 
+Route::get('/articulos', function () {
+     
+    
+    $categoriescat = App\Category::orderBy('id', 'DESC')->get();
 
+    return view('showCategories')->with('categoriescat', $categoriescat);
+});
 
 
 /* ruta para motrar los articulos de una categoria*/
@@ -115,8 +121,8 @@ Route::get('/articulos/{category}', function ($cat) {
      
     
     $articles = App\Category::where('slug', '=', $cat)->first()->articles()->where('visible', '=', 'yes')->orderBy('id', 'DESC')->get();
-
-    return view('show')->with('articles', $articles);
+    $currency = App\Config::find(1);
+    return view('show', ['articles' => $articles, 'currency' => $currency->currency]);
 });
 
 
@@ -154,9 +160,9 @@ Route::get('articulos/{category}/{slug}', [ 'as' => 'mostrar.articulo', function
         $articles->push($relatedArticle[0]);
         
     }
-  
+  $currency = App\Config::find(1);
    
-        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles]);
+        return view('showArticle', ['article' => $article, 'relatedArticles' => $articles, 'currency' => $currency->currency]);
     
 }]);
 
@@ -175,9 +181,9 @@ Route::get('/QuienesSomos', function () {
 Route::get('/descuentos', function () {
    
     $articles = App\Article::where('ondiscount', '=', 'yes')->where('visible', '=', 'yes')->orderBy('id', 'DESC')->get();
+  $currency = App\Config::find(1);
   
-  
-    return view('showoutlet')->with('articles', $articles);
+    return view('showoutlet', ['articles' => $articles, 'currency' => $currency->currency]);
     
 });
 
@@ -189,6 +195,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
       Route::post('/config/status', [
     'uses' => 'ConfigsController@changeStatus',
     'as' => 'admin.config.status'
+    ]);
+    Route::post('/config/emails', [
+    'uses' => 'ConfigsController@changeEmails',
+    'as' => 'admin.config.emails'
     ]);
     
     
@@ -368,8 +378,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         
       
         $carousel = App\CarouselImage::find(1);
-        
-        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount, 'orderCount' => $orderCount, 'orderCountAll' => $orderCountAll]);
+        $currency = App\Config::find(1);
+        return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount, 'orderCount' => $orderCount, 'orderCountAll' => $orderCountAll, 'currency' => $currency->currency]);
     }]);
     
     Route::resource('users', 'UsersController');

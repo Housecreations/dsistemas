@@ -38,11 +38,11 @@ class PaymentsController extends Controller
                     $order->save();
                     
                     //Email al usuario
-                    Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso de verificación", "Hemos recibido su pago #$order->payment_id para la orden #$order->customid. Su orden se encuentra en proceso de verificación", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
+                    Mailer::processEmail($order);
         
-                    $base_url = url("/");
+                
                     //Email al administrador  
-                    Mailer::sendMail("House Creations", "info@housecreations.com", "Compra realizada", "Se ha realizado una compra, pago #$order->payment_id para la orden #$order->customid, puede revisar la orden en el siguiente link: $base_url/admin/orders", "emails.message", env("CONTACT_MAIL"), env("CONTACT_NAME"));
+                    Mailer::sendAdminEmail($order);
                     
                     Flash::success('Se ha encontrado el pago #'.$order->payment_id);
                     return redirect('admin/orders/all?name='.$order->payment_id);
@@ -72,21 +72,7 @@ class PaymentsController extends Controller
     public function index(Request $request){
       
         
-   /*$filters = array (
-        "id" => null,
-        "site_id" => null,
-        "external_reference" => 4
-    );*/
-        /*$searchResult = MercadoPago::search_payment($filters);
-        dd($searchResult);*/
-        
-       
-/*$paymentInfo = MercadoPago::get_payment("2344613035");
- 
 
-       $a = MercadoPago::get_payment($paymentInfo['response']['collection']['id']);
-        dd($a);
-        */
         
         
         //obtener carrito
@@ -100,7 +86,7 @@ class PaymentsController extends Controller
         
         //array con los items
         $items = [];
-        
+        $config = Config::find(1);
         foreach ($shoppingCart->articles as $article){
             
          
@@ -109,8 +95,8 @@ class PaymentsController extends Controller
             if($article->stock >= $articlesCount){ //verificar que haya existencia
                 
                 $item = array_add([
-                        "title" => $article->name,
-                        "currency_id" => "VEF",
+                        "title" => 'Carrito de compras',
+                        "currency_id" => $config->currency_code,
                         "category_id" => $article->category->name,
                         "quantity" => 1],
                     'unit_price', floatval($article->price_now));
@@ -258,11 +244,11 @@ class PaymentsController extends Controller
                     
                    
                      //Email al usuario
-                    Mailer::sendMail("House Creations", "info@housecreations.com", "Orden en proceso de verificación", "Hemos recibido su pago #$order->payment_id para la orden #$order->customid. Su orden se encuentra en proceso de verificación", "emails.message", $order->shoppingCart->user->email, $order->shoppingCart->user->name);
+                    Mailer::processEmail($order);
         
-                    $base_url = url("/");
+                
                     //Email al administrador  
-                    Mailer::sendMail("House Creations", "info@housecreations.com", "Compra realizada", "Se ha realizado una compra, pago #$order->payment_id para la orden #$order->customid, puede revisar la orden en el siguiente link: $base_url/admin/orders", "emails.message", env("CONTACT_MAIL"), env("CONTACT_NAME"));
+                    Mailer::sendAdminEmail($order);
                     
                     
                     
