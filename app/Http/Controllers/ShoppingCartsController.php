@@ -14,8 +14,8 @@ use App\Config;
 class ShoppingCartsController extends Controller
 {   
     
-  public function eliminarcarritos(){
-        
+  public function eliminarcarritos(Request $request){
+      if($request->ajax()){
         $shoppingCarts = ShoppingCart::all();
         foreach($shoppingCarts as $shoppingCart){
             
@@ -24,6 +24,9 @@ class ShoppingCartsController extends Controller
             
         
         }
+       return response()->json(['texto' => 'Carritos eliminados']);
+          }
+      return back();
         
     }
     

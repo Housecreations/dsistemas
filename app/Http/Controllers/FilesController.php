@@ -113,6 +113,7 @@ class FilesController extends Controller
     {
           $file = File::find($id);
           unlink(app_path()."\\files\\".$file->file_url);
+         /* unlink("/home/eselenas/public_html/images/articles/".$image->image_url);*/
           $file->delete();
         
           Flash::error('El archivo ' . $file->name. ' ha sido eliminado');

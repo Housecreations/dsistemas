@@ -68,7 +68,7 @@ Tienda Inactiva
    <div>
     <h4 class="text-center">Correos de la aplicación</h4>
        <hr>
-      {!! Form::open(['route' => 'admin.config.emails', 'method' => 'POST', 'id' => 'store-status-form']) !!}
+      {!! Form::open(['route' => 'admin.config.emails', 'method' => 'POST', 'id' => 'update-emails-form']) !!}
 
 
 
@@ -84,7 +84,28 @@ Tienda Inactiva
 <div class="form-group">
    
 <button type="submit" class="button">
-Guardar cambios en correos
+Actualizar correos
+</button>
+
+    
+</div> 
+      {!! Form::close() !!}
+       
+   </div>
+   <hr>
+   <div>
+    <h4 class="text-center">Carritos de compra</h4>
+       <hr>
+      {!! Form::open(['url' => '/deleteNoUserCarts', 'method' => 'POST', 'id' => 'delete-carts-form']) !!}
+
+
+<p>Carritos obsoletos: <span id='noUserCartsCount'>{{$noUserCartsCount}}</span></p>
+
+
+<div class="form-group">
+   
+<button type="submit" class="button">
+Eliminar carritos obsoletos
 </button>
 
     

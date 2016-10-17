@@ -16,13 +16,22 @@ class Image extends Model
         return $this->belongsTo('App\Article');
     }
     
+    
+
+    
+    
+    
     public static function deleteImage($image_id){
         
         $image = Image::find($image_id);
+        if(sizeof($image->article->images) > 1){
         unlink(public_path()."\images\articles\\".$image->image_url);
         $image->delete();
-        
+        /*unlink("/home/eselenas/public_html/images/articles/".$image->image_url);*/
         return Flash::success("Imagen eliminada");
+            }else{
+             return Flash::success("El artículo no puede quedar sin imagen");
+        }
     }
     
     public static function uploadImage($article, $request){

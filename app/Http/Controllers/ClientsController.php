@@ -108,7 +108,7 @@ class ClientsController extends Controller
                 
                 //eliminar la imagen
                 unlink(public_path()."\images\clients\\".$client->logo_url);
-             
+           /*  unlink("/home/eselenas/public_html/images/articles/".$image->image_url);*/
                 $client->logo_url = $name;
             }
         

@@ -127,6 +127,98 @@ $(document).ready(function(){
         
     });
     
+    $("#delete-carts-form").on("submit", function(ev){
+       ev.preventDefault();
+        
+        var $form = $(this);
+        var $button = $form.find("[type='submit']");
+        
+        $.ajax({
+            url: $form.attr("action"),
+            method: $form.attr("method"),
+            data: $form.serialize(),
+            dataType:"JSON",
+            beforeSend: function(){ 
+                $button.html("<i class='fa fa-refresh fa-spin'></i> Eliminando carritos");
+
+            },
+            success: function(data){
+              
+                
+               
+                
+                
+                    
+                    $button.html(data.texto).css("background-color", "#00c853");
+                $("#noUserCartsCount").html("0");
+                setTimeout(function(){
+                    
+                     $button.html('Eliminar carritos obsoletos').css("background-color", "#00a8d6");
+                   
+                    
+                },3000);
+                
+            },
+            error: function(err){
+                console.log(err);
+                $button.css("background-color", "#d50000").html("Hubo un error");
+                
+                
+            }
+        });
+        
+        return false;
+        
+    });
+    
+    
+    
+    
+    $("#update-emails-form").on("submit", function(ev){
+       ev.preventDefault();
+        
+        var $form = $(this);
+        var $button = $form.find("[type='submit']");
+        
+        $.ajax({
+            url: $form.attr("action"),
+            method: $form.attr("method"),
+            data: $form.serialize(),
+            dataType:"JSON",
+            beforeSend: function(){ 
+                $button.html("<i class='fa fa-refresh fa-spin'></i> Actualizando correos");
+
+            },
+            success: function(data){
+              
+                
+               
+                
+                
+                    
+                    $button.html(data.texto).css("background-color", "#00c853");
+              
+                setTimeout(function(){
+                    
+                     $button.html('Actualizar correos').css("background-color", "#00a8d6");
+                   
+                    
+                },3000);
+                
+            },
+            error: function(err){
+                console.log(err);
+                $button.css("background-color", "#d50000").html("Hubo un error");
+                
+                
+            }
+        });
+        
+        return false;
+        
+    });
+    
+    
     
     $("#message_form").on("submit", function(ev){
        ev.preventDefault();

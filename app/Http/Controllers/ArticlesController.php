@@ -153,6 +153,7 @@ class ArticlesController extends Controller
         
         foreach($article->images as $image){
             unlink(public_path()."\images\articles\\".$image->image_url);
+           /* unlink("/home/eselenas/public_html/images/articles/".$image->image_url);*/
         }
         
         $article->delete();

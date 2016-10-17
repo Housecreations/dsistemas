@@ -9,6 +9,22 @@ class ShoppingCart extends Model
     protected $fillable = ['status'];
     
     
+    public static function noUserCartsCount(){
+        
+        $shoppingCarts = ShoppingCart::all();
+        $count = 0;
+        foreach($shoppingCarts as $shoppingCart){
+            
+            if(!$shoppingCart->user)
+                $count += 1;
+            
+        
+        }
+        
+        return $count;
+        
+    }
+    
     public function orders(){
         
         return $this->hasMany('App\Order');
