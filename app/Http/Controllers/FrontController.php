@@ -76,7 +76,7 @@ class FrontController extends Controller
              }else{
                  
                $image = CarouselImage::find($id);
-               $image->image_url = $request->imagen;
+             
                $image->url_to = $request->url_to;
                $image->save();  
 

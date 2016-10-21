@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function(Blueprint $table){
-            $table->engine('InnoDB');
+           $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('customid')->unique()->nullable();
             $table->integer('shopping_cart_id')->unsigned();
@@ -24,6 +24,8 @@ class CreateOrdersTable extends Migration
             $table->string('recipient_id');
             $table->string('recipient_email');
             $table->string('payment_id');
+            $table->string('payment_type');
+            $table->date('payment_date');
             /*$table->enum('edited',['yes','no'])->default('no');*/
             $table->string('status')->default('En proceso');
             $table->string('guide_number')->nullable();

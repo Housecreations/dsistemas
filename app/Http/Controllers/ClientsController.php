@@ -42,9 +42,11 @@ class ClientsController extends Controller
      public function destroy($id)
     {
         $client = Client::find($id);
+          unlink(public_path()."\images\clients\\".$client->logo_url);
+         /*  unlink("/home/eselenas/public_html/images/articles/".$client->logo_url);*/
         $client->delete();
         
-        Flash::error('El cliente ' . $client->name. ' ha sido eliminado');
+        Flash::success('El cliente ' . $client->name. ' ha sido eliminado');
         
        
         
@@ -108,7 +110,7 @@ class ClientsController extends Controller
                 
                 //eliminar la imagen
                 unlink(public_path()."\images\clients\\".$client->logo_url);
-           /*  unlink("/home/eselenas/public_html/images/articles/".$image->image_url);*/
+           /*  unlink("/home/eselenas/public_html/images/articles/".$client->logo_url);*/
                 $client->logo_url = $name;
             }
         

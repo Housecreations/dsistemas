@@ -61,8 +61,9 @@ Route::resource('in_shopping_carts', 'InShoppingCartsController', [
 
 
 
-Route::put('/payments/pay', 'PaymentsController@index');
-
+Route::post('/payments/pay', 'PaymentsController@index');
+Route::post('/payments/pay_bank', 'PaymentsController@pay_bank');
+Route::post('/payments/pay_bank/data/{id}', 'PaymentsController@pay_bank_data');
 
 Route::get('/payments/fail', 'PaymentsController@fail');
 
@@ -191,6 +192,16 @@ Route::get('/descuentos', function () {
 route::get('/checkout',['uses'=>'PaymentsController@checkout','middleware' => 'members.auth']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    
+    
+    
+    Route::resource('payments_accounts', 'PaymentsAccountsController');
+    
+    Route::get('/payments_accounts/{id}/destroy', [
+    'uses' => 'PaymentsAccountsController@destroy',
+    'as' => 'admin.payments_accounts_get.destroy'
+    ]);
+    
     
       Route::post('/config/status', [
     'uses' => 'ConfigsController@changeStatus',
@@ -377,7 +388,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         }
         
       
-        $carousel = App\CarouselImage::find(1);
+        $carousel = App\CarouselImage::all();
         $currency = App\Config::find(1);
         return view('admin.index', ['unread' => $unread, 'carousel' => $carousel, 'totalMonth' => $totalMonth, 'totalMonthCount' => $totalMonthCount, 'orderCount' => $orderCount, 'orderCountAll' => $orderCountAll, 'currency' => $currency->currency]);
     }]);

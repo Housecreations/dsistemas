@@ -43,7 +43,7 @@ class CategoriesController extends Controller
     {
             $category = new Category($request->all());
             $category->save();
-            Flash::success("Categoria registrada");
+            Flash::success("Área registrada");
         
             return redirect()->route('admin.categories.index');
   
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
         $category->fill($request->all());
         $category->save();
         
-        Flash::success('La categoria se editó con éxito');
+        Flash::success('El área se editó con éxito');
        
         return redirect()->route('admin.categories.index');
     }
@@ -111,7 +111,7 @@ class CategoriesController extends Controller
         
         $category->delete();
         
-        Flash::error('La categoria ' . $category->name. ' ha sido eliminada');
+        Flash::error('El área ' . $category->name. ' ha sido eliminada');
          
         return redirect()->route('admin.categories.index');
     }

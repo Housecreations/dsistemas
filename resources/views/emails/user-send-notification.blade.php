@@ -83,7 +83,7 @@ background-color: #f6f6f6;
                       <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px 20px 0px;" valign="top">
 										Su orden ha sido enviada
 										<br>Empresa de envío: {{$order->shipment_agency}}
-										<br>Identificador de la empresa: {{$order->shipment_agency_id}}
+										<br>Identificador de la sucursal: {{$order->shipment_agency_id}}
                                         <br>Número de guía: {{$order->guide_number}}
 									</td>
 								</tr>  
@@ -119,9 +119,6 @@ background-color: #f6f6f6;
 															<td class="alignright" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 2px; border-top-color: #333; border-top-style: solid; border-bottom-color: #333; border-bottom-width: 2px; border-bottom-style: solid; font-weight: 700; margin: 0; padding: 5px 0;" align="right" valign="top">{{$order->total}} {{$currency}}</td>
 														</tr></table></td>
 											</tr></table></td>
-								</tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block aligncenter" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: center; margin: 0; padding: 0 0 20px;" align="center" valign="top">
-										Acme Inc. 123 Van Ness, San Francisco 94102
-									</td>
 								</tr></table></td>
 					</tr></table></div>
 		</td>

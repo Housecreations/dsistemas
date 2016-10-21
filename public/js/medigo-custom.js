@@ -51,6 +51,44 @@ $(window).load(function() { // makes sure the whole site is loaded
 $(document).ready(function(){    
     
     
+     $('#payment_type').change(function(){
+    
+    var $optionSelected = $(this).find("option:selected");
+  
+         
+         
+     var $val  = $optionSelected.val();
+     var $form = $("#payments_form");     
+         
+        if($val === 'TDC'){
+         var $baseUrl = document.location.origin + '/payments/pay';  
+             $form.attr("action", $baseUrl);
+            }else{
+                
+               var $baseUrl = document.location.origin + '/payments/pay_bank'; 
+                $form.attr("action", $baseUrl);
+            }
+        
+     
+      
+         
+         
+        
+          
+         
+   
+
+        
+     
+                
+           
+        });
+    
+    
+    
+    
+    
+    
     $(".form-discount").on("submit", function(ev){
        ev.preventDefault();
         

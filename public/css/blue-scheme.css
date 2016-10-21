@@ -2737,6 +2737,15 @@ top:50%;}
     top: 35%;
     
         opacity: 1;}
+    
+    
+    .g-recaptcha {
+    transform: scale(0.80);
+    -webkit-transform: scale(0.80);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
+    
 }
 /*telefonos medianos*/
 @media (max-height: 639px) and (min-height: 500px) {
@@ -2785,6 +2794,12 @@ top:50%;}
     top: 35%;
     
         opacity: 1;}
+    .g-recaptcha {
+    transform: scale(0.80);
+    -webkit-transform: scale(0.80);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
 }
 /*telefonos grandes*/
 @media (max-height: 731px) and (min-height: 640px) {
@@ -2817,6 +2832,12 @@ top:50%;}
     top: 35%;
     
         opacity: 1;}
+    .g-recaptcha {
+    transform: scale(0.80);
+    -webkit-transform: scale(0.80);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
 }
 /*telefonos mas grandes*/
 @media (max-height: 800px)  and (min-height: 732px) {

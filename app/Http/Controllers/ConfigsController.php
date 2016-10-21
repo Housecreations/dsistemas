@@ -9,6 +9,7 @@ use App\Shipment;
 use App\Config;
 use App\ShoppingCart;
 use Laracasts\Flash\Flash;
+use App\PaymentsAccount;
 
 class ConfigsController extends Controller
 {
@@ -16,7 +17,7 @@ class ConfigsController extends Controller
       
     
       
-    return view('admin.config.index', ['shipments' => Shipment::orderBy('id', 'DESC')->get(), 'config' => Config::all()->first(), 'noUserCartsCount' => ShoppingCart::noUserCartsCount()]);  
+    return view('admin.config.index', ['shipments' => Shipment::orderBy('id', 'DESC')->get(), 'config' => Config::all()->first(), 'noUserCartsCount' => ShoppingCart::noUserCartsCount(), 'payments_accounts' => PaymentsAccount::all()]);  
       
   }
     

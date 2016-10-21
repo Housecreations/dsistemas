@@ -38,12 +38,7 @@
 <div class="col-md-11">
 {!! Form::open(['route' => ['admin.front.update', $image->id], 'method' => 'PUT', 'files' => true]) !!}
 
-<div class="form-group">
-    
-   {!! Form::label('imagen', 'Imagen') !!}
-   {!! Form::text('imagen', $image->image_url, ['class' => 'form-control', 'placeholder' => 'URL imagen']) !!}
-    
-</div>
+
 
 <div class="form-group">
     

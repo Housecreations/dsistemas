@@ -29,7 +29,7 @@
    
    @foreach($Orders as $order)
    <hr>
-   <div class="row">
+   <div class="row order-data">
      <div class="col-md-6">
        <h5 class="order-status {{$order->status}}">Estado: {{$order->status}}</h5>
        </div>
@@ -73,9 +73,60 @@
            <h5>Correo Electrónico: {{$order->recipient_email}}</h5>
        </div>
        
+       @if($order->payment_type != 'TDC')
+       @if($order->findPaymentsAccount($order->payment_type)->bank_name)
+       <div class="col-md-6">
+          <hr>
+           <h5 class="text-center">Información de pago</h5>
+           <h5>Banco: {{$order->findPaymentsAccount($order->payment_type)->bank_name}}</h5>
+           <h5>Tipo de cuenta: {{$order->findPaymentsAccount($order->payment_type)->bank_account_type}}</h5>
+           <h5>Número de cuenta: {{$order->findPaymentsAccount($order->payment_type)->bank_account_number}}</h5>
+           <h5>Titular: {{$order->findPaymentsAccount($order->payment_type)->owner_name}}</h5>
+           <h5>C.I/RIF: {{$order->findPaymentsAccount($order->payment_type)->owner_id}}</h5>
+           <h5>Correo: {{$order->findPaymentsAccount($order->payment_type)->owner_email}}</h5>
+       </div>
+       <div class="col-md-6">
+          <hr>
+           <h5 class="text-center">Datos del pago</h5>
+           @if($order->status == 'No pagada')
+           {!! Form::open(['url' => ['payments/pay_bank/data/'.$order->id], 'method' => 'POST', 'id' => 'pay_bank_data_'.$order->id]) !!}
+           
+            <div class="form-group">
+    
+   {!! Form::label('payment_number', 'Número transferencia o depósito') !!}
+   {!! Form::number('payment_number', $order->payment_id, ['class' => 'form-control', 'placeholder' => '', 'required']) !!}
+    
+</div>
+           
+            <div class="form-group">
+    
+   {!! Form::label('payment_date', 'Fecha del pago') !!}
+   {!! Form::date('payment_date', $order->payment_date, ['class' => 'form-control', 'required']) !!}
+    
+</div>
+           
+           
+            <div class="form-group">
+           {!! Form::submit('Cargar datos', ['class' => 'cart-button'])!!}
+           </div>
+           {!! Form::close() !!}
+           
+           @else
+           
+           
+           <h5>Número transferencia o depósito: {{$order->payment_id}}</h5>
+           <h5>Fecha de pago: {{$order->payment_date}}</h5>
+           
+           
+           @endif
+       </div>
+       @endif
+       @endif
+       
    </div>
    
   @endforeach
+   
    @endif
    
 </div>

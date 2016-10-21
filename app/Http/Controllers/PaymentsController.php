@@ -17,6 +17,9 @@ use Mail;
 use App\Mailer;
 use App\Shipment;
 use App\Config;
+use App\PaymentsAccount;
+
+use Carbon\Carbon;
 	
 use Illuminate\Support\Collection as Collection;
 
@@ -81,7 +84,7 @@ class PaymentsController extends Controller
     
     public function checkout(){
         
-       return view('orders.checkout', ['shipments' => Shipment::all(), 'active' => Config::all()->first() ]);
+       return view('orders.checkout', ['shipments' => Shipment::all(), 'active' => Config::all()->first(), 'payments_accounts' => PaymentsAccount::all()]);
         
     }
     
@@ -193,17 +196,151 @@ class PaymentsController extends Controller
         $order->recipient_name = $request->recipient_name;
         $order->recipient_id = $request->recipient_id;
         $order->recipient_email = $request->recipient_email;
+        $order->payment_type = $request->payment_type;
        /* $order->edited = 'yes';*/
         $order->save();
       
       
         try {
+            
+              $className = 'JPBlancoDB\MercadoPago\MercadoPago';
+        
+            if (!class_exists($className)) {
+                throw new \Exception('The class '.$className.' does not exist.');
+            }
+          
+                
+                
             $preference = MercadoPago::create_preference($preference_data);
             return redirect()->to($preference['response']['init_point']);
-        } catch (Exception $e){
-            dd($e->getMessage());
+        
+        
+        } catch (\Exception $e){
+            $order->delete();
+             return abort(500);
         }
         
+        
+        
+        
+        
+        
+        
+     
+        
+        
+        
+        
+    }
+    
+    public function pay_bank(Request $request){
+        
+        
+        
+        //obtener carrito
+        $shoppingCart = Auth::user()->shoppingCart;
+        
+        
+        if($shoppingCart->articles()->count() == 0){
+            Flash::success('No hay artículos en el carrito');
+            return back();
+        }
+        
+  
+      
+        $config = Config::find(1);
+        foreach ($shoppingCart->articles as $article){
+            
+         
+            $articlesCount = $shoppingCart->articles()->where("article_id", "=", $article->id)->groupBy("article_id")->count(); //saber cuantos items son sin repetirse
+          
+            if($article->stock >= $articlesCount){ //verificar que haya existencia
+          
+            }else{
+                
+                
+                Flash::success('No hay suficiente disponibilidad del artículo '. $article->name);
+                return back();
+                
+            }
+        }
+   
+        
+        
+       
+        
+        $order = Order::create([
+           
+            'shopping_cart_id' => $shoppingCart->id,
+            'total' => $shoppingCart->total()
+            
+            
+        ]);
+
+       foreach ($shoppingCart->articles as $article){
+        
+       $orderDetails = OrderDetails::create([
+           
+            'order_id' => $order->id,
+            'name' => $article->name,
+            'price' => $article->price_now
+            
+        ]);
+           }
+        
+       
+        
+   
+        
+    //orden
+        
+      
+        $order->shipment_agency = $request->shipment_agency;
+        $order->shipment_agency_id = $request->shipment_agency_id;
+        $order->recipient_name = $request->recipient_name;
+        $order->recipient_id = $request->recipient_id;
+        $order->recipient_email = $request->recipient_email;
+        $order->payment_type = $request->payment_type;
+       
+        $order->status = 'No pagada';
+        $order->received = "yes";
+        $order->save();
+        
+        //restar artículos vendidos
+        foreach($shoppingCart->articles as $article){
+                        
+                        $article->stock = $article->stock - 1;
+                        $article->save();
+                   
+                        
+                    }
+        //vaciar carrito
+        $shoppingCart->articles()->detach();
+        
+        
+         Flash::success('La orden fue creada, cuando cargue el número identificador del pago su orden será procesada para envío');
+        return redirect('/home');
+        
+        
+        
+    }
+    
+    public function pay_bank_data(Request $request, $id){
+        
+        
+        $date = Carbon::createFromFormat('Y-m-d', $request->payment_date)->format('d/m/Y');
+        
+        $order = Order::find($id);
+        $order->payment_id = $request->payment_number;
+        $order->payment_date = $date;
+        $order->status = 'Por procesar';
+        $order->save();
+        
+        Mailer::processEmail($order);
+        Mailer::sendAdminEmail($order);
+        
+        Flash::success('Se han cargado los datos de su pago');
+        return back();
         
     }
     

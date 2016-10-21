@@ -24,7 +24,7 @@ class Mailer extends Model
                     ];
                 
                 $data = $array;
-                 Mail::queue('emails.admin-notification', $data, function($messagee) use ($request, $order, $config)
+                 Mail::queue('emails.admin-notification', $data, function($messagee) use ($order, $config)
                 {
                 //remitente
                 $messagee->from($config->sender_email, $config->sender_name);
@@ -54,7 +54,7 @@ class Mailer extends Model
                     ];
                 
                 $data = $array;
-                 Mail::queue('emails.user-process-notification', $data, function($messagee) use ($request, $order, $config)
+                 Mail::queue('emails.user-process-notification', $data, function($messagee) use ($order, $config)
                 {
                 //remitente
                 $messagee->from($config->sender_email, $config->sender_name);
@@ -85,7 +85,7 @@ class Mailer extends Model
                     ];
                 
                 $data = $array;
-                 Mail::queue('emails.user-send-notification', $data, function($messagee) use ($request, $order, $config)
+                 Mail::queue('emails.user-send-notification', $data, function($messagee) use ($order, $config)
                 {
                 //remitente
                 $messagee->from($config->sender_email, $config->sender_name);

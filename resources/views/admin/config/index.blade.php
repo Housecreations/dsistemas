@@ -65,6 +65,52 @@ Tienda Inactiva
       
   </table>
    <hr>
+   
+   
+   
+    <div class="button-container">
+ <a href="{{ route('admin.payments_accounts.create')}}" class="button button-lg">Nueva cuenta bancaria</a>  
+    
+
+</div>
+<hr>
+  
+  <table class="table table-hover">
+      
+      <thead>
+          <tr>
+              <th>Banco</th>
+              <th>Tipo de cuenta</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+         @foreach($payments_accounts as $payments_account)
+          <tr>
+              <td>{{$payments_account->bank_name}}</td>
+              <td>{{$payments_account->bank_account_type}}</td>
+              <td><a href="{{ route('admin.payments_accounts.edit', $payments_account->id)}}" title="Editar" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
+                     <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
+                    </span></a>
+               <a href="{{ route('admin.payments_accounts_get.destroy', $payments_account->id) }}" title="Eliminar" onclick="return confirm('Seguro que deseas eliminarlo?')" class=''><span class='fa-stack fa-lg ' aria-hidden='true'>
+                     <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-times fa-stack-1x fa-inverse"></i>
+                    </span></a></td>
+          </tr>
+          @endforeach
+      </tbody>
+      
+  </table>
+   
+   
+   
+   <hr>
+   
+   
+   
+   
+   
    <div>
     <h4 class="text-center">Correos de la aplicación</h4>
        <hr>
@@ -113,7 +159,19 @@ Eliminar carritos obsoletos
       {!! Form::close() !!}
        
    </div>
+   
+   <hr>
+   
+   
+  
+   
     </div>
+    
+    
+   
+    
+    
+    
 </div>
   
    

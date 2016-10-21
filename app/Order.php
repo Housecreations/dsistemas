@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\PaymentsAccount;
 
 class Order extends Model
 {
-   protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'edited', 'status', 'guide_number', 'total', 'received'];
+   protected $fillable = ['shopping_cart_id', 'customid', 'shipment_agency', 'shipment_agency_id', 'recipient_name', 'recipient_id', 'recipient_email', 'payment_id', 'payment_type', 'payment_date', 'edited', 'status', 'guide_number', 'total', 'received'];
     
    public function scopeSearch($query, $name){
     
@@ -83,4 +84,9 @@ class Order extends Model
         return $this->hasMany('App\OrderDetails');
         
     } 
+    
+    public function findPaymentsAccount($id){
+        
+        return PaymentsAccount::find($id);
+    }
 }
